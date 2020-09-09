@@ -15,10 +15,10 @@ export default function Dashboard() {
       <div className={classes.encuestaCard}>
             <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
             <div className ={classes.infoEncuestaCard}>
-                <h4><b>ALFNSLDFNSLDKFNSLD</b></h4>
+                <h4><b>LSKASEFNLKEFLS</b></h4>
                 <p>Tiempo Restante: DD-HH:mm</p>
             </div>
-            <button>RESPONDER ENCUESTA</button>
+            <button>RESPONDER ENCUESTA aaa12</button>
       </div>
         <div className={classes.encuestaCard}>
             <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
