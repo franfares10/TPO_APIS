@@ -19,10 +19,16 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
+import AyudaIcon from "assets/img/iconos/ayudaIcono.png";
+import ContactoIcon from "assets/img/iconos/contactoIcono.png";
+import ProblemaIcon from "assets/img/iconos/problemaIcono.png"
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
+import Ayuda from "views/Ayuda/Ayuda.js";
+import Contacto from "views/Contacto/Contacto.js"
+import Problema from "views/Problema/Problema.js"
 // core components/views for RTL layout
 
 
@@ -51,7 +57,32 @@ const dashboardRoutes = [
     icon: Notifications,
     component: NotificationsPage,
     layout: "/admin"
+  },
+  {
+    path: "/ayuda",
+    name: "Ayuda",
+    rtlName: "مساعدة",
+    icon: AyudaIcon,
+    component: Ayuda,
+    layout: "/admin"
+  },
+  {
+    path: "/contacto",
+    name: "Contacto",
+    rtlName: "اتصل",
+    icon: ContactoIcon,
+    component: Contacto,
+    layout: "/admin"
+  },
+  {
+    path: "/problema",
+    name: "Reportar un Problema",
+    rtlName: "الإبلاغ عن مشكلة",
+    icon: ProblemaIcon,
+    component: Problema,
+    layout: "/admin"
   }
+
 ];
 
 export default dashboardRoutes;
