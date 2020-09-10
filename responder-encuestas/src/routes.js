@@ -82,7 +82,6 @@ const dashboardRoutes = [
     component: Problema,
     layout: "/admin"
   }
-
 ];
 
 export default dashboardRoutes;
