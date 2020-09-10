@@ -240,7 +240,6 @@ export default function UserProfile() {
               <h6 className={classes.cardCategory}>SA</h6>
               <h4 className={classes.cardTitle}>Ejemplo PyMe</h4>
               <p className={classes.description}>
-                
               </p>
             </CardBody>
           </Card>

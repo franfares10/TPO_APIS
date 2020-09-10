@@ -11,6 +11,11 @@ const encuestasStyle = {
     padding: '6rem'
   },
 
+  h4:{
+    paddingLeft: "10px",
+    paddingTop: "10px"
+  },
+
   encuestaCard: {
     height: '200px',
     width: '400px',

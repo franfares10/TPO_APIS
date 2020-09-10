@@ -15,7 +15,7 @@ export default function Dashboard() {
     <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
                 <CardHeader color="primary">
-                    <h4 className={classes.cardTitleWhite}>Encuestas por responder</h4>
+                    <h4 className={classes.h4}>Encuestas por responder</h4>
                 </CardHeader>
         </GridItem>
     </GridContainer>
