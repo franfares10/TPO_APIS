@@ -20,6 +20,8 @@ const styles = {
     },
 
     imgTwitter: {
+        paddingBottom: "50px",
+        paddingLeft: "50px",
         border: "none",
         borderRadius: "2px",
         width: "40px",
@@ -93,10 +95,10 @@ export default function Contacto() {
                     <h4 className={classes.cardTitleWhite}>Métodos de Contacto</h4>
                 </CardHeader>
                 <GridContainer justify={"center"}>
-                    <GridItem xs={2} sm={2} md={4}>
+                    <GridItem xs={2} sm={2} md={2}>
                         <Card>
                             <h4 className={classes.h4}>Seguinos en:</h4>
-                            <GridContainer display={"inline-block"} justify={"center"}>
+                            <GridContainer display={"inline-block"}>
                                 <img className={classes.imgTwitter} src={logoTwitter} onClick={linkTwitter}></img>
                                 <img className={classes.imgFacebook} src={logoFacebook} onClick={linkFacebook}></img>
                                 <img className={classes.imgLinkedin} src={logoLinkeding} onClick={linkLinkedin}></img>
@@ -104,7 +106,7 @@ export default function Contacto() {
                             </GridContainer>
                         </Card>
                     </GridItem>
-                    <GridItem xs={2} sm={2} md={4}>
+                    <GridItem xs={2} sm={2} md={3}>
                         <Card>
                             <p className={classes.p}>
                                 TEL (54 11) 4381 3331

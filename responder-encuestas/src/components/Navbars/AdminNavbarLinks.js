@@ -16,14 +16,12 @@ import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
-import Search from "@material-ui/icons/Search";
+
 // core components
-import CustomInput from "components/CustomInput/CustomInput.js";
+
 import Button from "components/CustomButtons/Button.js";
 
-
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
-import Dashboard from "views/Dashboard/Dashboard";
 
 
 const useStyles = makeStyles(styles);
@@ -57,26 +55,7 @@ export default function AdminNavbarLinks() {
   };
 
   return (
-        /*Defino Boton y barra de search, boton de notificaciones, y boton de opciones del perfil
-     con todas sus funcionalidades y estilos*/
-    <div>
-      <div className={classes.searchWrapper}>
-        <CustomInput
-          formControlProps={{
-            className: classes.margin + " " + classes.search
-          }}
-          inputProps={{
-            placeholder: "Buscar...",
-            inputProps: {
-              "aria-label": "Search"
-            }
-          }}
-        />
-        <Button color="white" aria-label="edit" justIcon round>
-          <Search />
-        </Button>
-      </div>
-      
+    <div>      
       <div className={classes.manager}>
         <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}

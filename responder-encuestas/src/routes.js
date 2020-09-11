@@ -19,9 +19,9 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
-import AyudaIcon from "assets/img/iconos/ayudaIcono.png";
-import ContactoIcon from "assets/img/iconos/contactoIcono.png";
-import ProblemaIcon from "assets/img/iconos/problemaIcono.png"
+import SupportIcon from '@material-ui/icons/ContactSupport';
+import ContactIcon from '@material-ui/icons/ContactPhone';
+import ProblemIcon from '@material-ui/icons/ReportProblem';
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
@@ -62,7 +62,7 @@ const dashboardRoutes = [
     path: "/ayuda",
     name: "Ayuda",
     rtlName: "مساعدة",
-    icon: AyudaIcon,
+    icon: SupportIcon,
     component: Ayuda,
     layout: "/admin"
   },
@@ -70,7 +70,7 @@ const dashboardRoutes = [
     path: "/contacto",
     name: "Contacto",
     rtlName: "اتصل",
-    icon: ContactoIcon,
+    icon: ContactIcon,
     component: Contacto,
     layout: "/admin"
   },
@@ -78,7 +78,7 @@ const dashboardRoutes = [
     path: "/problema",
     name: "Reportar un Problema",
     rtlName: "الإبلاغ عن مشكلة",
-    icon: ProblemaIcon,
+    icon: ProblemIcon,
     component: Problema,
     layout: "/admin"
   }
