@@ -11,15 +11,16 @@ const encuestasStyle = {
     padding: '6rem'
   },
 
-  h4:{
+  titulo:{
     paddingLeft: "10px",
     paddingTop: "10px",
     marginTop: "0"
   },
 
-  h6:{
-    padding: "0",
-    margin: "0"
+  h4:{
+    paddingTop: "18px",
+    margin: "0",
+    textColor: "grey"
   },
 
   encuestaCard: {

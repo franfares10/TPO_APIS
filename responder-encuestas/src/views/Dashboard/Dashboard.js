@@ -37,7 +37,7 @@ export default function Dashboard() {
         <div>
             <Card>
             <CardHeader color="primary">
-                            <h4 className={classes.h4}>Encuestas por responder</h4>
+                            <h4 className={classes.titulo}>Encuestas por responder</h4>
                         </CardHeader>
                 <GridContainer> 
                     <GridItem xs={12} sm={12} md={12}>
@@ -60,7 +60,8 @@ export default function Dashboard() {
                                     </Button>
                                 </div>
                             </GridItem>
-                            <GridItem sm={2}>
+                            <GridItem xs={2} sm={3} md={3}>
+                                    <h4 className={classes.h4}></h4>
                                     <RadioGroup defaultValue="tiempo" aria-label="radio" name="customized-radios" row>
                                         <FormControlLabel value="tiempo" control={<StyledRadio />} label="Tiempo Restante" />
                                         <FormControlLabel value="abc" control={<StyledRadio />} label="Alfabético" />
