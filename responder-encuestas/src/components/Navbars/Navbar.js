@@ -64,5 +64,5 @@ Header.propTypes = {
   color: PropTypes.oneOf(["primary", "success", "warning", "danger"]),
   rtlActive: PropTypes.bool,
   handleDrawerToggle: PropTypes.func,
-  routes: PropTypes.arrayOf(PropTypes.object)
+  routesNav: PropTypes.arrayOf(PropTypes.object)
 };

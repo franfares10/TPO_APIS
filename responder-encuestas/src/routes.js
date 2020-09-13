@@ -24,8 +24,6 @@ import ContactIcon from '@material-ui/icons/ContactPhone';
 import ProblemIcon from '@material-ui/icons/ReportProblem';
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
-import UserProfile from "views/UserProfile/UserProfile.js";
-import NotificationsPage from "views/Notifications/Notifications.js";
 import Ayuda from "views/Ayuda/Ayuda.js";
 import Contacto from "views/Contacto/Contacto.js"
 import Problema from "views/Problema/Problema.js"
@@ -40,22 +38,6 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
-    layout: "/admin"
-  },
-  {
-    path: "/user",
-    name: "Perfil",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: Person,
-    component: UserProfile,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notificaciones",
-    rtlName: "إخطارات",
-    icon: Notifications,
-    component: NotificationsPage,
     layout: "/admin"
   },
   {

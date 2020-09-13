@@ -11,6 +11,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
+import routesNav from "routesNavBar.js"
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
@@ -31,7 +32,17 @@ const switchRoutes = (
           />
         );
       }
-      return null;
+    })}
+    {routesNav.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      }
     })}
     <Redirect from="/admin" to="/admin/dashboard" />
   </Switch>
@@ -105,7 +116,7 @@ export default function Admin({ ...rest }) {
       />
       <div className={classes.mainPanel} ref={mainPanel}>
         <Navbar
-          routes={routes}
+          routes={routesNav}
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
         />

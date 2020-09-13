@@ -97,34 +97,27 @@ export default function AdminNavbarLinks() {
               <Paper>
                 <ClickAwayListener onClickAway={handleCloseNotification}>
                   <MenuList role="menu">
-
-                        <Link to ="/admin/notifications">
                           <MenuItem
+                            component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
                             Observatorio PyMe lo invitó a responder una encuesta
                           </MenuItem>
-                        </Link>
-
-                        <Link to ="/admin/notifications">
                           <MenuItem
+                            component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
                             RECORDATORIO - El plazo restante para responder la encuesta es de 5 días
                           </MenuItem>
-                        </Link>
-
-                        <Link to ="/admin/notifications">
                           <MenuItem
+                            component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
                             AVISO - El plazo habilitado para resonder la encuesta finaliza mañana
                           </MenuItem>
-                        </Link>
-                 
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -170,15 +163,13 @@ export default function AdminNavbarLinks() {
               <Paper>
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
-                  <Link to ="/admin/user">
                     <MenuItem
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
+                      component={Link} to ="/admin/user"
                     >
                     Perfil
                     </MenuItem>
-                  </Link>
-                 
                     <Divider light />
                     <MenuItem
                       onClick={handleCloseProfile}
