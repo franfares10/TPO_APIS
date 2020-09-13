@@ -7,12 +7,18 @@ import CardHeader from "components/Card/CardHeader.js";
 
 import logoTwitter from "assets/img/iconos/Twitter-Logo.png";
 import logoFacebook from "assets/img/iconos/facebook-logo.png";
-import logoLinkeding from "assets/img/iconos/linkedin-logo.png";
+import logoLinkedin from "assets/img/iconos/linkedin-logo.png";
 import logoInstagram from "assets/img/iconos/instagram-logo.png";
 
 const styles = {
     h4: {
-        paddingLeft: "20px"
+        paddingLeft: "10px"
+    },
+
+    titulo: {
+        paddingLeft: "10px",
+        paddingTop: "10px",
+        marginTop: "0"
     },
 
     p: {
@@ -91,18 +97,18 @@ export default function Contacto() {
     return (
         <div>
             <Card>
-                <CardHeader color="primary">
-                    <h4 className={classes.cardTitleWhite}>Métodos de Contacto</h4>
+                <CardHeader color="primary" >
+                    <h4 className={classes.titulo}>Métodos de Contacto</h4>
                 </CardHeader>
                 <GridContainer justify={"center"}>
                     <GridItem xs={2} sm={2} md={2}>
                         <Card>
                             <h4 className={classes.h4}>Seguinos en:</h4>
                             <GridContainer display={"inline-block"}>
-                                <img className={classes.imgTwitter} src={logoTwitter} onClick={linkTwitter}></img>
-                                <img className={classes.imgFacebook} src={logoFacebook} onClick={linkFacebook}></img>
-                                <img className={classes.imgLinkedin} src={logoLinkeding} onClick={linkLinkedin}></img>
-                                <img className={classes.imgInstagram} src={logoInstagram} onClick={linkInstagram}></img>
+                                <img className={classes.imgTwitter} src={logoTwitter} onClick={linkTwitter} alt="Icono de Twitter"></img>
+                                <img className={classes.imgFacebook} src={logoFacebook} onClick={linkFacebook} alt="Icono de Facebook"></img>
+                                <img className={classes.imgLinkedin} src={logoLinkedin} onClick={linkLinkedin} alt="Icono de Linkedin"></img>
+                                <img className={classes.imgInstagram} src={logoInstagram} onClick={linkInstagram} alt="Icono de Instagram"></img>
                             </GridContainer>
                         </Card>
                     </GridItem>

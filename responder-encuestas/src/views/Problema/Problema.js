@@ -12,7 +12,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import Snackbar from "components/Snackbar/Snackbar.js";
 
-import AddAlert from "@material-ui/icons/AddAlert";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const styles = {
   cardCategoryWhite: {
@@ -110,7 +110,7 @@ export default function Problema() {
   return (
     <div>
       <GridContainer justify={"center"}>
-        <GridItem xs={12} sm={12} md={10}>
+        <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Enviar reporte</h4>
@@ -118,7 +118,7 @@ export default function Problema() {
             </CardHeader>
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={1}>
+                <GridItem xs={12} sm={12} md={2}>
                   <CustomInput
                     labelText="ID Encuesta"
                     id="idEncuesta"
@@ -129,7 +129,7 @@ export default function Problema() {
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                <GridItem xs={12} sm={12} md={6} >
+                <GridItem xs={12} sm={12} md={12} >
                   <CustomInput
                     labelText="Descripción del problema"
                     id="about-me"
@@ -150,7 +150,7 @@ export default function Problema() {
                     <Snackbar
                         place="br"
                         color="primary"
-                        icon={AddAlert}
+                        icon={CheckCircleIcon}
                         message="Reporte Enviado"
                         open={br}
                         closeNotification={() => setBR(false)}

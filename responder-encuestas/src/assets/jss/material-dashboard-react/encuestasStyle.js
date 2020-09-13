@@ -13,7 +13,8 @@ const encuestasStyle = {
 
   h4:{
     paddingLeft: "10px",
-    paddingTop: "10px"
+    paddingTop: "10px",
+    marginTop: "0"
   },
 
   h6:{

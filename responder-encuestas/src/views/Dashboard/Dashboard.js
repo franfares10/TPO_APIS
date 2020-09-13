@@ -12,8 +12,6 @@ import Search from "@material-ui/icons/Search";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles(styles);
 
@@ -34,19 +32,15 @@ function StyledRadio(props) {
 
 export default function Dashboard() {
     const classes = useStyles();
-    const [value, setValue] = React.useState('female');
-    const handleChange = (event) => {
-        setValue(event.target.value);
 
-    };
     return (
         <div>
             <Card>
-                <GridContainer>
-                    <GridItem xs={12} sm={12} md={12}>
-                        <CardHeader color="primary">
+            <CardHeader color="primary">
                             <h4 className={classes.h4}>Encuestas por responder</h4>
                         </CardHeader>
+                <GridContainer> 
+                    <GridItem xs={12} sm={12} md={12}>
                         <GridContainer justify={"center"} display={"inline-block"}>
                             <GridItem>
                                 <div className={classes.searchWrapper}>

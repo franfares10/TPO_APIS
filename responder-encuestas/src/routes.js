@@ -17,8 +17,6 @@
 */
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
-import Person from "@material-ui/icons/Person";
-import Notifications from "@material-ui/icons/Notifications";
 import SupportIcon from '@material-ui/icons/ContactSupport';
 import ContactIcon from '@material-ui/icons/ContactPhone';
 import ProblemIcon from '@material-ui/icons/ReportProblem';

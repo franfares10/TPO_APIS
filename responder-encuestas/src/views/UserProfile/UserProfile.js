@@ -14,7 +14,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Snackbar from "components/Snackbar/Snackbar.js";
 
-import AddAlert from "@material-ui/icons/AddAlert";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import avatar from "assets/img/faces/marc.jpg";
 
 const styles = {
@@ -220,7 +220,7 @@ export default function UserProfile() {
               <Snackbar
                         place="br"
                         color="primary"
-                        icon={AddAlert}
+                        icon={CheckCircleIcon}
                         message="Perfil Actualizado"
                         open={br}
                         closeNotification={() => setBR(false)}
