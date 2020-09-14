@@ -136,21 +136,14 @@ export default function Notifications() {
             />
             <SnackbarContent
               message={
-                '¡Gracias por responder la encuesta!'
-              }
-              close
-              color="success"
-            />
-            <SnackbarContent
-              message={
-                'RECORDATORIO - El tiempo para responder la encuesta finaliza en 5 días'
+                'RECORDATORIO - El plazo habilitado para responder la encuesta: "Encuesta Financiera" es de 5 días'
               }
               close
               color="warning"
             />
             <SnackbarContent
               message={
-                'AVISO - El tiempo para responder la encuesta finaliza mañana'
+                'AVISO - El plazo habilitado para responder la encuesta: "Encuesta de Procesos" finaliza mañana'
               }
               close
               color="danger"

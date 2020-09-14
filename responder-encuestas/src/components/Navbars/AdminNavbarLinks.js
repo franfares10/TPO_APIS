@@ -108,14 +108,14 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            RECORDATORIO - El plazo restante para responder la encuesta es de 5 días
+                            RECORDATORIO - El plazo habilitado para responder la encuesta: "Encuesta Financiera" es de 5 días
                           </MenuItem>
                           <MenuItem
                             component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            AVISO - El plazo habilitado para resonder la encuesta finaliza mañana
+                            AVISO - El plazo habilitado para resonder la encuesta: "Encuesta de Procesos" finaliza mañana
                           </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
