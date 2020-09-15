@@ -5,7 +5,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
@@ -33,12 +34,26 @@ const styles = {
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none"
+  },
+  TextField:{
+    marginTop: "2em"
   }
 };
+
+let state = {
+  email: ""
+}
 
 const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
+  const [value, setValue] = React.useState(null);
+  let estado = state;
+
+  const controladorEstado = input => {
+    estado.email=input;
+  }
+
   const classes = useStyles();
   const [tl, setTL] = React.useState(false);
   const [tc, setTC] = React.useState(false);
@@ -122,105 +137,99 @@ export default function UserProfile() {
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
-                  <CustomInput
-                    labelText="Empresa"
+                  <TextField
+                  className={classes.TextField}
+                    label="Empresa"
                     id="company-disabled"
-                    formControlProps={{
-                      fullWidth: true,
-                      disabled: true
-                    }}
+                    fullWidth="true"
+                    disabled="true"
+                    type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText="Email de contacto"
+                  <TextField
+                  className={classes.TextField}
+                    label="Email de contacto"
                     id="email"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
+                    fullWidth="true"
+                    type="email"
+                    value={value}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Numero de Teléfono"
+                  <TextField
+                  className={classes.TextField}
+                    label="Numero de Teléfono"
                     id="num"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
+                    fullWidth="true"
+                    type="tel"
                   />
                 </GridItem>
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Ciudad"
+                  <TextField
+                    className={classes.TextField}
+                    label="Ciudad"
                     id="city"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
+                    fullWidth="true"
+                    type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Código Postal"
+                  <TextField
+                  className={classes.TextField}
+                    label="Código Postal"
                     id="zipCode"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
+                    fullWidth="true"
+                    type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Razón Social"
+                  <TextField
+                  className={classes.TextField}
+                    label="Razón Social"
                     id="postal-code"
-                    formControlProps={{
-                      fullWidth: true,
-                      disabled: true
-                    }}
+                    fullWidth="true"
+                    disabled="true"
+                    type="text"
                   />
                 </GridItem>
               </GridContainer>
               <GridContainer>
-              <InputLabel style={{ color: "#AAAAAA" }}>Acerca de Nosotros</InputLabel>
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Historia"
+                  <TextField
+                  className={classes.TextField}
+                    label="Historia"
                     id="about-me"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      multiline: true,
-                      rows: 5
-                    }}
+                    fullWidth="true"
+                    multiline= "true"
+                    rows= "5"
+                    type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Misión"
+                  <TextField
+                  className={classes.TextField}
+                    label="Misión"
                     id="mision"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      multiline: true,
-                      rows: 5
-                    }}
+                    fullWidth="true"
+                    multiline= "true"
+                    rows= "5"
+                    type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Visión"
+                  <TextField
+                  className={classes.TextField}
+                    label="Visión"
                     id="vision"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      multiline: true,
-                      rows: 5
-                    }}
+                    fullWidth="true"
+                    multiline= "true"
+                    rows= "5"
+                    type="text"
                   />
                 </GridItem>
               </GridContainer>

@@ -16,7 +16,7 @@
 
 */
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import SupportIcon from '@material-ui/icons/ContactSupport';
 import ContactIcon from '@material-ui/icons/ContactPhone';
 import ProblemIcon from '@material-ui/icons/ReportProblem';
@@ -34,7 +34,7 @@ const dashboardRoutes = [
     path: "/dashboard",
     name: "Encuestas",
     rtlName: "لوحة القيادة",
-    icon: Dashboard,
+    icon: AssignmentIcon,
     component: DashboardPage,
     layout: "/admin"
   },

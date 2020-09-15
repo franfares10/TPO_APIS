@@ -18,7 +18,7 @@ const encuestasStyle = {
   },
 
   h4:{
-    paddingTop: "18px",
+    paddingTop: "11px",
     margin: "0",
     textColor: "grey"
   },
@@ -57,24 +57,24 @@ const encuestasStyle = {
       bottom: '16%',
       fontSize: '150%'
     },
+  },
 
-    "& button": {
-      color: 'white',
-      height: '40px',
-      width: '80%',
-      backgroundColor: 'rgb(30, 154, 159)',
-      position: 'absolute',
-      left: '10.5%',
-      bottom: '5%',
-      cursor: 'pointer',
-      border: 'none',
-      borderRadius: '3px',
-      transition: '0.3s',
-      opacity: '1',
-      outline:'none',
-      "&:hover": {
-        opacity: '0.6'
-      }
+  Button: {
+    color: 'white',
+    height: '40px',
+    width: '80%',
+    backgroundColor: 'rgb(30, 154, 159)',
+    position: 'absolute',
+    left: '10.5%',
+    bottom: '5%',
+    cursor: 'pointer',
+    border: 'none',
+    borderRadius: '3px',
+    transition: '0.3s',
+    opacity: '1',
+    outline:'none',
+    "&:hover": {
+      opacity: '0.6'
     }
   },
 
@@ -124,11 +124,7 @@ const encuestasStyle = {
   margin: {
     zIndex: "4",
     margin: "0"
-  },
-  searchIcon: {
-    width: "17px",
-    zIndex: "4"
-  },
+  }
 }
 
 export default encuestasStyle

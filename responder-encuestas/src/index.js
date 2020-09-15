@@ -23,6 +23,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 // core components
 import Admin from "layouts/Admin.js";
 import RTL from "layouts/RTL.js";
+import Encuesta from "layouts/Encuesta.js"
 
 
 import "assets/css/material-dashboard-react.css?v=1.9.0";
@@ -34,6 +35,7 @@ ReactDOM.render(
     <Switch>
       <Route  path="/admin" component={Admin} />
       <Route  path="/rtl" component={RTL} />
+      <Route path="/encuesta" component={Encuesta} />
       <Redirect from="/" to="/admin/dashboard" />
     </Switch>
   </Router>,

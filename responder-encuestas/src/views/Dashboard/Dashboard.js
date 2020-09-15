@@ -36,48 +36,46 @@ export default function Dashboard() {
     return (
         <div>
             <Card>
-            <CardHeader color="primary">
-                            <h4 className={classes.titulo}>Encuestas por responder</h4>
-                        </CardHeader>
-                <GridContainer> 
-                    <GridItem xs={12} sm={12} md={12}>
-                        <GridContainer justify={"center"} display={"inline-block"}>
-                            <GridItem>
-                                <div className={classes.searchWrapper}>
-                                    <CustomInput
-                                        formControlProps={{
-                                            className: classes.margin + " " + classes.search
-                                        }}
-                                        inputProps={{
-                                            placeholder: "Buscar encuesta...",
-                                            inputProps: {
-                                                "aria-label": "Search"
-                                            }
-                                        }}
-                                    />
-                                    <Button color="white" aria-label="edit" justIcon round>
-                                        <Search />
-                                    </Button>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={2} sm={3} md={3}>
-                                    <h4 className={classes.h4}></h4>
-                                    <RadioGroup defaultValue="tiempo" aria-label="radio" name="customized-radios" row>
-                                        <FormControlLabel value="tiempo" control={<StyledRadio />} label="Tiempo Restante" />
-                                        <FormControlLabel value="abc" control={<StyledRadio />} label="Alfabético" />
-                                    </RadioGroup>
-                            </GridItem>
-                        </GridContainer>
-                    </GridItem>
+                <CardHeader color="primary">
+                    <h4 className={classes.titulo}>Encuestas por responder</h4>
+                </CardHeader>
+                <GridContainer justify={"center"} display={"inline-block"}>
+                            <GridItem xs={12} sm={12} md={5}>
+                                <CustomInput
+                                    className="barraBusq"
+                                    formControlProps={{
+                                        className: classes.margin + " " + classes.search,
+                                        fullWidth: true,
+                                    }}
+                                    inputProps={{
+                                        placeholder: "Buscar encuesta...",
+                                        inputProps: {
+                                            "aria-label": "Search"
+                                        }
+                                    }}
+                                />
+                                </GridItem>
+                                <GridContainer justify={"center"} display={"inline-block"}>
+                                    <GridItem>
+                                        <Button className={classes.btnBusq} color="white" aria-label="edit" justIcon round>
+                                            <Search />
+                                        </Button>
+                                    </GridItem>
+                                    <GridItem>
+                                        <h4 className={classes.h4}></h4>
+                                        <RadioGroup defaultValue="tiempo" aria-label="radio" name="customized-radios" row>
+                                            <FormControlLabel value="tiempo" control={<StyledRadio />} label="Tiempo Restante" />
+                                            <FormControlLabel value="abc" control={<StyledRadio />} label="Alfabético" />
+                                        </RadioGroup>                                
+                                    </GridItem>
+                            </GridContainer> 
                 </GridContainer>
                 <GridContainer justify={"center"}>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
-                        <div className={classes.infoEncuestaCard}>
                             <h4><b>Encuesta Financiera</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
-                        </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -85,7 +83,7 @@ export default function Dashboard() {
                             <h4><b>Encuesta de Procesos</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -93,7 +91,7 @@ export default function Dashboard() {
                             <h4><b>Encuesta de Logística</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -101,7 +99,7 @@ export default function Dashboard() {
                             <h4><b>Encuesta Financiera</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -109,7 +107,7 @@ export default function Dashboard() {
                             <h4><b>Encuesta de Procesos</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -117,14 +115,14 @@ export default function Dashboard() {
                             <h4><b>Encuesta de Logística</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div><div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
                         <div className={classes.infoEncuestaCard}>
                             <h4><b>Encuesta Financiera</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -132,7 +130,7 @@ export default function Dashboard() {
                             <h4><b>Encuesta de Procesos</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                     <div className={classes.encuestaCard}>
                         <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png"></img>
@@ -140,7 +138,7 @@ export default function Dashboard() {
                             <h4><b>Encuesta de Logística</b></h4>
                             <p>Tiempo Restante: DD-HH:mm</p>
                         </div>
-                        <Button color="primary">RESPONDER ENCUESTA</Button>
+                        <Button className={classes.Button} href="/encuesta" color="primary">RESPONDER ENCUESTA</Button>
                     </div>
                 </GridContainer>
             </Card>
