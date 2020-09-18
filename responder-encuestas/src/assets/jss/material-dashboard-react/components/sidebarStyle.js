@@ -72,9 +72,6 @@ const sidebarStyle = theme => ({
       right: "15px",
       width: "calc(100% - 30px)",
       backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
-    },
-    "&:hover":{
-      cursor: "pointer"
     }
   },
   logoLink: {
@@ -107,7 +104,10 @@ const sidebarStyle = theme => ({
     top: "22px",
     position: "absolute",
     verticalAlign: "middle",
-    border: "0"
+    border: "0",
+    "&:hover":{
+      cursor: "pointer"
+    }
   },
   background: {
     position: "absolute",
