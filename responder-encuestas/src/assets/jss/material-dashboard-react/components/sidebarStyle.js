@@ -72,6 +72,9 @@ const sidebarStyle = theme => ({
       right: "15px",
       width: "calc(100% - 30px)",
       backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
+    },
+    "&:hover":{
+      cursor: "pointer"
     }
   },
   logoLink: {

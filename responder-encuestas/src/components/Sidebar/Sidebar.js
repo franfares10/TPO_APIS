@@ -64,12 +64,12 @@ export default function Sidebar(props) {
                   {prop.icon}
                 </Icon>
               ) : (
-                <prop.icon
-                  className={classNames(classes.itemIcon, whiteFontClasses, {
-                    [classes.itemIconRTL]: props.rtlActive
-                  })}
-                />
-              )}
+                  <prop.icon
+                    className={classNames(classes.itemIcon, whiteFontClasses, {
+                      [classes.itemIconRTL]: props.rtlActive
+                    })}
+                  />
+                )}
               <ListItemText
                 primary={props.rtlActive ? prop.rtlName : prop.name}
                 className={classNames(classes.itemText, whiteFontClasses, {
@@ -83,21 +83,22 @@ export default function Sidebar(props) {
       })}
     </List>
   );
-  /*Fijarse esto*/
   var brand = (
     <div className={classes.logo}>
       <a
-        href="/"
+        href="https://www.observatoriopyme.org.ar/"
         className={classNames(classes.logoLink, {
           [classes.logoLinkRTL]: props.rtlActive
         })}
         target="_blank"
       ></a>
-        <div className={classes.logoImage}>
+      <div className={classes.logoImage}>
+        <a href="https://www.observatoriopyme.org.ar/" target="_blank">
           <img src={logo} alt="logo" className={classes.img} />
-        </div>
-        {logoText}
-      
+        </a>
+      </div>
+      {logoText}
+
     </div>
   );
   return (
