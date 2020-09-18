@@ -20,12 +20,14 @@ h1,h2,h3,h4,h5,h6,label,span {
 body, html, .App, #root, .auth-wrapper {
   width: 100%;
   height: 100%;
+  height: 100%;
 }
 
 .navbar-light {
-  background-color: lightseagreen;
+  background-color: #128999;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  color: chartreuse;
+  color: #128999;
+  display: flex;
 }
 
 .auth-wrapper {
@@ -71,10 +73,17 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .forgot-password a {
-  color: blue;
+  color:#128999;
 }
+
+.btnPrimario{
+  align-self: right;
+  display: flex;
+  margin-right: -10px;
+}
+
     
 .btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary:visited {
-    background-color:lightseagreen !important;
+    background-color:#128999 !important;
   }
 

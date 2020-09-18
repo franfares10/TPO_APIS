@@ -22,12 +22,11 @@ export default class Login extends Component {
     render() {
         return (
             <form id="formulario"> 
-            <div className="form-group">
-                <img src="logopyme.png" name="logopyme"
-                    title="Título logo" alt="Título del logo" width="190" height="100" align="rigth"></img>
+            <div className="form-group" align="center">
+                <img src="logo.png"  name="logopyme"
+                    title="Título logo" alt="Título del logo" width="150" height="130" align="center"></img>
             </div>
             
-            <h3>Sign In</h3>
 
             <div className="form-group">
                 <label>Email address</label>
@@ -37,6 +36,9 @@ export default class Login extends Component {
             <div className="form-group">
                 <label>Password</label>
                 <input type="password" className="form-control" placeholder="Enter password" id="password" />
+                <p className="forgot-password text-right">
+                Forgot <a href="https://www.observatoriopyme.org.ar/">password?</a>
+            </p>
             </div>
 
             <div className="form-group">
@@ -51,8 +53,8 @@ export default class Login extends Component {
             </button>
             </Link>
             <p className="forgot-password text-right">
-                Forgot <a href="https://www.observatoriopyme.org.ar/">password?</a>
-            </p>
+                    Dont you have an account? <Link  to={"/sign-up"}>Sign in</Link>
+                </p>
             <div id="error"></div>
         </form>
     );
