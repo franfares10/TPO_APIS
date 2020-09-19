@@ -1,20 +1,20 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
-import TextField from '@material-ui/core/TextField';
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem"
 import Button from "components/CustomButtons/Button";
 import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
+import Pades from 'components/Preguntas/preguntaText'
+import Pradio from 'components/Preguntas/preguntaRadio'
+import Pselect from 'components/Preguntas/preguntaSelect'
+import Pcheck from 'components/Preguntas/preguntaCheck'
+import Pfile from 'components/Preguntas/preguntaUpload'
+import Pdate from 'components/Preguntas/preguntaDate'
 
 const styles = {
-
-    respuesta: {
-        width: '300px'
-    },
-
     pyrCard: {
-        height: '200px',
+        height: '250px',
         width: '600px',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
         transition: '0.3s',
@@ -47,62 +47,32 @@ export default function Encuesta() {
             <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
                 <GridItem>
                     <div className={classes.pyrCard}>
-                        <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-                            <GridItem>
-                                <h4>Pregunta 1</h4>
-                            </GridItem>
-                            <GridItem>
-                                <TextField className={classes.respuesta} label="Respuesta" variant="filled"></TextField>
-                            </GridItem>
-                        </GridContainer>
+                        <Pades />
                     </div>
                 </GridItem>
                 <GridItem>
                     <div className={classes.pyrCard}>
-                        <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-                            <GridItem>
-                                <h4>Pregunta 2</h4>
-                            </GridItem>
-                            <GridItem>
-                                <TextField className={classes.respuesta} label="Respuesta" variant="filled"></TextField>
-                            </GridItem>
-                        </GridContainer>
+                        <Pradio />
                     </div>
                 </GridItem>
                 <GridItem>
                     <div className={classes.pyrCard}>
-                        <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-                            <GridItem>
-                                <h4>Pregunta 3</h4>
-                            </GridItem>
-                            <GridItem>
-                                <TextField className={classes.respuesta} label="Respuesta" variant="filled"></TextField>
-                            </GridItem>
-                        </GridContainer>
+                        <Pselect />
                     </div>
                 </GridItem>
                 <GridItem>
                     <div className={classes.pyrCard}>
-                        <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-                            <GridItem>
-                                <h4>Pregunta 4</h4>
-                            </GridItem>
-                            <GridItem>
-                                <TextField className={classes.respuesta} label="Respuesta" variant="filled"></TextField>
-                            </GridItem>
-                        </GridContainer>
+                        <Pcheck />
                     </div>
                 </GridItem>
                 <GridItem>
                     <div className={classes.pyrCard}>
-                        <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-                            <GridItem>
-                                <h4>Última Pregunta</h4>
-                            </GridItem>
-                            <GridItem>
-                                <TextField className={classes.respuesta} label="Respuesta" variant="filled"></TextField>
-                            </GridItem>
-                        </GridContainer>
+                        <Pfile />
+                    </div>
+                </GridItem>
+                <GridItem>
+                    <div className={classes.pyrCard}>
+                        <Pdate />
                     </div>
                 </GridItem>
                 <GridItem>
