@@ -6,7 +6,7 @@ import GridItem from "components/Grid/GridItem"
 export default pades => (
     <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
         <GridItem>
-            <h4>Pregunta text Input</h4>
+            <h4>Pregunta Text Input</h4>
         </GridItem>
         <GridItem>
             <TextField label="Respuesta"></TextField>

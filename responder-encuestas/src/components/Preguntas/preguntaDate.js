@@ -9,9 +9,13 @@ import {
 } from '@material-ui/pickers';
 
 export default function MaterialUIPickers() {
-    const [selectedDate1, setSelectedDate, selectedDate2] = React.useState();
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
+    const [selectedDate1, setSelectedDate1] = React.useState();
+    const [selectedDate2, setSelectedDate2] = React.useState();
+    const handleDateChange1 = (date) => {
+        setSelectedDate1(date);
+    };
+    const handleDateChange2 = (date) => {
+        setSelectedDate2(date);
     };
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
@@ -30,7 +34,7 @@ export default function MaterialUIPickers() {
                                 id="fecha1"
                                 label="Elegir Fecha 1"
                                 value={selectedDate1}
-                                onChange={handleDateChange}
+                                onChange={handleDateChange1}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
                                 }}
@@ -47,7 +51,7 @@ export default function MaterialUIPickers() {
                                 id="fecha2"
                                 label="Elegir Fecha 2"
                                 value={selectedDate2}
-                                onChange={handleDateChange}
+                                onChange={handleDateChange2}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
                                 }}
