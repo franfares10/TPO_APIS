@@ -28,7 +28,7 @@ export default class SignUp extends Component {
                                 <ItemCard>Email</ItemCard>
                                 <ItemCard type="password">Password</ItemCard>
                                 <Link to="/sign-in" className="itemCardFooter">
-                                    <Button className="btn btn-primary btn-block" customerButton="true" round="true">Solicitar nueva cuenta</Button>
+                                    <Button className="btn btn-primary btn-block" customerButton="true" round="true">Solicitar  cuenta</Button>
                                 </Link>
                             </GridItem>
                         </GridContainer>
