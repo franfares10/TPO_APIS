@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Boton from "./boton";
 import Toggle from "./boton";
-
+import GridContainer from "../ComponentesExternos/Card/Grid/GridContainer"
+import GridItem from "../ComponentesExternos/Card/Grid/GridItem"
+import Card from "../ComponentesExternos/Card/Card/Card"
+import CardHeader from "../ComponentesExternos/Card/Card/CardHeader"
+import CardBody from "../ComponentesExternos/Card/Card/CardBody"
+import ItemCard from "./ItemCard"
+import ItemCardImagen from "./ItemCardImagen"
+import Button from "../ComponentesExternos/Card/CustomButtons/Button"
+import CardFooter from "../ComponentesExternos/Card/Card/CardFooter"
 export default class Login extends Component {
         constructor(props) {
           super(props);
@@ -21,42 +29,23 @@ export default class Login extends Component {
    
     render() {
         return (
-            <form id="formulario"> 
-            <div className="form-group" align="center">
-                <img src="logo.png"  name="logopyme"
-                    title="Título logo" alt="Título del logo" width="150" height="130" align="center"></img>
-            </div>
-            
-
-            <div className="form-group">
-                <label>Email address</label>
-                <input type="email" className="form-control" placeholder="Enter email" id="usuario" />
-            </div>
-
-            <div className="form-group">
-                <label>Password</label>
-                <input type="password" className="form-control" placeholder="Enter password" id="password" />
-                <p className="forgot-password text-right">
-                Forgot <a href="https://www.observatoriopyme.org.ar/">password?</a>
-            </p>
-            </div>
-
-            <div className="form-group">
-                <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                </div>
-            </div>
-            <Link to="/iniciado"> 
-            <button type="submit" className="btn btn-primary btn-block"  value = "enviar" id="login"  onClick={this.addAction} >
-                Login
-            </button>
-            </Link>
-            <p className="forgot-password text-right">
-                    Dont you have an account? <Link  to={"/sign-up"}>Sign in</Link>
-                </p>
-            <div id="error"></div>
-        </form>
+            <Card>
+                <CardHeader>
+                <ItemCardImagen></ItemCardImagen>
+                </CardHeader>
+                <CardBody>
+                    <GridContainer>
+                        <GridItem>
+                          <ItemCard>Username</ItemCard>
+                          <ItemCard type="password">Password</ItemCard>
+                          <Link to="/iniciado" className="itemCardFooter">
+                            <Button className="btn-primary btnPrimario itemCardFooter" customerButton="true" round="true" align="center" >Sign In</Button>
+                          </Link>
+                
+                        </GridItem>
+                    </GridContainer>
+                </CardBody>
+            </Card>
     );
 }
 }
@@ -65,3 +54,14 @@ export default class Login extends Component {
 <Link to=“ruta”>
       Boton
 </Link>*/ 
+
+/*
+    <GridItem>
+          Elemntos que van aca.
+          Imagen
+          Campos
+          Boton
+          Redireccionar,etc.
+    </GridItem>
+
+*/ 
