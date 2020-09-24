@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Button from 'components/CustomButtons/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,7 +15,8 @@ import ItemCardImagen from "components/LoginComponents/ItemCardImagen"
 
 import avatar from "assets/img/loguito.png";
 import { whiteColor } from 'assets/jss/material-dashboard-react';
-import { blue } from '@material-ui/core/colors';
+import { cyan } from '@material-ui/core/colors';
+
 
 function Copyright() {
   return (
@@ -29,6 +30,29 @@ function Copyright() {
     </Typography>
   );
 }
+
+const ObsCheckbox = withStyles({
+  root: {
+      color: [400],
+      '&$checked': {
+          color: cyan[600],
+      },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
+const ObsInput = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: cyan[600]
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "grey"
+    }
+  },
+  after: {},
+})((props) => <TextField {...props} />);
+
 const pruebaObservatorio = {
   'user': 'paula',
   'contra': 'sarasa'
@@ -59,12 +83,13 @@ const styles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+
 }));
 
 const submitPressed = (event) => {
   event.preventDefault()
 
-  let usuario = event.target.email.value;
+  let usuario = event.target.user.value;
   let password = event.target.password.value;
 
   if (usuario === pruebaObservatorio.user && password === pruebaObservatorio.contra) {
@@ -97,18 +122,18 @@ class SignIn extends React.Component {
             <img src={avatar} width="130" height="120" align="center"></img>
         </div>
           <form className={classes.form} noValidate onSubmit={submitPressed} onSignUp={SignUpPressed}>
-            <TextField
-              variant="outlined"
+            <ObsInput
+              variant= "outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="user"
+              label="User"
+              name="user"
+              autoComplete="user"
               autoFocus
             />
-            <TextField
+            <ObsInput
               variant="outlined"
               margin="normal"
               required
@@ -120,17 +145,15 @@ class SignIn extends React.Component {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="#187C7C" />}
+              control={<ObsCheckbox value="remember" color="#187C7C" />}
               label="Remember me"
             />
-
-
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="#187C7C" 
+              color="primary" 
               className={classes.submit}
             >
               Sign In
