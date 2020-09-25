@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles, lighten } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
-
+import { createMuiTheme } from '@material-ui/core/styles';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -35,10 +35,10 @@ const ObsCheckbox = withStyles({
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  avatar: {
-    marginRight: theme.spacing(2)
-  }
-}));
+    avatar: {
+      marginRight: theme.spacing(2)
+    },
+  }));
 
 const Results = ({ className, customers, ...rest }) => {
   const classes = useStyles();

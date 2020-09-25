@@ -178,15 +178,7 @@ class SignIn extends React.Component {
             >
               Iniciar Sesión
                   </Button>
-
-
-
             <Grid container >
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  ¿Olvidaste la contraseña?
-                    </Link>
-              </Grid>
               <Grid item onClick ={
                 () => SignUpPressed()
               }>    
