@@ -154,7 +154,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <FormControlLabel 
                 control={<ObsCheckbox value="allowExtraEmails"/>}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="Quiero recibir notificaciones y novedades del Observatorio PyME."
               />
             </Grid>
           </Grid>

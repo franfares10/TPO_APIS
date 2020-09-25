@@ -48,7 +48,7 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                Last 24 Hours
+                Ultimas 24 horas.
               </div>
               <div stats icon>
                   <CustomMenu/>
@@ -68,7 +68,7 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                Last 24 Hours
+                Ultimas 24 horas.
               </div>
               <div stats icon>
               <CustomMenu/>
@@ -88,7 +88,7 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                Last 24 Hours
+                Ultimas 24 horas.
               </div>
               <div stats icon>
                 <CustomMenu/>
