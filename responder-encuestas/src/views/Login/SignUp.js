@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
+import Button from 'components/CustomButtons/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from 'utils/History/history'
+import { withStyles } from '@material-ui/core/styles';
+import { cyan } from '@material-ui/core/colors';
 
 function Copyright() {
   return (
@@ -26,6 +28,28 @@ function Copyright() {
     </Typography>
   );
 }
+
+const ObsCheckbox = withStyles({
+  root: {
+      color: [400],
+      '&$checked': {
+          color: cyan[600],
+      },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
+const ObsInput = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: cyan[600]
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "grey"
+    }
+  },
+  after: {},
+})((props) => <TextField {...props} />);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,54 +91,69 @@ export default function SignUp() {
         <form className={classes.form} noValidate onSubmit={signUpPressed}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
+              <ObsInput
+                name="nomEmpr"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="nomEmpr"
+                label="Nombre de Empresa"
                 autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
+              <ObsInput
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="razSoc"
+                label="Razón Social"
+                name="razSoc"
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <ObsInput
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="cuit"
+                label="CUIT"
+                name="cuit"
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <ObsInput
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name="nYAResp"
+                label="Nombre y Apellido del responsable"
+                id="nYAResp"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <ObsInput
+                variant="outlined"
+                required
+                fullWidth
+                name="telResp"
+                label="Teléfono del responsable"
+                id="telResp"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <ObsInput
+                variant="outlined"
+                required
+                fullWidth
+                name="dniResp"
+                label="DNI del responsable"
+                id="telResp"
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel 
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={<ObsCheckbox value="allowExtraEmails"/>}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
