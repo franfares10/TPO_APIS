@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { withStyles, lighten } from '@material-ui/core/styles';
+import { cyan } from '@material-ui/core/colors';
+
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -19,6 +22,16 @@ import {
   makeStyles
 } from '@material-ui/core';
 import getInitials from 'assets/jss/getInitials.js';
+
+const ObsCheckbox = withStyles({
+  root: {
+    color: [400],
+    '&$checked': {
+      color: cyan[600],
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -84,7 +97,7 @@ const Results = ({ className, customers, ...rest }) => {
             <TableHead>
               <TableRow>
                 <TableCell padding="checkbox">
-                  <Checkbox
+                  <ObsCheckbox
                     checked={selectedCustomerIds.length === customers.length}
                     color="primary"
                     indeterminate={
@@ -101,10 +114,10 @@ const Results = ({ className, customers, ...rest }) => {
                   Email
                 </TableCell>
                 <TableCell>
-                  Direccion
+                  Dirección
                 </TableCell>
                 <TableCell>
-                  Telefono
+                  Teléfono
                 </TableCell>
                 <TableCell>
                   Fecha de registro
@@ -119,7 +132,7 @@ const Results = ({ className, customers, ...rest }) => {
                   selected={selectedCustomerIds.indexOf(customer.id) !== -1}
                 >
                   <TableCell padding="checkbox">
-                    <Checkbox
+                    <ObsCheckbox
                       checked={selectedCustomerIds.indexOf(customer.id) !== -1}
                       onChange={(event) => handleSelectOne(event, customer.id)}
                       value="true"

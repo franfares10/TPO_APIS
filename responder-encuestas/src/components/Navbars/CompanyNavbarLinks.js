@@ -59,24 +59,7 @@ export default function AdminNavbarLinks() {
         /*Defino Boton y barra de search, boton de notificaciones, y boton de opciones del perfil
      con todas sus funcionalidades y estilos*/
     <div>
-      <div className={classes.searchWrapper}>
-        <CustomInput
-          formControlProps={{
-            className: classes.margin + " " + classes.search
-          }}
-          inputProps={{
-            placeholder: "Search",
-            inputProps: {
-              "aria-label": "Search"
-            }
-          }}
-        />
-        <Button color="white" aria-label="edit" justIcon round>
-          <Search />
-        </Button>
-      </div>
-      
-      <div className={classes.manager}>
+    <div className={classes.manager}>
         <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}
           justIcon={window.innerWidth > 959}
@@ -123,7 +106,7 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            Mike John responded to your email
+                            Observatorio PyMe lo ha invitado a responder una encuesta
                           </MenuItem>
                         </Link>
 
@@ -132,7 +115,7 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            You have 5 new tasks
+                            RECORDATORIO - El plazo habilitado para responder la encuesta: "Encuesta Financiera" es de 5 días
                           </MenuItem>
                         </Link>
 
@@ -141,7 +124,7 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            You{"'"}re now friend with Andrew
+                            El plazo habilitado para responder la encuesta: "Encuesta de Procesos" finaliza mañana
                           </MenuItem>
                         </Link>
                  
@@ -195,7 +178,7 @@ export default function AdminNavbarLinks() {
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                    Profile
+                    Perfil
                     </MenuItem>
                   </Link>
                  
@@ -205,7 +188,7 @@ export default function AdminNavbarLinks() {
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                      Logout
+                      Cerrar Sesión
                     </MenuItem>
                     </Link>
                   </MenuList>

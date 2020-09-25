@@ -148,7 +148,7 @@ class SignIn extends React.Component {
               required
               fullWidth
               id="user"
-              label="User"
+              label="Usuario"
               name="user"
               autoComplete="user"
               autoFocus
@@ -159,14 +159,14 @@ class SignIn extends React.Component {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Contraseña"
               type="password"
               id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<ObsCheckbox value="remember" color="#187C7C" />}
-              label="Remember me"
+              label="Recordarme"
             />
 
             <Button
@@ -176,7 +176,7 @@ class SignIn extends React.Component {
               color="primary" 
               className={classes.submit}
             >
-              Sign In
+              Iniciar Sesión
                   </Button>
 
 
@@ -184,13 +184,13 @@ class SignIn extends React.Component {
             <Grid container >
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Olvidaste la contraseña?
+                  ¿Olvidaste la contraseña?
                     </Link>
               </Grid>
               <Grid item onClick ={
                 () => SignUpPressed()
               }>    
-                  No posee usuario?<Link href="!"> Solicitar cuenta</Link>
+                  ¿No posee usuario?<Link href="/signup"> Solicitar cuenta</Link>
               </Grid>
             </Grid>
           </form>

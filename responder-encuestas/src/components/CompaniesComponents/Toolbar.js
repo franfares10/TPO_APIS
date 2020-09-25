@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import SendIcon from '@material-ui/icons/Send';
 import Button from "components/CustomButtons/Button";
+import { withStyles } from '@material-ui/core/styles';
+import { cyan } from '@material-ui/core/colors';
+import GridContainer from 'components/Grid/GridContainer'
+import GridItem from 'components/Grid/GridContainer'
 
 import {
   Box,
@@ -14,6 +18,18 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
+
+const ObsInput = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: cyan[600]
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "grey"
+    }
+  },
+  after: {},
+})((props) => <TextField {...props} />);
 
 const useStyles = makeStyles((theme) => ({
   root: {}
@@ -27,41 +43,47 @@ const Toolbar = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-    
-      <Box mt={3}>
+
+      <Box>
         <Card>
           <CardContent>
-          <div>
-            <Box width="800px" stats>
-              <TextField
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SvgIcon
-                        fontSize="medium"
-                        color="action"
-                      >
-                        <SearchIcon />
-                      </SvgIcon>
-                    </InputAdornment>
-                  )
-                }}
-                placeholder="Buscar empresa"
-                variant="outlined"
-              />
-             </Box>
-          </div>
-              <div stats >
-                <Button color = "primary">
-                  <SendIcon/>
-                  Send
+            <GridContainer justify="space-evenly" spacing={3}>
+              <div>
+                <GridItem>
+                  <Box width="1200px" stats>
+                    <ObsInput
+                      fullWidth
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <SvgIcon
+                              fontSize="medium"
+                              color="action"
+                            >
+                              <SearchIcon />
+                            </SvgIcon>
+                          </InputAdornment>
+                        )
+                      }}
+                      placeholder="Buscar empresa"
+                      variant="outlined"
+                    />
+                  </Box>
+                </GridItem>
+              </div>
+              <GridItem>
+                <div stats >
+                  <Button color="primary">
+                    <SendIcon />
+                  Lanzar
                 </Button>
-                </div>       
+                </div>
+              </GridItem>
+            </GridContainer>
           </CardContent>
         </Card>
       </Box>
-      </div>
+    </div>
   );
 };
 

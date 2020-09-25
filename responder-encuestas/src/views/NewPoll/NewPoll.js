@@ -57,7 +57,7 @@ export default function Dashboard() {
                 <CardFooter stats>
                 <div className={classes.stats} >
                     <DateRange />
-                    Last 24 Hours
+                    Duración: 24hs
                         <Button customerButton color="primary" onClick= {
                           () => setMostrarTabla(true)
 
@@ -85,12 +85,12 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                Last 24 Hours
+                Duración: 24hs
                 <Button customerButton color="primary" onClick= {
                       () => setMostrarTabla(true)
 
                     }>
-                      mostrarEmpresas
+                      Mostrar Empresas
                     </Button>
               </div>
             </CardFooter>
@@ -110,12 +110,12 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                Last 24 Hours
+                Duración: 24hs
                 <Button customerButton color="primary" onClick= {
                       () => setMostrarTabla(true)
 
                     }>
-                      mostrarEmpresas
+                      Mostrar Empresas
                     </Button>
               </div>
             </CardFooter>
@@ -135,12 +135,12 @@ export default function Dashboard() {
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                Last 24 Hours
+                Duración: 24hs
                 <Button customerButton color="primary" onClick= {
                       () => setMostrarTabla(true)
 
                     }>
-                      MostrarEmpresas
+                      Mostrar Empresas
                     </Button>
               </div>
             </CardFooter>

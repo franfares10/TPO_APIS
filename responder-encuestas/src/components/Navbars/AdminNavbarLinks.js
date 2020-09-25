@@ -65,7 +65,7 @@ export default function AdminNavbarLinks() {
             className: classes.margin + " " + classes.search
           }}
           inputProps={{
-            placeholder: "Search",
+            placeholder: "Buscar...",
             inputProps: {
               "aria-label": "Search"
             }
@@ -123,7 +123,7 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            Mike John responded to your email
+                            PyMe Ejemplo contestó la encuesta: "Encuesta Financiera"
                           </MenuItem>
                         </Link>
 
@@ -132,7 +132,7 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            You have 5 new tasks
+                            La encuesta "Encuesta de Procesos" finalizó
                           </MenuItem>
                         </Link>
 
@@ -141,7 +141,7 @@ export default function AdminNavbarLinks() {
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            You{"'"}re now friend with Andrew
+                            La encuesta "Encuesta de Logistica" caducará en 3 dias
                           </MenuItem>
                         </Link>
                  
@@ -195,7 +195,7 @@ export default function AdminNavbarLinks() {
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                    Profile
+                    Perfil
                     </MenuItem>
                   </Link>
                  
@@ -205,7 +205,7 @@ export default function AdminNavbarLinks() {
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                      Logout
+                      Cerrar Sesión
                     </MenuItem>
                     </Link>
                   </MenuList>
