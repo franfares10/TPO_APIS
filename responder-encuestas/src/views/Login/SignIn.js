@@ -8,7 +8,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, styled, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles, styled, ThemeProvider, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from "utils/History/history";
 import ItemCardImagen from "components/LoginComponents/ItemCardImagen"
@@ -62,6 +62,24 @@ const pruebaEmpresa = {
   'user': 'tomas',
   'contra': 'malio'
 }
+const tema=createMuiTheme({
+  overrides:{
+    MuiCssBaseline:{
+      '@global':{
+        ".MuiContainer-root":{
+          width: '100%',
+          display: 'block',
+          boxSizing: 'border-box',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          paddingTop:'200px'
+        }
+      }
+    }
+  }
+})
 const styles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -70,7 +88,8 @@ const styles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   fondo:{
-      backgroundColor: '#FFFFFF'
+      backgroundColor: '#FFFFFF',
+      marginTop:'-23px !important'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -114,8 +133,9 @@ class SignIn extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div classname={classes.fondo}>
-      <Container component="main" maxWidth="xs" >
+      <ThemeProvider theme={tema}>
+      <div classname={classes.fondo} >
+      <Container component="main" maxWidth="xs"  >
         <CssBaseline />
         <div className={classes.paper}>
         <div className="form-group" align="center" >
@@ -128,7 +148,7 @@ class SignIn extends React.Component {
               required
               fullWidth
               id="user"
-              label="User"
+              label="Usuario"
               name="user"
               autoComplete="user"
               autoFocus
@@ -139,14 +159,14 @@ class SignIn extends React.Component {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Contraseña"
               type="password"
               id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<ObsCheckbox value="remember" color="#187C7C" />}
-              label="Remember me"
+              label="Recordarme"
             />
 
             <Button
@@ -156,7 +176,7 @@ class SignIn extends React.Component {
               color="primary" 
               className={classes.submit}
             >
-              Sign In
+              Iniciar Sesión
                   </Button>
 
 
@@ -164,13 +184,13 @@ class SignIn extends React.Component {
             <Grid container >
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  ¿Olvidaste la contraseña?
                     </Link>
               </Grid>
               <Grid item onClick ={
                 () => SignUpPressed()
               }>    
-                  {"Don't have an account? Solicita tu Cuenta"}
+                  ¿No posee usuario?<Link href="/signup"> Solicitar cuenta</Link>
               </Grid>
             </Grid>
           </form>
@@ -180,6 +200,8 @@ class SignIn extends React.Component {
         </Box>
       </Container>
       </div>
+     </ThemeProvider>
+      
     );
   }
 }

@@ -28,7 +28,7 @@ import Encuesta from "views/Dashboard/Encuesta";
 const dashboardRoutes = [
   {
     path: "/newpoll",
-    name: "New Poll",
+    name: "Lanzar Encuesta",
     icon: Assignments,
     component: NewPollPage,
     layout: "/admin",

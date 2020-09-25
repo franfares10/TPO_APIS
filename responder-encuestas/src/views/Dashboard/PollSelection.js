@@ -53,7 +53,7 @@ export default function PollSelection(){
                 <CardFooter>
                 <div className={classes.stats} >
                     <DateRange />
-                    Last 24 Hours
+                    Últimas 24 horas.
                     </div>
                     <div stats >
                     <Button  color="primary" onClick= {
@@ -75,7 +75,7 @@ export default function PollSelection(){
         <Button  color = "danger" onClick ={
             () => setMostrarResultados(false)
           }>
-            Close
+            Cerrar
           </Button>
       </GridItem>
     </GridContainer>

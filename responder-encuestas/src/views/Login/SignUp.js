@@ -86,7 +86,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Solicitar Cuenta
         </Typography>
         <form className={classes.form} noValidate onSubmit={signUpPressed}>
           <Grid container spacing={2}>
@@ -154,7 +154,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <FormControlLabel 
                 control={<ObsCheckbox value="allowExtraEmails"/>}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="Quiero recibir mails del Observatorio PyMe regularmente"
               />
             </Grid>
           </Grid>

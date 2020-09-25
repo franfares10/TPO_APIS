@@ -44,14 +44,14 @@ export default function UserProfile() {
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Edit Profile</h4>
-              <p className={classes.cardCategoryWhite}>Complete your profile</p>
+              <h4 className={classes.cardTitleWhite}>Edite su perfil</h4>
+              <p className={classes.cardCategoryWhite}>Complete su perfil</p>
             </CardHeader>
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Company (disabled)"
+                    labelText="Empresa (deshabilitada)"
                     id="company-disabled"
                     formControlProps={{
                       fullWidth: true
@@ -63,7 +63,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Username"
+                    labelText="Nombre de usuario"
                     id="username"
                     formControlProps={{
                       fullWidth: true
@@ -72,7 +72,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Email address"
+                    labelText="Email"
                     id="email-address"
                     formControlProps={{
                       fullWidth: true
@@ -83,7 +83,7 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="First Name"
+                    labelText="Nombre"
                     id="first-name"
                     formControlProps={{
                       fullWidth: true
@@ -92,7 +92,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Last Name"
+                    labelText="Apellido"
                     id="last-name"
                     formControlProps={{
                       fullWidth: true
@@ -103,7 +103,7 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="City"
+                    labelText="Ciudad"
                     id="city"
                     formControlProps={{
                       fullWidth: true
@@ -112,7 +112,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Country"
+                    labelText="Pais"
                     id="country"
                     formControlProps={{
                       fullWidth: true
@@ -121,7 +121,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Postal Code"
+                    labelText="Codigo postal"
                     id="postal-code"
                     formControlProps={{
                       fullWidth: true
@@ -129,25 +129,9 @@ export default function UserProfile() {
                   />
                 </GridItem>
               </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
-                  <CustomInput
-                    labelText="Aspects about your life."
-                    id="about-me"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      multiline: true,
-                      rows: 5
-                    }}
-                  />
-                </GridItem>
-              </GridContainer>
             </CardBody>
             <CardFooter>
-              <Button color="primary">Update Profile</Button>
+              <Button color="primary">Actualizar perfil</Button>
             </CardFooter>
           </Card>
         </GridItem>
@@ -159,13 +143,8 @@ export default function UserProfile() {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <p className={classes.description}>
-                Don{"'"}t be scared of the truth because we need to restart the
-                human foundation in truth And I love you like Kanye loves Kanye
-                I love Rick Owens’ bed design but the back is...
-              </p>
+              <h6 className={classes.cardCategory}>Gerente de Producción</h6>
+              <h4 className={classes.cardTitle}>Alejandro Pepe Gomez</h4>
             </CardBody>
           </Card>
         </GridItem>
