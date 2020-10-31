@@ -117,7 +117,7 @@ export default function Dashboard() {
                     }>
                       Mostrar Empresas
                     </Button>
-              </div>
+                </div>
             </CardFooter>
           </Card>
         </Link>

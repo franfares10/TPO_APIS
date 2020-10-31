@@ -53,15 +53,7 @@ const ObsInput = withStyles({
   after: {},
 })((props) => <TextField {...props} />);
 
-const pruebaObservatorio = {
-  'user': 'paula',
-  'contra': 'sarasa'
-}
 
-const pruebaEmpresa = {
-  'user': 'tomas',
-  'contra': 'malio'
-}
 const tema=createMuiTheme({
   overrides:{
     MuiCssBaseline:{
@@ -105,23 +97,42 @@ const styles = makeStyles((theme) => ({
 
 }));
 
-const submitPressed = (event) => {
+const[usuarioValido,setUsuarioValido]=React.useState(false);
+ //Ejecuto el endopoint para validar login
+ 
+ const submitPressed= async function(event)
+ {
   event.preventDefault()
-
-  let usuario = event.target.user.value;
-  let password = event.target.password.value;
-
-  if (usuario === pruebaObservatorio.user && password === pruebaObservatorio.contra) {
+     let datos = {
+      usuario :  event.target.user.value,
+      password : event.target.password.value
+     }
+     if(datos.usuario!=="" && datos.password!==""){
+          let getLogin = await login(datos);
+          if (getLogin.rdo===0 )
+          {
+            setUsuarioValido(true);
+          }
+          if (getLogin.rdo===1)
+          {
+            alert(getLogin.mensaje)
+          }
+          
+       }else
+       {
+         alert("Debe completar usuario y password");
+       }
+     
+}
+  
+ const redirect= ()=>{
+  if (usuarioValido) {
+    //falta redireccionar a empresa tambien
     history.push('/admin/dashboard')
   }
-  if (usuario === pruebaEmpresa.user && password === pruebaEmpresa.contra) {
-    history.push('/companyAdmin/dashboard')
-  }
-}
+ 
+ 
 
-const SignUpPressed = () =>{
-  history.push("/signin")
-}
 
 class SignIn extends React.Component {
 
@@ -134,14 +145,15 @@ class SignIn extends React.Component {
 
     return (
       <ThemeProvider theme={tema}>
-      <div classname={classes.fondo} >
+      <div classname={classes.fondo}>
+      {redirect()}
       <Container component="main" maxWidth="xs"  >
         <CssBaseline />
         <div className={classes.paper}>
         <div className="form-group" align="center" >
             <img src={avatar} width="130" height="120" align="center"></img>
         </div>
-          <form className={classes.form} noValidate onSubmit={submitPressed} onSignUp={SignUpPressed}>
+          <form className={classes.form} noValidate onSubmit={submitPressed}>
             <ObsInput
               variant= "outlined"
               margin="normal"
@@ -186,11 +198,6 @@ class SignIn extends React.Component {
                 <Link href="#" variant="body2">
                   ¿Olvidaste la contraseña?
                     </Link>
-              </Grid>
-              <Grid item onClick ={
-                () => SignUpPressed()
-              }>    
-                  ¿No posee usuario?<Link href="/signup"> Solicitar cuenta</Link>
               </Grid>
             </Grid>
           </form>

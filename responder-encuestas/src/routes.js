@@ -5,6 +5,7 @@ import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
 import Assignments from "@material-ui/icons/Assignment";
 import SupportIcon from '@material-ui/icons/ContactSupport';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 
 import ProblemIcon from '@material-ui/icons/ReportProblem';
 // core components/views for Admin layout
@@ -15,6 +16,7 @@ import NewPollPage from "views/NewPoll/NewPoll.js";
 import Ayuda from "views/Ayuda/Ayuda.js";
 import Problema from "views/Problema/Problema.js"
 import DashboardCompanyPage from "views/Dashboard/CompanyDashboard"
+import NuevaEmpresa from "views/NuevaEmpresa/SignUp";
 import UserCompanyProfile from "views/UserProfile/CompanyProfile"
 import NotificationsCompanyPage from "views/Notifications/CompanyNotifications"
 import Contacto from "views/Contacto/Contacto";
@@ -48,6 +50,14 @@ const dashboardRoutes = [
     icon: Assignments,
     component: DashboardCompanyPage,
     layout: "/companyAdmin",
+    state:"true"
+  },
+  {
+    path:"/addCompany",
+    name:"Nueva Empresa",
+    icon:GroupAddIcon,
+    component:NuevaEmpresa,
+    layout:"/admin",
     state:"true"
   },
   {

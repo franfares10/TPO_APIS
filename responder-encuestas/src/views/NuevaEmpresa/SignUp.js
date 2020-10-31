@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const signUpPressed = () =>{
-  history.push('/login')
+  
 }
 
 export default function SignUp() {
