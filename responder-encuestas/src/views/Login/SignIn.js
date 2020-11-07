@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Button from 'components/CustomButtons/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -12,7 +12,7 @@ import { createMuiTheme, makeStyles, styled, ThemeProvider, withStyles } from '@
 import Container from '@material-ui/core/Container';
 import history from "utils/History/history";
 import ItemCardImagen from "components/LoginComponents/ItemCardImagen"
-
+import {login} from "controller/login.controller";
 import avatar from "assets/img/loguito.png";
 import { whiteColor } from 'assets/jss/material-dashboard-react';
 import { cyan } from '@material-ui/core/colors';
@@ -97,9 +97,26 @@ const styles = makeStyles((theme) => ({
 
 }));
 
-const[usuarioValido,setUsuarioValido]=React.useState(false);
- //Ejecuto el endopoint para validar login
+const useStyles = makeStyles(styles);
  
+ 
+ 
+
+
+export default function SignIn(){
+ 
+const[usuarioValido,setUsuarioValido]=React.useState(false);
+const [email,setEmail]=React.useState('');
+const[password,setPassword]=React.useState('');
+     
+const classes = useStyles();
+
+const handleEmail=(event)=>{
+    setEmail(event.target.value);
+}
+const handlePassword=(event)=>{    
+    setPassword(event.target.value);
+}
  const submitPressed= async function(event)
  {
   event.preventDefault()
@@ -109,15 +126,7 @@ const[usuarioValido,setUsuarioValido]=React.useState(false);
      }
      if(datos.usuario!=="" && datos.password!==""){
           let getLogin = await login(datos);
-          if (getLogin.rdo===0 )
-          {
-            setUsuarioValido(true);
-          }
-          if (getLogin.rdo===1)
-          {
-            alert(getLogin.mensaje)
-          }
-          
+         
        }else
        {
          alert("Debe completar usuario y password");
@@ -130,19 +139,7 @@ const[usuarioValido,setUsuarioValido]=React.useState(false);
     //falta redireccionar a empresa tambien
     history.push('/admin/dashboard')
   }
- 
- 
-
-
-class SignIn extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { classes } = this.props;
-
+}
     return (
       <ThemeProvider theme={tema}>
       <div classname={classes.fondo}>
@@ -211,6 +208,4 @@ class SignIn extends React.Component {
       
     );
   }
-}
 
-export default withStyles(styles)(SignIn);
