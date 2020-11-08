@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     },
     titulo: {
         fontSize: "20px",
-        paddingTop: "0px",
+        paddingTop: "10px",
         margin: "0"
     },
     header: {

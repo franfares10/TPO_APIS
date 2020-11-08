@@ -33,49 +33,10 @@ const dashboardRoutes = [
   {
     path: "/dashboard",
     name: "Encuestas",
-<<<<<<< Updated upstream
     rtlName: "لوحة القيادة",
     icon: AssignmentIcon,
     component: DashboardPage,
     layout: "/admin"
-=======
-    icon: Assignments,
-    component: DashboardCompanyPage,
-    layout: "/companyAdmin",
-    state:"true"
-  },
-  {
-    path: "/user",
-    name: "Perfil Admin",
-    icon: Person,
-    component: UserProfile,
-    layout: "/admin",
-    state: "false"
-  },
-  {
-    path: "/user",
-    name: "Perfil",
-    icon: Person,
-    component: UserCompanyProfile,
-    layout: "/companyAdmin",
-    state: "false"
-  },
-  {
-    path: "/notifications",
-    name: "Notificaciones",
-    icon: Notifications,
-    component: NotificationsPage,
-    layout: "/admin",
-    state:"false"
-  },
-  {
-    path: "/notifications",
-    name: "Notificaciones",
-    icon: Notifications,
-    component: NotificationsCompanyPage,
-    layout: "/companyAdmin",
-    state:"false"
->>>>>>> Stashed changes
   },
   {
     path: "/ayuda",

@@ -17,7 +17,7 @@ const styles = {
 
     titulo: {
         paddingLeft: "10px",
-        paddingTop: "0px",
+        paddingTop: "10px",
         marginTop: "0"
     },
 

@@ -54,7 +54,6 @@ const rtlStyle = {
   },
   cardTitle: {
     color: grayColor[2],
-    paddingBottom: "50px",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "300",
