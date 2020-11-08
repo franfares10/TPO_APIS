@@ -20,7 +20,7 @@ const ObsRadio = withStyles({
   
 
 export default function RadioButtonsGroup() {
-    const [value, setValue] = React.useState('female');
+    const [value, setValue] = React.useState('');
     const handleChange = (event) => {
         setValue(event.target.value);
     }
