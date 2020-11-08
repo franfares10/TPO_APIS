@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import MobileStepper from '@material-ui/core/MobileStepper';
+import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -10,12 +9,11 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Card from "components/Card/Card"
 import CardHeader from "components/Card/CardHeader"
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+
 import GridContainer from 'components/Grid/GridContainer'
 import GridItem from 'components/Grid/GridContainer'
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 
 const tutorialSteps = [
     {
@@ -67,8 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
     titulo: {
         fontSize: "20px",
-        paddingTop: "0px",
-        margin: "0"
+        marginTop: "0",
     },
     header: {
         display: 'flex',
@@ -121,15 +118,6 @@ export default function VerticalLinearStepper() {
         setActiveStep(0);
     };
 
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
-
-    function SwipeableTextMobileStepper() {
-        const theme = useTheme();
-        const [activeStep, setActiveStep] = React.useState(0);
-        const maxSteps = tutorialSteps.length;
-    }
 
     return (
         <div className={classes.root}>

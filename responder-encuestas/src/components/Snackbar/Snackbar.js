@@ -64,10 +64,10 @@ export default function Snackbar(props) {
 
 Snackbar.propTypes = {
   message: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(["success", "warning", "danger", "primary"]),
+  color: PropTypes.oneOf(["info", "success", "warning", "danger", "primary"]),
   close: PropTypes.bool,
   icon: PropTypes.object,
-  place: PropTypes.oneOf(["br"]),
+  place: PropTypes.oneOf(["tl", "tr", "tc", "br", "bl", "bc"]),
   open: PropTypes.bool,
   rtlActive: PropTypes.bool,
   closeNotification: PropTypes.func

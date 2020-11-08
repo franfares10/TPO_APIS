@@ -9,6 +9,7 @@ import {
 
 const cardHeaderStyle = {
   cardHeader: {
+    height: "20px",
     padding: "0.75rem 1.25rem",
     marginBottom: "0",
     borderBottom: "none",
