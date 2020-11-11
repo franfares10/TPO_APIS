@@ -1,11 +1,16 @@
 /*eslint-disable*/
 import React from "react";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+// @material-ui/icons
+import AddAlert from "@material-ui/icons/AddAlert";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
+import Button from "components/CustomButtons/Button.js";
 import SnackbarContent from "components/Snackbar/SnackbarContent.js";
+import Snackbar from "components/Snackbar/Snackbar.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
@@ -25,7 +30,7 @@ const styles = {
   },
   cardTitleWhite: {
     color: "#FFFFFF",
-    marginTop: "10px",
+    marginTop: "0px",
     minHeight: "auto",
     fontWeight: "300",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
@@ -44,11 +49,6 @@ const useStyles = makeStyles(styles);
 
 export default function Notifications() {
   const classes = useStyles();
-  const [tl, setTL] = React.useState(false);
-  const [tc, setTC] = React.useState(false);
-  const [tr, setTR] = React.useState(false);
-  const [bl, setBL] = React.useState(false);
-  const [bc, setBC] = React.useState(false);
   const [br, setBR] = React.useState(false);
   React.useEffect(() => {
     // Specify how to clean up after this effect:
@@ -60,7 +60,20 @@ export default function Notifications() {
       }
     };
   });
-  
+  const showNotification = place => {
+    switch (place) {
+      case "br":
+        if (!br) {
+          setBR(true);
+          setTimeout(function() {
+            setBR(false);
+          }, 6000);
+        }
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <Card>
       <CardHeader color="primary">
@@ -73,27 +86,28 @@ export default function Notifications() {
             <br />
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
+            <h5></h5>
             <br />
             <SnackbarContent
               message={
-                'Observatorio PyMe lo ha invitado a responder una encuesta'
+                'PyMe Ejemplo contestó la encuesta: "Encuesta Financiera"'
               }
               close
               color="primary"
             />
             <SnackbarContent
               message={
-                'RECORDATORIO - El plazo habilitado para responder la encuesta: "Encuesta Financiera" es de 5 días'
+                'La encuesta: "Encuesta de Procesos" finalizó'
               }
               close
-              color="warning"
+              color="success"
             />
             <SnackbarContent
               message={
-                'AVISO - El plazo habilitado para responder la encuesta: "Encuesta de Procesos" finaliza mañana'
+                'La encuesta: "Encuesta de Logistica" caducará en 3 días'
               }
               close
-              color="danger"
+              color="warning"
             />
           </GridItem>
         </GridContainer>

@@ -34,6 +34,10 @@ const cardStyle = {
       marginTop: "0px",
       paddingTop: "0px"
     }
+  },
+  cardCustomers:{
+    display: "flex",
+    justifyContent:"space-between"
   }
 };
 

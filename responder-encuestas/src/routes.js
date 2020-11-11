@@ -1,44 +1,50 @@
-/*!
 
-=========================================================
-* Material Dashboard React - v1.9.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 // @material-ui/icons
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import Dashboard from "@material-ui/icons/Dashboard";
+import Person from "@material-ui/icons/Person";
+import Notifications from "@material-ui/icons/Notifications";
+import Assignments from "@material-ui/icons/Assignment";
 import SupportIcon from '@material-ui/icons/ContactSupport';
-import ContactIcon from '@material-ui/icons/ContactPhone';
+
 import ProblemIcon from '@material-ui/icons/ReportProblem';
 // core components/views for Admin layout
-import DashboardPage from "views/Dashboard/Dashboard.js";
+import DashboardPage from "views/Dashboard/PollSelection.js";
+import UserProfile from "views/UserProfile/UserProfile.js";
+import NotificationsPage from "views/Notifications/Notifications.js";
+import NewPollPage from "views/NewPoll/NewPoll.js";
 import Ayuda from "views/Ayuda/Ayuda.js";
-import Contacto from "views/Contacto/Contacto.js"
 import Problema from "views/Problema/Problema.js"
+import DashboardCompanyPage from "views/Dashboard/CompanyDashboard"
+import UserCompanyProfile from "views/UserProfile/CompanyProfile"
+import NotificationsCompanyPage from "views/Notifications/CompanyNotifications"
+import Contacto from "views/Contacto/Contacto";
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import AyudaCompany from "views/Ayuda/AyudaCompany"
+import Encuesta from "views/Dashboard/Encuesta";
 // core components/views for RTL layout
 
 
 /* RUTAS DE NAVEGACION*/
 const dashboardRoutes = [
   {
+    path: "/newpoll",
+    name: "Lanzar Encuesta",
+    icon: Assignments,
+    component: NewPollPage,
+    layout: "/admin",
+    state: "true"
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/admin",
+    state:"true"
+  },
+  {
     path: "/dashboard",
     name: "Encuestas",
-<<<<<<< Updated upstream
-    rtlName: "لوحة القيادة",
-    icon: AssignmentIcon,
-    component: DashboardPage,
-    layout: "/admin"
-=======
     icon: Assignments,
     component: DashboardCompanyPage,
     layout: "/companyAdmin",
@@ -75,31 +81,54 @@ const dashboardRoutes = [
     component: NotificationsCompanyPage,
     layout: "/companyAdmin",
     state:"false"
->>>>>>> Stashed changes
   },
   {
     path: "/ayuda",
     name: "Ayuda",
-    rtlName: "مساعدة",
     icon: SupportIcon,
     component: Ayuda,
-    layout: "/admin"
+    layout: "/admin",
+    state:"true"
   },
   {
-    path: "/contacto",
-    name: "Contacto",
-    rtlName: "اتصل",
-    icon: ContactIcon,
-    component: Contacto,
-    layout: "/admin"
+    path: "/ayuda",
+    name: "Ayuda",
+    icon: SupportIcon,
+    component: AyudaCompany,
+    layout: "/companyAdmin",
+    state:"true"
   },
   {
     path: "/problema",
     name: "Reportar un Problema",
-    rtlName: "الإبلاغ عن مشكلة",
     icon: ProblemIcon,
     component: Problema,
-    layout: "/admin"
+    layout: "/admin",
+    state:"true"
+  },
+  {
+    path:"/contacto",
+    name:"Contacto",
+    icon: ContactPhoneIcon,
+    component: Contacto,
+    layout: "/companyAdmin",
+    state:"true"
+  },
+  {
+    path: "/problema",
+    name: "Reportar un Problema",
+    icon: ProblemIcon,
+    component: Problema,
+    layout: "/companyAdmin",
+    state:"true"
+  },
+ 
+  {
+    path:"/encuestas",
+    name:"Encuestas",
+    component: Encuesta,
+    layout:"/companyAdmin",
+    state:"false"
   }
 ];
 

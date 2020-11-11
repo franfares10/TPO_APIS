@@ -99,6 +99,6 @@ export default function MaterialUIPickers(props) {
             <GridItem>
                 <p>Párrafo de ayuda</p>
             </GridItem>
-        </GridContainer >
+        </GridContainer>
     );
 }

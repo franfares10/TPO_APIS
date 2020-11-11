@@ -23,6 +23,7 @@ export default function RegularButton(props) {
     size,
     block,
     link,
+    customerButton,
     justIcon,
     className,
     muiClasses,
@@ -33,6 +34,7 @@ export default function RegularButton(props) {
     [classes[size]]: size,
     [classes[color]]: color,
     [classes.round]: round,
+    [classes.customerButton]: customerButton,
     [classes.disabled]: disabled,
     [classes.simple]: simple,
     [classes.block]: block,
@@ -50,7 +52,6 @@ export default function RegularButton(props) {
 RegularButton.propTypes = {
   color: PropTypes.oneOf([
     "primary",
-    "info",
     "success",
     "warning",
     "danger",
@@ -61,6 +62,7 @@ RegularButton.propTypes = {
   size: PropTypes.oneOf(["sm", "lg"]),
   simple: PropTypes.bool,
   round: PropTypes.bool,
+  customerButton: PropTypes.bool,
   disabled: PropTypes.bool,
   block: PropTypes.bool,
   link: PropTypes.bool,

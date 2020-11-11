@@ -15,12 +15,14 @@ import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
-
+import Search from "@material-ui/icons/Search";
 // core components
-
+import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 
+
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
+
 
 
 const useStyles = makeStyles(styles);
@@ -54,7 +56,26 @@ export default function AdminNavbarLinks() {
   };
 
   return (
-    <div>      
+        /*Defino Boton y barra de search, boton de notificaciones, y boton de opciones del perfil
+     con todas sus funcionalidades y estilos*/
+    <div>
+      <div className={classes.searchWrapper}>
+        <CustomInput
+          formControlProps={{
+            className: classes.margin + " " + classes.search
+          }}
+          inputProps={{
+            placeholder: "Buscar...",
+            inputProps: {
+              "aria-label": "Search"
+            }
+          }}
+        />
+        <Button color="white" aria-label="edit" justIcon round>
+          <Search />
+        </Button>
+      </div>
+      
       <div className={classes.manager}>
         <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}
@@ -96,27 +117,34 @@ export default function AdminNavbarLinks() {
               <Paper>
                 <ClickAwayListener onClickAway={handleCloseNotification}>
                   <MenuList role="menu">
+
+                        <Link to ="/admin/notifications">
                           <MenuItem
-                            component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            Observatorio PyMe lo invitó a responder una encuesta
+                            PyMe Ejemplo contestó la encuesta: "Encuesta Financiera"
                           </MenuItem>
+                        </Link>
+
+                        <Link to ="/admin/notifications">
                           <MenuItem
-                            component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            RECORDATORIO - El plazo habilitado para responder la encuesta: "Encuesta Financiera" es de 5 días
+                            La encuesta "Encuesta de Procesos" finalizó
                           </MenuItem>
+                        </Link>
+
+                        <Link to ="/admin/notifications">
                           <MenuItem
-                            component={Link} to="/admin/notifications"
                             onClick={handleCloseNotification}
                             className={classes.dropdownItem}
                           >
-                            AVISO - El plazo habilitado para resonder la encuesta: "Encuesta de Procesos" finaliza mañana
+                            La encuesta "Encuesta de Logistica" caducará en 3 dias
                           </MenuItem>
+                        </Link>
+                 
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -136,7 +164,7 @@ export default function AdminNavbarLinks() {
         >
           <Person className={classes.icons} />
           <Hidden mdUp implementation="css">
-            <p className={classes.linkText}>Perfil</p>
+            <p className={classes.linkText}>Profile</p>
           </Hidden>
         </Button>
         <Poppers
@@ -162,20 +190,24 @@ export default function AdminNavbarLinks() {
               <Paper>
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
+                  <Link to ="/admin/user">
                     <MenuItem
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
-                      component={Link} to ="/admin/user"
                     >
                     Perfil
                     </MenuItem>
+                  </Link>
+                 
                     <Divider light />
+                    <Link to="/login">
                     <MenuItem
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
                       Cerrar Sesión
                     </MenuItem>
+                    </Link>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

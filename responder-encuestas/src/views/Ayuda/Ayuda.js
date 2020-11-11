@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import MobileStepper from '@material-ui/core/MobileStepper';
+import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -10,42 +9,40 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Card from "components/Card/Card"
 import CardHeader from "components/Card/CardHeader"
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+
 import GridContainer from 'components/Grid/GridContainer'
 import GridItem from 'components/Grid/GridContainer'
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 
 const tutorialSteps = [
     {
         label: '',
-        imgPath:
-            'https://i.ibb.co/tqKLBSL/paso0.jpg',
+        imgPath: 'https://i.ibb.co/Y251s6P/74d35ed6e0bb54ad754b6615fc894a9d.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/rygsM0d/paso1.jpg',
+        'https://i.ibb.co/CKp6Qpm/17b074073ec597ce831cf2ce5d20c481.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/YPpmR0t/paso2.jpg',
+        'https://i.ibb.co/3f0sNFv/7432a231b7152f536127289bf1526c85.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/TvLkPT7/paso3.jpg',
+        'https://i.ibb.co/B37qb2h/19d338e79d01d57806f12dddf7cb7bdd.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/cvX2YM6/paso4.jpg',
+        'https://i.ibb.co/rMG5nW3/79b3b45ea17f092e62cb63228b2bbfbb.png',
     },
     {
         label: '',
-        imgPath: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png',
+        imgPath:'',
         alt: ''
     },
 ];
@@ -84,21 +81,21 @@ const useStyles = makeStyles((theme) => ({
 
 
 function getSteps() {
-    return ['Pestaña Encuesta', 'Responder Encuesta', 'Agregar Respuesta', 'Botón Guardar y Salir', 'Finalizar Enucesta'];
+    return ['Pestaña Lanzar Encuesta', 'Seleccionar Encuesta', 'Seleccionar Empresas', 'Botón Send', 'Encuesta Lanzada'];
 }
 
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return `Para empezar a responder una encuesta dirigase a la pestaña de "Encuestas" en el menú.".`;
+            return `Para lanzar una nueva Encuesta dirijase al apartado de "New Poll" en el Menu.`;
         case 1:
-            return 'Pulse el botón "Responder Encuesta"';
+            return 'Le apareceran todas las encuestas disponibles a realizar, seleccione una clickeando en el boton "Mostrar Empresas".';
         case 2:
-            return `Una vez en la encuesta, responda las preguntas solicitadas.`;
+            return `Se le desplegara un listado de empresas, seleccione las empresas que desea enviarle la Encuesta.`;
         case 3:
-            return 'Si lo desea puede guardar las respuestas que completó hasta el momento y salir de la encuesta. Para esto pulse el botón "Guardar y Salir" en cualquier momento.';
+            return 'Una vez seleccionadas las empresas, presione en el boton "Send" para lanzar la encuesta.';
         case 4:
-            return 'Una vez contestadas todas las preguntas presione el botón "Enviar Respuestas" para finalizar la encuesta.'
+            return 'Su encuesta ya se ha lanzado a las empresas correspondientes!.'
         default:
             return 'Unknown step';
     }
@@ -121,15 +118,7 @@ export default function VerticalLinearStepper() {
         setActiveStep(0);
     };
 
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
 
-    function SwipeableTextMobileStepper() {
-        const theme = useTheme();
-        const [activeStep, setActiveStep] = React.useState(0);
-        const maxSteps = tutorialSteps.length;
-    }
 
     return (
         <div className={classes.root}>
@@ -190,4 +179,4 @@ export default function VerticalLinearStepper() {
             </GridContainer>
         </div>
     );
-}
+  }

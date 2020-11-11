@@ -14,11 +14,12 @@ const useStyles = makeStyles(styles);
 
 export default function Card(props) {
   const classes = useStyles();
-  const { className, children, plain, profile, chart, ...rest } = props;
+  const { className, children, plain, profile,cardCustomers, chart, ...rest } = props;
   const cardClasses = classNames({
     [classes.card]: true,
     [classes.cardPlain]: plain,
     [classes.cardProfile]: profile,
+    [classes.cardCustomers]:cardCustomers,
     [classes.cardChart]: chart,
     [className]: className !== undefined
   });
@@ -32,6 +33,7 @@ export default function Card(props) {
 Card.propTypes = {
   className: PropTypes.string,
   plain: PropTypes.bool,
+  cardCustomers:PropTypes.bool,
   profile: PropTypes.bool,
   chart: PropTypes.bool,
   children: PropTypes.node

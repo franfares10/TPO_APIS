@@ -5,9 +5,6 @@ import {
   defaultFont,
   primaryColor,
   primaryBoxShadow,
-  successColor,
-  warningColor,
-  dangerColor,
   whiteColor,
   grayColor,
   blackColor,
@@ -104,10 +101,7 @@ const sidebarStyle = theme => ({
     top: "22px",
     position: "absolute",
     verticalAlign: "middle",
-    border: "0",
-    "&:hover":{
-      cursor: "pointer"
-    }
+    border: "0"
   },
   background: {
     position: "absolute",

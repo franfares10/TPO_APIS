@@ -259,7 +259,8 @@ const buttonStyle = {
     borderRadius: "0.2rem"
   },
   round: {
-    borderRadius: "30px"
+    borderRadius: "30px",
+ 
   },
   block: {
     width: "100% !important"
@@ -308,6 +309,10 @@ const buttonStyle = {
         height: "17px"
       }
     }
+  },
+  customerButton:{
+    right:"-65px"
+   
   }
 };
 

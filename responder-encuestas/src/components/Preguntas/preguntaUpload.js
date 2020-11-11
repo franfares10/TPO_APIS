@@ -42,6 +42,6 @@ export default function subirArchivos(props) {
             <GridItem>
                 <p>Párrafo de ayuda</p>
             </GridItem>
-        </GridContainer >
+        </GridContainer>
     );
 }

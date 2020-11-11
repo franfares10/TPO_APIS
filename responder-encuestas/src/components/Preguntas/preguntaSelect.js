@@ -77,6 +77,6 @@ export default function SimpleSelect(props) {
                     <p>Párrafo de ayuda</p>
                 </GridItem>
             </GridItem>
-        </GridContainer >
+        </GridContainer>
     );
 }

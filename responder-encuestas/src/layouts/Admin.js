@@ -7,11 +7,11 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Navbar from "components/Navbars/Navbar.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
+import Footer from "components/Footer/Footer.js";
+import AdminSidebar from "components/Sidebar/AdminSidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
-import routesNav from "routesNavBar.js"
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
@@ -32,17 +32,7 @@ const switchRoutes = (
           />
         );
       }
-    })}
-    {routesNav.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
+      return null;
     })}
     <Redirect from="/admin" to="/admin/dashboard" />
   </Switch>
@@ -104,7 +94,7 @@ export default function Admin({ ...rest }) {
   }, [mainPanel]);
   return (
     <div className={classes.wrapper}>
-      <Sidebar
+      <AdminSidebar
         routes={routes}
         logoText={"Observatorio Pyme"}
         logo={logo}
@@ -116,7 +106,7 @@ export default function Admin({ ...rest }) {
       />
       <div className={classes.mainPanel} ref={mainPanel}>
         <Navbar
-          routes={routesNav}
+          routes={routes}
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
         />
@@ -128,6 +118,7 @@ export default function Admin({ ...rest }) {
         ) : (
           <div className={classes.map}>{switchRoutes}</div>
         )}
+        {getRoute() ? <Footer /> : null}
         <FixedPlugin
           handleImageClick={handleImageClick}
           handleColorClick={handleColorClick}

@@ -64,7 +64,6 @@ CustomTable.propTypes = {
     "primary",
     "danger",
     "success",
-    "info",
     "rose",
     "gray"
   ]),

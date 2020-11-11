@@ -68,10 +68,6 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.5em;
-  display: 'flex';
-  justify-content: 'center';
-  align-content: 'center';
-  padding: '6rem';
 }
 
 blockquote footer:before,
@@ -255,7 +251,7 @@ footer ul li a:hover {
   border-radius: 8px 0 0 8px;
   text-align: center;
   top: 120px;
-  badge-primary-background-color: #9c27b0;
+  
 }
 
 .fixed-plugin .SocialMediaShareButton,
@@ -395,7 +391,6 @@ footer ul li a:hover {
 }
 
 .fixed-plugin .adjustments-line p {
-  float: left;
   display: inline-block;
   margin-bottom: 0;
   font-size: 1em;
@@ -501,15 +496,7 @@ footer ul li a:hover {
   transform: translateY(-13%);
   transform-origin: 0 0;
 }
-.fixed-plugin.rtl-fixed-plugin {
-  right: auto;
-  left: 0px;
-  border-radius: 0 8px 8px 0;
-}
-.fixed-plugin.rtl-fixed-plugin .dropdown-menu {
-  right: auto;
-  left: 80px;
-}
+
 * {
   letter-spacing: normal !important;
 }
