@@ -37,6 +37,42 @@ const dashboardRoutes = [
     icon: AssignmentIcon,
     component: DashboardPage,
     layout: "/admin"
+    icon: Assignments,
+    component: DashboardCompanyPage,
+    layout: "/companyAdmin",
+    state:"true"
+  },
+  {
+    path: "/user",
+    name: "Perfil",
+    icon: Person,
+    component: UserProfile,
+    layout: "/admin",
+    state: "false"
+  },
+  {
+    path: "/user",
+    name: "Perfil",
+    icon: Person,
+    component: UserCompanyProfile,
+    layout: "/companyAdmin",
+    state: "false"
+  },
+  {
+    path: "/notifications",
+    name: "Notifications",
+    icon: Notifications,
+    component: NotificationsPage,
+    layout: "/admin",
+    state:"false"
+  },
+  {
+    path: "/notifications",
+    name: "Notifications",
+    icon: Notifications,
+    component: NotificationsCompanyPage,
+    layout: "/companyAdmin",
+    state:"false"
   },
   {
     path: "/ayuda",

@@ -18,7 +18,7 @@ const ObsInput = withStyles({
       }
     },
     after: {},
-  })((props) => <TextField {...props} />);
+  })((props) => <TextField multiline rows={4}{...props} />);
 
   const mandatory = (mand) => {
     if(mand === true){
@@ -28,7 +28,7 @@ const ObsInput = withStyles({
     }
 }
 
-export default function Pades (props){
+export default function Plong (props){
   const [value,setValue]=React.useState('')
   const isInitialMount = useRef(true);
 
@@ -54,10 +54,6 @@ useEffect(()=>{
                 </GridItem>
             </GridContainer>
         <GridItem>
-            <h4>Pregunta Text Input</h4>
-        </GridItem>
-        <GridItem>
-            <TextField label="Respuesta"></TextField>
             <ObsInput label="Respuesta" variant= "outlined" defaultValue={props.value} onChange={handleChange}></ObsInput>
         </GridItem>
         <GridItem>

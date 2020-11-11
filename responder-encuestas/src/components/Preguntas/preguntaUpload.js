@@ -3,8 +3,17 @@ import Fab from '@material-ui/core/Fab';
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem"
 import UploadIcon from '@material-ui/icons/Publish';
+import ReportIcon from '@material-ui/icons/Report';
 
-export default function subirArchivos() {
+const mandatory = (mand) => {
+    if(mand === true){
+        return(
+           <ReportIcon></ReportIcon>
+        )
+    }
+}
+
+export default function subirArchivos(props) {
     const subir = () => {
         const input = document.getElementById('file-input');
 
@@ -14,9 +23,14 @@ export default function subirArchivos() {
     }
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
-            <GridItem>
-                <h4>Pregunta File</h4>
-            </GridItem>
+            <GridContainer justify={"center"} alignItems={"center"} >
+                <GridItem>
+                    <h4>{props.title}</h4>
+                </GridItem>
+                <GridItem>
+                    {mandatory(props.mandatory)}
+                </GridItem>
+            </GridContainer>
             <GridItem>
                 <input type="file" id="file-input" style={{ display: "none" }} />
                 <Fab id="btnSubir" color="inherit" variant="extended" onClick={subir}>

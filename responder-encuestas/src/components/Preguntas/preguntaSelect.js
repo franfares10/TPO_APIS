@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import ReportIcon from '@material-ui/icons/Report';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem"
+
+import {updateRespuesta} from "controller/appController";
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,31 +21,56 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SimpleSelect() {
+const mandatory = (mand) => {
+    if(mand === true){
+        return(
+           <ReportIcon></ReportIcon>
+        )
+    }
+}
+
+export default function SimpleSelect(props) {
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = React.useState(props.value);
+    const isInitialMount = useRef(true);
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
 
+    useEffect(()=>{
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+         } else {
+            updateRespuesta(props.sectionIndex, props.questionIndex, value)
+         }})
+
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
-            <GridItem>
-                <h4>Pregunta Select</h4>
-            </GridItem>
+            <GridContainer justify={"center"} alignItems={"center"} >
+                <GridItem>
+                    <h4>{props.title}</h4>
+                </GridItem>
+                <GridItem>
+                    {mandatory(props.mandatory)}
+                </GridItem>
+            </GridContainer>
             <GridItem>
                 <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label">Opciones</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        id={"sInd:"+props.sectionIndex+"-qInd:"+props.questionIndex}
                         value={value}
                         onChange={handleChange}
                     >
-                        <MenuItem value={1}>Opción 1</MenuItem>
-                        <MenuItem value={2}>Opción 2</MenuItem>
-                        <MenuItem value={3}>Opción 3</MenuItem>
+                    {props.options.map(element => {
+                        let opt = element.option
+                        let val = element.option
+                        return(
+                            <MenuItem value={val}>{opt}</MenuItem>
+                        )
+                    })}
                     </Select>
                 </FormControl>
                 <GridItem>
