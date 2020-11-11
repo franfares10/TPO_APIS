@@ -5,12 +5,14 @@ import GridItem from "components/Grid/GridItem"
 import Button from "components/CustomButtons/Button";
 import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
+<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
 import Pades from 'components/Preguntas/preguntaText'
 import Pradio from 'components/Preguntas/preguntaRadio'
 import Pselect from 'components/Preguntas/preguntaSelect'
 import Pcheck from 'components/Preguntas/preguntaCheck'
 import Pfile from 'components/Preguntas/preguntaUpload'
 import Pdate from 'components/Preguntas/preguntaDate'
+=======
 import SendIcon from '@material-ui/icons/Send';
 import Pades from 'components/Preguntas/PreguntaText'
 import Pradio from 'components/Preguntas/PreguntaRadio'
@@ -22,6 +24,7 @@ import Plong from 'components/Preguntas/PreguntaLong'
 
 import {encuestaPorId, updateEncuesta} from "controller/appController";
 import { Redirect } from "react-router-dom";
+>>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
 
 const styles = {
     pyrCard: {
@@ -104,8 +107,11 @@ export default function Encuesta() {
 
     return (
         <div>
+<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
             <Fab className={classes.fab} color="inherit" variant="extended" href="/admin/dashboard">
+=======
             <Fab className={classes.fabGys} color="inherit" variant="extended" href="/companyAdmin/dashboard">
+>>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
                 <SaveIcon className={classes.extendedIcon} />
                        Guardar y Salir
             </Fab>
@@ -226,6 +232,7 @@ export default function Encuesta() {
                         <Pdate />
                     </div>
                 </GridItem>
+<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
                 <GridItem>
                     <Button className={classes.Button} href="/admin/dashboard" color="primary">Enviar Respuestas</Button>
                 </GridItem>
@@ -233,4 +240,6 @@ export default function Encuesta() {
         </div>
     );
 }
+=======
             </GridContainer>*/ 
+>>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js

@@ -33,10 +33,12 @@ const dashboardRoutes = [
   {
     path: "/dashboard",
     name: "Encuestas",
+<<<<<<< Updated upstream
     rtlName: "لوحة القيادة",
     icon: AssignmentIcon,
     component: DashboardPage,
     layout: "/admin"
+=======
     icon: Assignments,
     component: DashboardCompanyPage,
     layout: "/companyAdmin",
@@ -73,6 +75,7 @@ const dashboardRoutes = [
     component: NotificationsCompanyPage,
     layout: "/companyAdmin",
     state:"false"
+>>>>>>> Stashed changes
   },
   {
     path: "/ayuda",

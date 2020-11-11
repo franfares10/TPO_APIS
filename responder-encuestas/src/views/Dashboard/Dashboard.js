@@ -30,6 +30,7 @@ function StyledRadio(props) {
     );
 }
 
+<<<<<<< Updated upstream
 export default function Dashboard() {
     const classes = useStyles();
 
@@ -145,6 +146,7 @@ export default function Dashboard() {
         </div>
     );
 }
+=======
   return (
     <div>
       <GridContainer>
@@ -212,3 +214,4 @@ export default function Dashboard() {
     </div>
   );
 }
+>>>>>>> Stashed changes
