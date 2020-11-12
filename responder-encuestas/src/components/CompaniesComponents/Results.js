@@ -46,11 +46,15 @@ const Results = ({ className, customers, ...rest }) => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
+  const getSelected = () =>{
+    return selectedCustomerIds;
+  }
+
   const handleSelectAll = (event) => {
     let newSelectedCustomerIds;
 
     if (event.target.checked) {
-      newSelectedCustomerIds = customers.map((customer) => customer.id);
+      newSelectedCustomerIds = customers.map((customer) => customer);
     } else {
       newSelectedCustomerIds = [];
     }
@@ -59,11 +63,10 @@ const Results = ({ className, customers, ...rest }) => {
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
+    const selectedIndex = selectedCustomerIds.indexOf(id._id);
     let newSelectedCustomerIds = [];
-
     if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
+      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id._id);
     } else if (selectedIndex === 0) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
     } else if (selectedIndex === selectedCustomerIds.length - 1) {
@@ -108,16 +111,16 @@ const Results = ({ className, customers, ...rest }) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Nombre
+                  Nombre Empresa
                 </TableCell>
                 <TableCell>
-                  Email
+                  CUIT
                 </TableCell>
                 <TableCell>
-                  Dirección
+                  Email Responsable
                 </TableCell>
                 <TableCell>
-                  Teléfono
+                  Teléfono Responsable
                 </TableCell>
                 <TableCell>
                   Fecha de registro
@@ -128,13 +131,13 @@ const Results = ({ className, customers, ...rest }) => {
               {customers.slice(0, limit).map((customer) => (
                 <TableRow
                   hover
-                  key={customer.id}
-                  selected={selectedCustomerIds.indexOf(customer.id) !== -1}
+                  key={customer._id}
+                  selected={selectedCustomerIds.indexOf(customer._id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <ObsCheckbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
+                      checked={selectedCustomerIds.indexOf(customer._id) !== -1}
+                      onChange={(event) => handleSelectOne(event, customer)}
                       value="true"
                     />
                   </TableCell>
@@ -147,27 +150,28 @@ const Results = ({ className, customers, ...rest }) => {
                         className={classes.avatar}
                         src={customer.avatarUrl}
                       >
-                        {getInitials(customer.name)}
+                        {getInitials(customer.responsable.nombreResponsable)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {customer.Empresa}
+                        {customer.nombreEmpresa}
                       </Typography>
                     </Box>
+                    </TableCell>
+                    <TableCell>
+                    {customer.CUIT}
+                  </TableCell>
+                 
+                  <TableCell>
+                    {customer.responsable.email}
                   </TableCell>
                   <TableCell>
-                    {customer.Email}
+                    {customer.responsable.telefono}
                   </TableCell>
                   <TableCell>
-                    {`${customer.direccion.ciudad}, ${customer.direccion.provincia}, ${customer.direccion.pais}`}
-                  </TableCell>
-                  <TableCell>
-                    {customer.Telefono}
-                  </TableCell>
-                  <TableCell>
-                    {moment(customer.createdAt).format('DD/MM/YYYY')}
+                    {moment(customer.timestamp).format('DD/MM/YYYY')}
                   </TableCell>
                 </TableRow>
               ))}

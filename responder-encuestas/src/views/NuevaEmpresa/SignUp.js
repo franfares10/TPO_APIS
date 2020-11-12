@@ -10,12 +10,14 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import Snackbar from "components/Snackbar/Snackbar.js";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from 'utils/History/history'
 import { withStyles } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
-
+import {newEmpresa} from "controller/empresa.controller"
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -71,12 +73,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const signUpPressed = () =>{
-  
+
+
+const signUpPressed = async function(event){
+  let nombrEmpresa = event.target.nomEmpr.value
+  let email = event.target.emailResponsable.value
+  let cuit = event.target.cuit.value
+  let razon = event.target.razSoc.value
+  let nYAResponsable = event.target.nYAResp.value
+  let telResponsable = event.target.telResp.value
+  let password = event.target.contra.value
+  let dni = event.target.dniResp.value
+
+  var nuevaEmpresa = {
+    nombrEmpresa,
+    password,
+    razon,
+    cuit,
+    email,
+    nYAResponsable,
+    telResponsable,
+    dni
+
+  }
+
+  if(nombrEmpresa!=="" && cuit!=="" && razon!=="" && nYAResponsable!=="" && password!=="" && dni!==""){
+      let register = await newEmpresa(nuevaEmpresa);
+      event.target.nomEmpr.value = ""
+      event.target.cuit.value = ""
+      event.target.razSoc.value = ""
+      event.target.nYAResp.value = ""
+      event.target.telResp.value = ""
+      event.target.contra.value = ""
+      event.target.dniResp.value = ""
+      
+  }else{
+    alert("Debe completar todos los campos");
+  }
 }
 
 export default function SignUp() {
   const classes = useStyles();
+  const [br,setBR] = React.useState(false)
+
+  const openNotification = () =>{
+    setBR(true)
+   
+  }
+  
+  const closeNotification = () =>{
+    setBR(false)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -99,6 +146,7 @@ export default function SignUp() {
                 id="nomEmpr"
                 label="Nombre de Empresa"
                 autoFocus
+                
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -120,6 +168,16 @@ export default function SignUp() {
                 label="CUIT"
                 name="cuit"
               />
+              </Grid>
+              <Grid item xs={12}>
+              <ObsInput
+                variant="outlined"
+                required
+                fullWidth
+                id="contra"
+                label="Contraseña"
+                name="Contraseña"
+              />
             </Grid>
             <Grid item xs={12}>
               <ObsInput
@@ -129,6 +187,16 @@ export default function SignUp() {
                 name="nYAResp"
                 label="Nombre y Apellido del responsable"
                 id="nYAResp"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <ObsInput
+                variant="outlined"
+                required
+                fullWidth
+                name="email"
+                label="Email del responsable"
+                id="emailResponsable"
               />
             </Grid>
             <Grid item xs={12}>
@@ -148,7 +216,7 @@ export default function SignUp() {
                 fullWidth
                 name="dniResp"
                 label="DNI del responsable"
-                id="telResp"
+                id="dniResp"
               />
             </Grid>
             <Grid item xs={12}>
@@ -164,9 +232,19 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick ={openNotification}
           >
             Solicitar Cuenta
           </Button>
+          <Snackbar
+                    place="br"
+                    color="primary"
+                    icon={CheckCircleIcon}
+                    message="Empresa Agregada"
+                    open={br}
+                    closeNotification={closeNotification}
+                    close
+                />
         </form>
       </div>
       <Box mt={5}>

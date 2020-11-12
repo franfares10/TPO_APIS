@@ -25,7 +25,7 @@ export default function CustomerListView() {
   return (
     <Page
       className={classes.root}
-      title="Customers"
+      title="Companies"
     >
       <Container maxWidth={false}>
         <Toolbar />

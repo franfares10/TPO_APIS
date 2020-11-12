@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -12,32 +12,107 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardAvatar from "components/Card/CardAvatar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
-
+import styles from "assets/jss/material-dashboard-react/views/dashboardStyle"
 import avatar from "assets/img/faces/marc.jpg";
-
-const styles = {
-  cardCategoryWhite: {
-    color: "rgba(255,255,255,.62)",
-    margin: "0",
-    fontSize: "14px",
-    marginTop: "0",
-    marginBottom: "0"
-  },
-  cardTitleWhite: {
-    color: "#FFFFFF",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "300",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "3px",
-    textDecoration: "none"
-  }
-};
+import {getPerfil} from "controller/login.controller";
 
 const useStyles = makeStyles(styles);
 
+
+
+
 export default function UserProfile() {
-  const classes = useStyles();
+  const [data, setData] = useState({
+    nombreUsuario: "",
+    nombre:"",
+    apellido: "",
+    email: "",
+});
+
+const [editarVarios, setEditarVarios] = useState(true);
+const [notification, setNotification] = useState(false);
+
+
+
+useEffect(()=>{
+  peticionGet();
+},[])
+
+const peticionGet= async()=>{
+    let usr = await getPerfil();
+    setData(usr)
+    console.log(data)
+  }
+
+const classes = useStyles();
+
+/*
+const peticionPost=async()=>{
+  await axios.put(baseURL + JSON.parse(localStorage.getItem('usuario')).usuario,data)
+  .then(response=>{
+    console.log(data);
+    console.log("",response);
+    setNotification(true);
+    setEditarVarios(true)
+  }).catch(error=>{
+    console.log(data);
+    console.log(baseURL + JSON.parse(localStorage.getItem('usuario')).usuario);
+    console.log(error);
+  })
+}
+
+function editVarios() {
+  var value = editarVarios ? false : true;
+  console.log(value);
+  setEditarVarios(value);
+}
+
+function handleNombre(event) {
+  var value = event.target.value;
+  setData({ 
+  nombreUsuario: data.usuario,
+  nombre: value,
+  apellido: data.apellido,
+  mail: data.mail,
+  })
+}
+
+function handleChangeApellido(event) {
+  var value = event.target.value;
+  setData({ 
+  nombreUsuario: data.usuario,
+  nombre: value,
+  apellido: data.apellido,
+  mail: data.mail,
+  })
+}
+
+function handleChangeUsuario(event) {
+  var value = event.target.value;
+  setData({ 
+  nombreUsuario: data.usuario,
+  nombre: value,
+  apellido: data.apellido,
+  mail: data.mail,
+  })
+}
+
+function handleChangeMail(event) {
+  var value = event.target.value;
+  setData({ 
+  nombreUsuario: data.usuario,
+  nombre: value,
+  apellido: data.apellido,
+  mail: data.mail,
+  })
+}
+
+function setNotificacion(condition) {
+  setNotification({condition})
+}
+*/
+
+
   return (
     <div>
       <GridContainer>
@@ -52,7 +127,8 @@ export default function UserProfile() {
                 
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Nombre de usuario"
+                    disabled="true"
+                    labelText={data.nombreUsuario}
                     id="username"
                     formControlProps={{
                       fullWidth: true
@@ -61,7 +137,8 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Email"
+                    disabled={true}
+                    labelText={data.email}
                     id="email-address"
                     formControlProps={{
                       fullWidth: true
@@ -72,7 +149,8 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Nombre"
+                    disabled
+                    labelText={data.nombre}
                     id="first-name"
                     formControlProps={{
                       fullWidth: true
@@ -81,7 +159,8 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Apellido"
+                    disabled
+                    labelText={data.apellido}
                     id="last-name"
                     formControlProps={{
                       fullWidth: true
@@ -104,12 +183,13 @@ export default function UserProfile() {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h6 className={classes.cardCategory}>Gerente de Producción</h6>
-              <h4 className={classes.cardTitle}>Alejandro Pepe Gomez</h4>
+      
+              <h4 className={classes.cardTitle}>{data.nombreUsuario}</h4>
             </CardBody>
           </Card>
         </GridItem>
       </GridContainer>
     </div>
   );
-}
+                  }                 
+                  

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 // react plugin for creating charts
 
@@ -16,145 +16,143 @@ import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
+import SendIcon from '@material-ui/icons/Send';
 import CardIcon from "components/Card/CardIcon.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Button from "components/CustomButtons/Button"
-
+import { getEncuestas } from "controller/encuestas.controller";
+import { getEmpresas } from "controller/empresa.controller";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import estilosBoton from "assets/jss/material-dashboard-react/components/buttonStyle.js";
 import CustomerListView from "./Companies";
+import {
+  Box,
+  Container
+} from '@material-ui/core';
+import Page from '../../components/CompaniesComponents/Page.js';
+import Results from '../../components/CompaniesComponents/Results.js';
+import Toolbar from '../../components/CompaniesComponents/Toolbar.js';
+import data from 'variables/data.js';
 
 
 
 
 
 
-
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles,estilosBoton,(theme) => ({
+  customers: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingBottom: theme.spacing(3),
+    paddingTop: theme.spacing(3)
+  }
+}));
 
 export default function Dashboard() {
   const classes = useStyles();
   const  [mostrarTabla, setMostrarTabla] = React.useState(false);
+  const [listEncuestas, setListEncuestas] = React.useState([]);
+  const [listEmpresas,setListEmpresas] = React.useState([]);
+  const [botonLanzar,setBotonLanzar] = React.useState(true);
+  const ThemeContext = React.createContext(botonLanzar);
   const mostrarEmpresas = () => { 
       if(mostrarTabla){
         return(<div>
-                <CustomerListView/>
+                <Page
+                    className={classes.customers}
+                    title="Empresas"
+                  >
+               
+                    <Container maxWidth={false}>
+                      
+                      <Box mt={3}>
+                        <Results customers={listEmpresas} />
+                      </Box>
+                    </Container>
+                  </Page>
             </div> )
       }
   }
+
+  const obtenerEmpresas = async function(){
+    var empresas = await getEmpresas()
+    setListEmpresas(empresas)
+    console.log(empresas) 
+  }
+
+
+  const botonAccion = () =>{
+    if(mostrarTabla){
+      return (
+      <Button  round color="danger" onClick= {
+        () => setMostrarTabla(false)
+
+      }
+      >
+        Cerrar
+      </Button>)
+    }else{
+        return(
+          <Button round color="primary" onClick= {
+            () => setMostrarTabla(true)
+
+          }
+          >
+            Mostrar Empresas
+          </Button>
+        )
+    }
+  }
+
+
+  useEffect(() => { 
+    getEncuestas(setListEncuestas);
+    obtenerEmpresas()
+  
+  },[setListEncuestas]);
+
+
   return (
     <div>
       <GridContainer>
-        <GridItem xs={12} sm={6} md={3}>
-        <Link to="/admin/newpoll/companies">
+      
+      {listEncuestas.map(encuesta =>(
+        <GridItem xs={12} sm={6} md={12}>
+          <GridContainer>
+          <GridItem xs={12} sm={6} md={12}>
             <Card>
                 <CardHeader color="warning" stats icon>
                         <CardIcon color ="primary">
                             <Add/>
                         </CardIcon>
-                    <p className={classes.cardCategory}> Encuesta_1</p>
-                    <h3 className={classes.cardTitle}></h3>
+                    <p className={classes.cardCategory}>{encuesta.descripcion}</p>
+                    <h3 className={classes.cardTitle}>{encuesta.tituloEncuesta}</h3>
                 </CardHeader>
-                <CardFooter stats>
-                <div className={classes.stats} >
-                    <DateRange />
-                    Duración: 24hs
-                        <Button customerButton color="primary" onClick= {
-                          () => setMostrarTabla(true)
+                <CardFooter>
+                        <div className={classes.stats} >
+                            <DateRange />
+                            {encuesta.created}
+                            </div>
+                            <div stats >
+                            <Button round disabled={botonLanzar} color = "success"><SendIcon /> Lanzar</Button>
+                              {botonAccion()}
 
-                        }
-                        >
-                          Mostrar Empresas
-                        </Button>
-                  
-                </div>
-                
-                </CardFooter>
+                                </div>   
+                         
+                        </CardFooter>
+            
             </Card>
-        </Link>
+            </GridItem>
+            <GridItem xs={12} sm={6} md={12}>
+                {mostrarEmpresas()}
+            </GridItem>
+            </GridContainer>
         </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-        <Link to="/admin/newpoll/companies">
-          <Card>
-            <CardHeader color="success" stats icon>
-            <CardIcon color ="primary">
-                <Add/>
-              </CardIcon>
-              <p className={classes.cardCategory}>Encuesta_2</p>
-              <h3 className={classes.cardTitle}></h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <DateRange />
-                Duración: 24hs
-                <Button customerButton color="primary" onClick= {
-                      () => setMostrarTabla(true)
-
-                    }>
-                      Mostrar Empresas
-                    </Button>
-              </div>
-            </CardFooter>
-          </Card>
-        </Link>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-        <Link to={"/admin/newpoll/companies"}>
-          <Card>
-            <CardHeader color="danger" stats icon>
-                <CardIcon color ="primary">
-                 <Add/>
-                </CardIcon>
-              <p className={classes.cardCategory}>Encuesta_3</p>
-              <h3 className={classes.cardTitle}></h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <DateRange />
-                Duración: 24hs
-                <Button customerButton color="primary" onClick= {
-                      () => setMostrarTabla(true)
-
-                    }>
-                      Mostrar Empresas
-                    </Button>
-                </div>
-            </CardFooter>
-          </Card>
-        </Link>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-        <Link to="/admin/newpoll/companies">
-          <Card>
-            <CardHeader color="primary" stats icon>
-                <CardIcon color ="primary">
-                    <Add/>
-                </CardIcon>
-              <p className={classes.cardCategory}>Encuesta_4</p>
-              <h3 className={classes.cardTitle}></h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <DateRange />
-                Duración: 24hs
-                <Button customerButton color="primary" onClick= {
-                      () => setMostrarTabla(true)
-
-                    }>
-                      Mostrar Empresas
-                    </Button>
-              </div>
-            </CardFooter>
-          </Card>
-
-        </Link>
-
-        </GridItem>
-        <GridItem xs={12} sm={6} md={12}>
         
-          {mostrarEmpresas()}
+        ))}
         
-        </GridItem>
       </GridContainer>
+      
     </div>
   );
 }
