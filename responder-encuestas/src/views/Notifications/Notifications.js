@@ -77,7 +77,7 @@ export default function Notifications() {
   return (
     <Card>
       <CardHeader color="primary">
-        <h4 className={classes.cardTitleWhite}>Notifications</h4>
+        <h4 className={classes.cardTitleWhite}>Notificaciones</h4>
        
       </CardHeader>
       <CardBody>
@@ -86,64 +86,33 @@ export default function Notifications() {
             <br />
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
-            <h5>Notifications States</h5>
+            <h5></h5>
             <br />
             <SnackbarContent
               message={
-                'PRIMARY - A User has started the poll'
+                'PyMe Ejemplo contestó la encuesta: "Encuesta Financiera"'
               }
               close
               color="primary"
             />
             <SnackbarContent
               message={
-                'SUCCESS - The poll has ended Successfully'
+                'La encuesta: "Encuesta de Procesos" finalizó'
               }
               close
               color="success"
             />
             <SnackbarContent
               message={
-                'WARNING - The poll is going to finish in a week'
+                'La encuesta: "Encuesta de Logistica" caducará en 3 días'
               }
               close
               color="warning"
-            />
-            <SnackbarContent
-              message={
-                'DANGER - The poll is going to finish tomorrow'
-              }
-              close
-              color="danger"
             />
           </GridItem>
         </GridContainer>
         <br />
         <br />
-
-
-   
-        <GridContainer justify={"center"}>
-         
-              <GridItem xs={12} sm={12} md={4}>
-                <Button
-                  fullWidth
-                  color="primary"
-                  onClick={() => showNotification("br")}
-                >
-                 Show Notification
-                </Button>
-                <Snackbar
-                  place="br"
-                  color="primary"
-                  icon={AddAlert}
-                  message="Welcome to Observatorio Pyme"
-                  open={br}
-                  closeNotification={() => setBR(false)}
-                  close
-                />
-              </GridItem>
-            </GridContainer>
       </CardBody>
     </Card>
   );

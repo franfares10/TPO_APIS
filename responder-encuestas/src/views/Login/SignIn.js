@@ -187,14 +187,18 @@ const handlePassword=(event)=>{
             >
               Iniciar Sesión
                   </Button>
-
-
-
             <Grid container >
+<<<<<<< HEAD
               <Grid item xs>
                 <Link href="#" variant="body2">
                   ¿Olvidaste la contraseña?
                     </Link>
+=======
+              <Grid item onClick ={
+                () => SignUpPressed()
+              }>    
+                  ¿No posee usuario?<Link href="/signup"> Solicitar cuenta</Link>
+>>>>>>> d4216c384d4d3ff21891021ffad3fd4e42ebf817
               </Grid>
             </Grid>
           </form>
