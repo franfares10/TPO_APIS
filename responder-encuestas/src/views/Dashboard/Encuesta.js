@@ -145,7 +145,7 @@ export default function Encuesta() {
                     else if(type === "FILE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pfile title={title} mandatory={mand}/>
+                                <Pfile title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
                             </div>
                         )
                     }

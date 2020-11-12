@@ -138,3 +138,34 @@ export const updateEncuesta = async function()
         console.log("error", error)
     }
 }
+
+export const uploadFile = async function(files)
+{
+    let url = urlWebServices.uploadFile;
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++)
+    {
+        formData.append('files', files[i])
+    }
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{
+                'Accept':'application/form-data',
+                'Origin':'http://localhost:5000',
+                //'Content-Type': 'application/form-data'
+            },
+            body:formData
+        });
+    
+        let archivo = await response.json()
+        console.log('respuestaUpload', archivo);
+        return archivo;
+    } catch (err) {
+        alert('Error uploading the files')
+        console.log('Error uploading the files', err)
+    }
+
+}
