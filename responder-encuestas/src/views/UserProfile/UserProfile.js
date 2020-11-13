@@ -13,10 +13,13 @@ import CardAvatar from "components/Card/CardAvatar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle"
+import estilos from "assets/jss/material-dashboard-react/components/customInputStyle.js";
 import avatar from "assets/img/faces/marc.jpg";
-import {getPerfil} from "controller/login.controller";
+import TextField from '@material-ui/core/TextField';
+import {getPerfil,modificarPerfil} from "controller/login.controller";
+import EditIcon from '@material-ui/icons/Edit';
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles,estilos);
 
 
 
@@ -26,13 +29,15 @@ export default function UserProfile() {
     nombreUsuario: "",
     nombre:"",
     apellido: "",
-    email: "",
+    email: ""
 });
 
-const [editarVarios, setEditarVarios] = useState(true);
 const [notification, setNotification] = useState(false);
-
-
+const[permitirActualizar,setPermitir] = useState(true);
+const[estadoNUsuario,setEstadoNU] = useState(true);
+const[estadoMail,setEstadoMail] = useState(true);
+const[estadoNombre,setEstadoNombre] = useState(true);
+const[estadoApellido,setEstadoApellido] = useState(true);
 
 useEffect(()=>{
   peticionGet();
@@ -46,71 +51,80 @@ const peticionGet= async()=>{
 
 const classes = useStyles();
 
-/*
-const peticionPost=async()=>{
-  await axios.put(baseURL + JSON.parse(localStorage.getItem('usuario')).usuario,data)
-  .then(response=>{
-    console.log(data);
-    console.log("",response);
-    setNotification(true);
-    setEditarVarios(true)
-  }).catch(error=>{
-    console.log(data);
-    console.log(baseURL + JSON.parse(localStorage.getItem('usuario')).usuario);
-    console.log(error);
-  })
+const actualizarPerfil = async () =>{
+    await modificarPerfil(data);
+    peticionGet();
+    postActualizar()
 }
 
+const postActualizar =()=>{
+  setEstadoNombre(true)
+    setEstadoNU(true)
+    setEstadoApellido(true)
+    setEstadoMail(true)
+    setPermitir(true)
+    setNotificacion(true)
+}
+
+
+
 function editVarios() {
-  var value = editarVarios ? false : true;
-  console.log(value);
-  setEditarVarios(value);
+  setEstadoApellido(false)
+  setEstadoMail(false)
+  setEstadoNU(false)
+  setEstadoNombre(false)
+  setPermitir(false)
 }
 
 function handleNombre(event) {
   var value = event.target.value;
   setData({ 
-  nombreUsuario: data.usuario,
+  nombreUsuario: data.nombreUsuario,
   nombre: value,
   apellido: data.apellido,
-  mail: data.mail,
+  email: data.email,
   })
+ 
 }
 
 function handleChangeApellido(event) {
   var value = event.target.value;
+  
   setData({ 
-  nombreUsuario: data.usuario,
+  nombreUsuario: data.nombreUsuario,
   nombre: value,
   apellido: data.apellido,
-  mail: data.mail,
+  email: data.email,
   })
+
 }
 
 function handleChangeUsuario(event) {
   var value = event.target.value;
   setData({ 
-  nombreUsuario: data.usuario,
+  nombreUsuario: value,
   nombre: value,
   apellido: data.apellido,
-  mail: data.mail,
+  email: data.email,
   })
+
 }
 
 function handleChangeMail(event) {
   var value = event.target.value;
   setData({ 
-  nombreUsuario: data.usuario,
-  nombre: value,
+  nombreUsuario: data.nombreUsuario,
+  nombre: data.nombre,
   apellido: data.apellido,
-  mail: data.mail,
+  email: value,
   })
+
 }
 
 function setNotificacion(condition) {
   setNotification({condition})
 }
-*/
+
 
 
   return (
@@ -119,59 +133,75 @@ function setNotificacion(condition) {
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Edite su perfil</h4>
+              <h4 className={classes.cardTitleWhite}>Edite su perfil <EditIcon onClick={editVarios}/></h4>
+              
               <p className={classes.cardCategoryWhite}>Complete su perfil</p>
             </CardHeader>
             <CardBody>
+            
               <GridContainer>
-                
-                <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    disabled="true"
-                    labelText={data.nombreUsuario}
-                    id="username"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
+
+
+              <GridItem xs={12} sm={12} md={6}>
+                  <GridContainer>
+                      <GridItem xs={12} sm={12} md={6}>
+                      <div>
+                        <TextField
+                                  variant="outlined"
+                                  label="Nombre Usuario"
+                                  id="usuario"
+                                  value={data.nombreUsuario}
+                                  disabled= {estadoNUsuario}
+                                  onChange={(event) => handleChangeUsuario(event)}
+                                >
+                               
+                                </TextField>
+                                </div>
+                      </GridItem>
+                      <GridItem xs={12} sm={12} md={6}>
+                      <TextField
+                                  variant="outlined"
+                                  label="Mail"
+                                  id="mail"
+                                  value={data.email}
+                                  disabled={estadoMail}
+                                  onChange={(event) => handleChangeMail(event)}
+                                />
+                      </GridItem>
+                  </GridContainer>
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    disabled={true}
-                    labelText={data.email}
-                    id="email-address"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
+                <GridItem xs={12} sm={12} md={12}><div><p></p></div></GridItem>
+                <GridItem xs={12} sm={12} md={12}><div><p></p></div></GridItem>
+           
+            <GridItem xs={12} sm={12} md={6}>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                <TextField
+                            variant="outlined"
+                            label="Nombre"
+                            id="nombre"
+                            value={data.nombre}
+                            disabled= {estadoNombre}
+                            onChange={(event) => handleNombre(event)}
+                          />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={6}>
+                <TextField
+                            variant="outlined"
+                            label="Apellido"
+                            id="apellido"
+                            value={data.apellido}
+                            disabled={estadoApellido}
+                            onChange={(event) => handleChangeApellido(event)}
+                          />
                 </GridItem>
               </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    disabled
-                    labelText={data.nombre}
-                    id="first-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    disabled
-                    labelText={data.apellido}
-                    id="last-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
+              </GridItem>
               </GridContainer>
               
             </CardBody>
             <CardFooter>
-              <Button color="primary">Actualizar perfil</Button>
+              <Button disabled={permitirActualizar} color="primary" onClick={actualizarPerfil}>Actualizar perfil</Button>
             </CardFooter>
           </Card>
         </GridItem>

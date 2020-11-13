@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 import { Link } from "react-router-dom";
 // react plugin for creating charts
 
@@ -33,8 +33,8 @@ import Page from '../../components/CompaniesComponents/Page.js';
 import Results from '../../components/CompaniesComponents/Results.js';
 import Toolbar from '../../components/CompaniesComponents/Toolbar.js';
 import data from 'variables/data.js';
-
-
+import Divider from "components/Divider/Divider"
+import { DividerProvider } from "components/Divider/DividerProvider";
 
 
 
@@ -50,108 +50,30 @@ const useStyles = makeStyles(styles,estilosBoton,(theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const  [mostrarTabla, setMostrarTabla] = React.useState(false);
+
+
   const [listEncuestas, setListEncuestas] = React.useState([]);
-  const [listEmpresas,setListEmpresas] = React.useState([]);
-  const [botonLanzar,setBotonLanzar] = React.useState(true);
-  const ThemeContext = React.createContext(botonLanzar);
-  const mostrarEmpresas = () => { 
-      if(mostrarTabla){
-        return(<div>
-                <Page
-                    className={classes.customers}
-                    title="Empresas"
-                  >
-               
-                    <Container maxWidth={false}>
-                      
-                      <Box mt={3}>
-                        <Results customers={listEmpresas} />
-                      </Box>
-                    </Container>
-                  </Page>
-            </div> )
-      }
-  }
 
-  const obtenerEmpresas = async function(){
-    var empresas = await getEmpresas()
-    setListEmpresas(empresas)
-    console.log(empresas) 
-  }
+ // const [botonLanzar,setBotonLanzar] = React.useState();
 
-
-  const botonAccion = () =>{
-    if(mostrarTabla){
-      return (
-      <Button  round color="danger" onClick= {
-        () => setMostrarTabla(false)
-
-      }
-      >
-        Cerrar
-      </Button>)
-    }else{
-        return(
-          <Button round color="primary" onClick= {
-            () => setMostrarTabla(true)
-
-          }
-          >
-            Mostrar Empresas
-          </Button>
-        )
-    }
-  }
 
 
   useEffect(() => { 
     getEncuestas(setListEncuestas);
-    obtenerEmpresas()
-  
   },[setListEncuestas]);
 
 
   return (
     <div>
-      <GridContainer>
+      
       
       {listEncuestas.map(encuesta =>(
-        <GridItem xs={12} sm={6} md={12}>
-          <GridContainer>
-          <GridItem xs={12} sm={6} md={12}>
-            <Card>
-                <CardHeader color="warning" stats icon>
-                        <CardIcon color ="primary">
-                            <Add/>
-                        </CardIcon>
-                    <p className={classes.cardCategory}>{encuesta.descripcion}</p>
-                    <h3 className={classes.cardTitle}>{encuesta.tituloEncuesta}</h3>
-                </CardHeader>
-                <CardFooter>
-                        <div className={classes.stats} >
-                            <DateRange />
-                            {encuesta.created}
-                            </div>
-                            <div stats >
-                            <Button round disabled={botonLanzar} color = "success"><SendIcon /> Lanzar</Button>
-                              {botonAccion()}
-
-                                </div>   
-                         
-                        </CardFooter>
-            
-            </Card>
-            </GridItem>
-            <GridItem xs={12} sm={6} md={12}>
-                {mostrarEmpresas()}
-            </GridItem>
-            </GridContainer>
-        </GridItem>
-        
+        <DividerProvider>
+        <Divider {...encuesta}/>   
+        </DividerProvider>
         ))}
         
-      </GridContainer>
+   
       
     </div>
   );

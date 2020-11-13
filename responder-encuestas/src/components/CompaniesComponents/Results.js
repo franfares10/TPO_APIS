@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -22,6 +22,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import getInitials from 'assets/jss/getInitials.js';
+import { useDividerActions } from 'components/Divider/DividerProvider';
 
 const ObsCheckbox = withStyles({
   root: {
@@ -45,16 +46,16 @@ const Results = ({ className, customers, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
-
   const getSelected = () =>{
     return selectedCustomerIds;
   }
 
   const handleSelectAll = (event) => {
     let newSelectedCustomerIds;
-
+ 
     if (event.target.checked) {
       newSelectedCustomerIds = customers.map((customer) => customer);
+    
     } else {
       newSelectedCustomerIds = [];
     }
@@ -64,9 +65,11 @@ const Results = ({ className, customers, ...rest }) => {
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedCustomerIds.indexOf(id._id);
+   
     let newSelectedCustomerIds = [];
     if (selectedIndex === -1) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id._id);
+     
     } else if (selectedIndex === 0) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
     } else if (selectedIndex === selectedCustomerIds.length - 1) {
@@ -89,6 +92,13 @@ const Results = ({ className, customers, ...rest }) => {
     setPage(newPage);
   };
 
+  const { setFlag } = useDividerActions();
+
+  useEffect(() => {
+    setFlag(selectedCustomerIds.length<1);
+  }, [selectedCustomerIds, setFlag])
+
+  
   return (
     <Card
       className={clsx(classes.root, className)}

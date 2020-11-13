@@ -187,6 +187,65 @@ export const login =  async function(login)
 }
 
 
+export const modificarPerfil = async function(usuarioNuevo){
+    const formData = new URLSearchParams();
+    formData.append('id', localStorage.getItem("id").toString());
+    formData.append('nombreUsuario', usuarioNuevo.nombreUsuario);
+    formData.append('email', usuarioNuevo.email);
+    formData.append('nombre', usuarioNuevo.nombre);
+    formData.append('apellido', usuarioNuevo.apellido);
+    console.log("USUARIO NUEVOO")
+    console.log(usuarioNuevo)
+    let url = urlWebServices.modificarPerfil;
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'PUT', 
+            mode: "cors",
+            headers:{
+                'Accept':'application/x-www-form-urlencoded',
+                //'x-access-token': WebToken.webToken,
+                'Origin':'http://localhost:8080/',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body:formData,
+        
+        });
+
+        let data = await response.json();
+        let rdo = response.status;
+        console.log("DATAAAAA")
+        console.log(data)
+       
+        
+        switch(rdo)
+        {
+            case 200:
+            {
+                return ({rdo:0,mensaje:"Usuario actualizado exitosamente"});
+            }
+            case 202:
+            {
+                //error mail
+                return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
+            }
+            case 203:
+            {
+                //error password
+                return ({rdo:1,mensaje:"La contraseña no es correcta."});
+            }
+            default:
+            {
+                //otro error
+                return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+            }
+        }
+    } catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
 
 
 
