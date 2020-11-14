@@ -58,7 +58,7 @@ export default function CompanyDashboard() {
                             <div className={classes.encuestaCard}>
                                 <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png" alt=""></img>
                                 <h4><b>{nombre}</b></h4>
-                                <p>Recibida: {fechaCreacion}</p>
+                                <p>Fecha Límite: {fechaCreacion}</p>
                                 <Button className={classes.Button} href={"/companyAdmin/encuestas?idEncuesta="+idEncuesta} color="primary">RESPONDER ENCUESTA</Button>
                             </div>
                         )

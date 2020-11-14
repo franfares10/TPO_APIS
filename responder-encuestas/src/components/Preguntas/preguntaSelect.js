@@ -9,6 +9,7 @@ import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem"
 
 import {updateRespuesta} from "controller/appController";
+import { respondidas } from "controller/appController";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,10 +33,12 @@ const mandatory = (mand) => {
 export default function SimpleSelect(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(props.value);
+    const [cancelarVisible, setCancelarVisible]=React.useState(()=>{if(props.value===""){return "hidden"}else{return "visible"}})
     const isInitialMount = useRef(true);
 
     const handleChange = (event) => {
         setValue(event.target.value);
+        setCancelarVisible("visible")
     };
 
     useEffect(()=>{
@@ -43,7 +46,14 @@ export default function SimpleSelect(props) {
             isInitialMount.current = false;
          } else {
             updateRespuesta(props.sectionIndex, props.questionIndex, value)
+            respondidas()
          }})
+
+    const cancelar = () => {
+        setValue("")
+        setCancelarVisible("hidden")
+        updateRespuesta(props.sectionIndex, props.questionIndex, "")
+    }
 
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
@@ -73,10 +83,13 @@ export default function SimpleSelect(props) {
                     })}
                     </Select>
                 </FormControl>
-                <GridItem>
-                    <p>Párrafo de ayuda</p>
-                </GridItem>
             </GridItem>
+                <GridItem>
+                    <p>{props.description}</p>
+                </GridItem>
+                <GridItem>
+                    <a onClick={cancelar} style={{cursor: "pointer", visibility: cancelarVisible}}>Cancelar</a>
+                </GridItem>
         </GridContainer>
     );
 }

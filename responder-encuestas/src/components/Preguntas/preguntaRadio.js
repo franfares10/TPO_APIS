@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import ReportIcon from '@material-ui/icons/Report';
 
 import {updateRespuesta} from "controller/appController";
+import { respondidas } from "controller/appController";
 
 const ObsRadio = withStyles({
     root: {
@@ -31,10 +32,12 @@ const ObsRadio = withStyles({
 
 export default function RadioButtonsGroup(props) {
     const [value, setValue] = React.useState(props.value);
+    const [cancelarVisible, setCancelarVisible]=React.useState(()=>{if(props.value===""){return "hidden"}else{return "visible"}})
     const isInitialMount = useRef(true);
 
     const handleChange = (event) => {
         setValue(event.target.value);
+        setCancelarVisible("visible")
     }
 
     useEffect(()=>{
@@ -42,7 +45,14 @@ export default function RadioButtonsGroup(props) {
             isInitialMount.current = false;
          } else {
             updateRespuesta(props.sectionIndex, props.questionIndex, value)
+            respondidas()
          }})
+
+    const cancelar = () => {
+        setValue("")
+        setCancelarVisible("hidden")
+        updateRespuesta(props.sectionIndex, props.questionIndex, "")
+    }
 
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
@@ -68,8 +78,11 @@ export default function RadioButtonsGroup(props) {
                 </FormControl>
             </GridItem>
             <GridItem>
-                    <p>Párrafo de ayuda</p>
+                    <p>{props.description}</p>
                 </GridItem>
+            <GridItem>
+                <a onClick={cancelar} style={{cursor: "pointer", visibility: cancelarVisible}}>Cancelar</a>
+            </GridItem>
         </GridContainer>
     );
 }

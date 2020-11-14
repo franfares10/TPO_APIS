@@ -15,35 +15,27 @@ import Pdate from 'components/Preguntas/PreguntaDate'
 import Plong from 'components/Preguntas/PreguntaLong'
 
 import {encuestaPorId, updateEncuesta} from "controller/appController";
-import { Redirect } from "react-router-dom";
 
 const styles = {
     pyrCard: {
-        height: '250px',
-        width: '600px',
+        height: 'auto',
+        width: 'auto',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
         transition: '0.3s',
-        paddingTop: '20px',
-        margin: '2em',
+        paddingLeft: '60px',
+        paddingRight: '60px',
+        paddingBottom: '30px',
+        margin: '3em',
         "& h4": {
             fontSize: '150%'
         },
-    },
-
-    fabGys: {
-        color: "white",
-        backgroundColor: "rgb(30, 154, 159)",
-        position: "fixed",
-        bottom: "20px",
-        right: "20px"
-    },
-    
+    },    
     fabEnv: {
         color: "white",
         backgroundColor: "rgb(30, 154, 159)",
         position: "fixed",
         bottom: "20px",
-        right: "200px"
+        right: "20px"
     }
 
 };
@@ -98,10 +90,6 @@ export default function Encuesta() {
 
     return (
         <div>
-            <Fab className={classes.fabGys} color="inherit" variant="extended" href="/companyAdmin/dashboard">
-                <SaveIcon className={classes.extendedIcon} />
-                       Guardar y Salir
-            </Fab>
             <Fab className={classes.fabEnv} color="inherit" variant="extended" onClick={revisarResp}>
                 <SendIcon className={classes.extendedIcon} />
                        Enviar Respuestas
@@ -128,52 +116,53 @@ export default function Encuesta() {
                     let multi = ques.multiline
                     let mand = ques.mandatory
                     let val = ques.value
+                    let qdesc = ques.description
                     if(type === "TEXT" && multi == false){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pades title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pades title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "SELECT"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "FILE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pfile title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pfile title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "RADIO"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "CHECK"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "DATE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pdate title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pdate title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "TEXT" && multi == true){
                         return(
                             <div className={classes.pyrCard}>
-                                <Plong title={title} mandatory={mand} value={val}/>
+                                <Plong title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }

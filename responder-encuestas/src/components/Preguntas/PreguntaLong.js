@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import ReportIcon from '@material-ui/icons/Report';
 
+import { respondidas } from "controller/appController";
 import {updateRespuesta} from "controller/appController";
 
 const ObsInput = withStyles({
@@ -41,6 +42,7 @@ useEffect(()=>{
     isInitialMount.current = false;
  } else {
     updateRespuesta(props.sectionIndex, props.questionIndex, value)
+    respondidas()
  }})
 
   return(
@@ -57,7 +59,7 @@ useEffect(()=>{
             <ObsInput label="Respuesta" variant= "outlined" defaultValue={props.value} onChange={handleChange}></ObsInput>
         </GridItem>
         <GridItem>
-            <p>Párrafo de ayuda</p>
+            <p>{props.description}</p>
         </GridItem>
     </GridContainer>
   )}

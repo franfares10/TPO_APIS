@@ -24,22 +24,22 @@ const tutorialSteps = [
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/rygsM0d/paso1.jpg',
+            'https://i.ibb.co/qpw59Pt/paso2.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/YPpmR0t/paso2.jpg',
+            'https://i.ibb.co/c6RST4D/paso3.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/TvLkPT7/paso3.jpg',
+            'https://i.ibb.co/TKtZJCN/paso4.png',
     },
     {
         label: '',
         imgPath:
-            'https://i.ibb.co/cvX2YM6/paso4.jpg',
+            'https://i.ibb.co/60Yznrh/paso5.png',
     },
     {
         label: '',
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function getSteps() {
-    return ['Pestaña Encuesta', 'Responder Encuesta', 'Agregar Respuesta', 'Botón Guardar y Salir', 'Finalizar Enucesta'];
+    return ['Pestaña Encuesta', 'Responder Encuesta', 'Agregar Respuesta', 'Botón Enviar Respuestas', 'Finalizar Enucesta'];
 }
 
 function getStepContent(step) {
@@ -94,9 +94,10 @@ function getStepContent(step) {
         case 2:
             return `Una vez en la encuesta, responda las preguntas solicitadas.`;
         case 3:
-            return 'Si lo desea puede guardar las respuestas que completó hasta el momento y salir de la encuesta. Para esto pulse el botón "Guardar y Salir" en cualquier momento.';
+            return 'Si lo desea puede cambiar de pestañas libremente. No se preocupe por sus respuestas, se guardan automaticamente.';
         case 4:
-            return 'Una vez contestadas todas las preguntas presione el botón "Enviar Respuestas" para finalizar la encuesta.'
+            return 'Una vez contestadas todas las preguntas presione el botón "Enviar Respuestas" para finalizar la encuesta.Recuerde que para hacerlo primero debe contestar todas'
+            +' las preguntas obligatorias.'
         default:
             return 'Unknown step';
     }

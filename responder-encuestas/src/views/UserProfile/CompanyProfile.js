@@ -67,20 +67,6 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function CompanyProfile() {
-  const [state, setState] = React.useState({
-    checkedA: false,
-    type: "password"
-  });
-  const handleChange = (event) => {
-    console.log(state.checkedA)
-    if (state.type == "password")
-      setState(state.type = "text");
-    else if (state.type == "text") {
-      setState(state.type = "password")
-    }
-    setState({ ...state, [event.target.name]: event.target.checked });
-    console.log(state.checkedA)
-  };
 
   const classes = useStyles();
   const [tl, setTL] = React.useState(false);
@@ -293,29 +279,6 @@ export default function CompanyProfile() {
                 ejemplo@ejemplo.com<br></br>
                 Tel: 0000-0000<br></br>
               </p>
-            </CardBody>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={9}>
-          <Card>
-            <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Cambiar Contraseña</h4>
-            </CardHeader>
-            <CardBody>
-              <GridContainer>
-                <GridItem>
-                  <ObsInput type={state.type} label="Contraseña actual" variant="outlined" id="passact"></ObsInput>
-                </GridItem>
-                <GridItem>
-                  <ObsInput type={state.type} label="Contraseña nueva" variant="outlined" id="passnew"></ObsInput>
-                </GridItem>
-                <GridItem>
-                  <FormControlLabel
-                    control={<ObsCheckbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
-                    label="Mostrar contraseñas"
-                  />
-                </GridItem>
-              </GridContainer>
             </CardBody>
           </Card>
         </GridItem>

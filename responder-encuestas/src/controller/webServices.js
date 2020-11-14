@@ -9,7 +9,8 @@ const urlWebServices = {
     nuevaRespuesta: urlApi + "bd/insertRespuesta",
     actualizarRespuesta: urlApi + "bd/updateRespuesta",
     actualizarEncuesta: urlApi + "bd/updateEncuesta",
-    uploadFile: urlApi + "bd/uploadFile"
+    uploadFile: urlApi + "bd/uploadFile",
+    respondidas: urlApi + "bd/respondidas"
 }
 
 export default urlWebServices;

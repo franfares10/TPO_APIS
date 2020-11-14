@@ -9,6 +9,7 @@ import GridItem from "components/Grid/GridItem";
 import ReportIcon from '@material-ui/icons/Report';
 
 import {updateRespuesta} from "controller/appController";
+import { respondidas } from "controller/appController";
 
 Array.prototype.remove = function() {
     var what, a = arguments, L = a.length, ax;
@@ -78,6 +79,7 @@ export default function CheckboxLabels(props) {
                 }
             })
             updateRespuesta(props.sectionIndex, props.questionIndex, arr)
+            respondidas()
          }})
 
     return (
@@ -105,7 +107,7 @@ export default function CheckboxLabels(props) {
                 </FormGroup>
                 </GridItem>
                 <GridItem>
-                    <p>Párrafo de ayuda</p>
+                    <p>{props.description}</p>
                 </GridItem>
         </GridContainer>
     );

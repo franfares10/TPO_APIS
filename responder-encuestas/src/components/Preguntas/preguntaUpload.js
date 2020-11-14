@@ -6,6 +6,7 @@ import UploadIcon from '@material-ui/icons/Publish';
 import ReportIcon from '@material-ui/icons/Report';
 
 import {uploadFile, updateRespuesta} from "controller/appController";
+import { respondidas } from "controller/appController";
 
 const mandatory = (mand) => {
     if(mand === true){
@@ -19,23 +20,26 @@ export default function SubirArchivos(props) {
 
     const [file,setFile]=React.useState([]);
     const [nombreFile, setNombreFile]=React.useState(props.value)
+    const [cancelarVisible, setCancelarVisible]=React.useState(()=>{if(props.value===""){return "hidden"}else{return "visible"}})
     const isInitialMount = useRef(true);
 
     function subirArchivo(){
         setFile(document.getElementById(props.title).files[0])
         setNombreFile(document.getElementById(props.title).files[0].name)
-        console.log(props)
+        setCancelarVisible("visible")
     }
 
     useEffect(()=>{
         if (isInitialMount.current) {
           isInitialMount.current = false;
        } else {
-           console.log(props)
+           if(nombreFile!=""){
             let files = []
             files.push(file)
             uploadFile(files)
             updateRespuesta(props.sectionIndex, props.questionIndex, nombreFile)
+            respondidas()
+            }
        }})
 
     const subir = () => {
@@ -45,6 +49,14 @@ export default function SubirArchivos(props) {
             input.click();
         }
     }
+
+    const cancelarSubida = () => {
+        setFile({})
+        setNombreFile("")
+        setCancelarVisible("hidden")
+        updateRespuesta(props.sectionIndex, props.questionIndex, "")
+    }
+
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
             <GridContainer justify={"center"} alignItems={"center"} >
@@ -65,6 +77,7 @@ export default function SubirArchivos(props) {
             </GridItem>
             <GridItem>
                 <p>{nombreFile}</p>
+                <a onClick={cancelarSubida} style={{cursor: "pointer", visibility: cancelarVisible}}>Cancelar</a>
             </GridItem>
         </GridContainer>
     );
