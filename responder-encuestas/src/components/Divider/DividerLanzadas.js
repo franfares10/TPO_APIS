@@ -62,11 +62,7 @@ export default function DividerLanzadas(props){
       }
 
 
-const obtenerNombre = async (id) =>{
-    let empresa = await getEmpresaPorId(id)
-    console.log(empresa)
-    return empresa.nombreEmpresa;
-}
+
       const mostrarEmpresas = (listaEmpresas) => { 
         if(mostrarResultados){
            
@@ -82,7 +78,7 @@ const obtenerNombre = async (id) =>{
                                 <CardIcon>
                                     <TrafficByDevice/>
                                 </CardIcon>
-                                    <p className={classes.cardCategory}>{empresa}</p>
+                                    <p className={classes.cardCategory}>{empresa.nombreEmpresa}</p>
                                     <h3 className={classes.cardTitle}>49/50</h3>
                                 </CardHeader>
                                 <CardFooter stats>
@@ -131,8 +127,8 @@ const obtenerNombre = async (id) =>{
                             </Card>
                         </GridItem>
                         <GridItem xs={12} sm={6} md={12}>
-                        {console.log(props.listaEmpresasLanzadas)}
-                            {mostrarEmpresas(props.listaEmpresasLanzadas[0].split(","))}
+                            {console.log("PROPS:",props.listaEmpresasLanzadas)}
+                            {mostrarEmpresas(props.listaEmpresasLanzadas)}
                         </GridItem>
                     </GridContainer>
             </GridItem>   

@@ -72,17 +72,21 @@ export const getEmpresas =  async function()
             {
 
                 var empresas = data.data.docs
+                console.log("La empresa ha sido encontrada correctamente")
                 return empresas;
             }
             case 202:
             {
                 //error mail
-                return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
+                return ({rdo:1,mensaje:"Request aceptada"});
             }
             case 203:
             {
                 //error password
-                return ({rdo:1,mensaje:"La contraseña no es correcta."});
+                return ({rdo:1,mensaje:"No posee autorizacion para esta accion."});
+            }
+            case 204:{
+                return ({rdo:1,mensaje:"No existe contenido."})
             }
             default:
             {
@@ -92,7 +96,7 @@ export const getEmpresas =  async function()
         }
     } catch(error)
     {
-        console.log("error",error);
+        console.log("ERROR: ",error);
     };
 }
 
