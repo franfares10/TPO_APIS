@@ -106,30 +106,39 @@ const empresas = useDividerState().empresas;
   }
 
   
-
+//{static var listaEmpresasObjetos=[]}
 
   const lanzarEncuesta = async (encuesta) =>{
 
-    var lista =[]
-
+    class Objecto{
+      constructor(listaEmpresas){
+        this.listaEmpresas=listaEmpresas
+      }
+    }
+    var lista=[]
+    var contador=0;
     await empresas.map(async empresa =>{
-        
         let objeto = await getEmpresaPorId(empresa);
-        console.log(objeto)
-
+        console.log("MAIL-> "+objeto.responsable.email)
+        lista.push(objeto)
+        if(empresas.length-1===contador){
+          var objReturn=new Objecto(lista);
+          nuevoLanzamiento(objReturn.listaEmpresas,encuesta);
+        }
+        contador++;
+        console.log(contador)
         await enviarMailDeEncuesta(objeto.responsable.email)
        //lista[lista.length] = objeto
-       //console.log(objeto)
-      //console.log(lista)
+       
      })
 
 
      console.log("LISTA QUE PASA COMO PARAM")
      console.log(lista)
-    nuevoLanzamiento(empresas,encuesta);
+     
 
     setMostrarTabla(false)
-   setFlag(true)
+    setFlag(true)
   }
 
 

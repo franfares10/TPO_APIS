@@ -389,12 +389,10 @@ export const nuevoLanzamiento = async function(listaEmpresas,encuesta){
      formData.append('idEncuesta',encuesta);
      formData.append('responsable',{"nombre":"jose"});
      formData.append('fechaVencimiento',"2021/05/21");
-     formData.append('listaEmpresasLanzadas',listaEmpresas);
+     formData.append('listaEmpresasLanzadas',JSON.stringify(listaEmpresas));
+     console.log("form data: ",formData.get('listaEmpresasLanzadas'))
      
-     //console.log("EMPRESAS LANZADAS")
-     //console.log(listaEmpresas[0])
-     //console.log("dato",formData);
-     //console.log("url",url);
+    
      try
      {
          let response = await fetch(url,{
