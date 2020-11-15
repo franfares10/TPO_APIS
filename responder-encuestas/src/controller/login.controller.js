@@ -354,25 +354,25 @@ export const getLanzadasPorUsuario = async function(setListEncuestas) {
 
                 return ({rdo:0,mensaje:"Ok"});
             }
-            case 202:
+            case 404:
             {
                 //error mail
-                return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
+                return ({rdo:1,mensaje:"No existen encuestas especificas a ese usuario."});
             }
-            case 203:
+            case 400:
             {
                 //error password
-                return ({rdo:1,mensaje:"La contraseña no es correcta."});
+                return ({rdo:2,mensaje:"La solicitud de pedido de datos no es correcta."});
             }
             default:
             {
                 //otro error
-                return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+                return ({rdo:1,mensaje:"Ha habido un problema en el servidor"});                
             }
         }
     } catch(error)
     {
-        console.log("error",error);
+        console.log("El error ha sido: ",error);
     };
 }
 

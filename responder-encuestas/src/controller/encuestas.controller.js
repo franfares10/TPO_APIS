@@ -35,17 +35,21 @@ export const getEncuestas =  async function(setListEncuestas)
                 //localStorage.setItem("encuestasDeLaBDD",data.data.docs); 
                 setListEncuestas(data.data.docs)
                 
-                return ({rdo:0,mensaje:"Ok"});//correcto
+                return ({rdo:0,mensaje:"Encuestas traidas correctamente de la base de datos"});//correcto
             }
-            case 202:
+            case 203:{
+                return ({rdo:1,mensaje:"No posee autorizacion para realizar este llamado."})
+            }
+
+            case 400:
             {
                 //error mail
-                return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
+                return ({rdo:1,mensaje:"Ha ocurrido un error al realizar la accion, chequee los parametros de envio."});
             }
-            case 203:
+            case 404:
             {
                 //error password
-                return ({rdo:1,mensaje:"La contraseña no es correcta."});
+                return ({rdo:1,mensaje:"No se encontraron encuestas"});
             }
             default:
             {
@@ -58,7 +62,7 @@ export const getEncuestas =  async function(setListEncuestas)
     }
     catch(error)
     {
-        console.log("error",error);
+        console.log("ERROR: ",error);
     };
 }
 
