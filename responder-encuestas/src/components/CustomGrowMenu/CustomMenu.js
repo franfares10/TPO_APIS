@@ -13,7 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Poppers from "@material-ui/core/Popper";
 // core components
-
+import { DividerProvider, useDividerActions, useDividerState } from "components/Divider/DividerProvider";
 import classNames from "classnames";
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
 import { Button } from "@material-ui/core";
@@ -23,7 +23,7 @@ import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
-export default function CustomMenu() {
+export default function CustomMenu(props) {
   const classes = useStyles();
   const [openMenu, setOpenMenu] = React.useState(null);
 
@@ -38,6 +38,16 @@ export default function CustomMenu() {
   const handleCloseMenu = () => {
     setOpenMenu(null);
   };
+
+  
+  
+
+  const eliminarEmpresa = (idEmpresa) =>{
+    handleCloseMenu();
+    console.log(idEmpresa)
+
+  }
+
 
   return(
       <div>
@@ -72,7 +82,7 @@ export default function CustomMenu() {
                                 <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList role="menu" >
                                         <MenuItem           
-                                            onClick={handleCloseMenu}
+                                            onClick={eliminarEmpresa(props)}
                                             className={classes.dropdownItem}
                                         >
                                             Retirar empresa de la Encuesta

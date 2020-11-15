@@ -23,6 +23,7 @@ import { getLanzadasPorUsuario } from "controller/login.controller";
 import { getEncuestaPorId } from "controller/encuestas.controller";
 import CustomMenu from "components/CustomGrowMenu/CustomMenu"
 import TrafficByDevice from "components/circleChart/TrafficByDevice";
+import { getEmpresaPorId } from "controller/empresa.controller";
 
 
 
@@ -61,20 +62,27 @@ export default function DividerLanzadas(props){
       }
 
 
-
+const obtenerNombre = async (id) =>{
+    let empresa = await getEmpresaPorId(id)
+    console.log(empresa)
+    return empresa.nombreEmpresa;
+}
       const mostrarEmpresas = (listaEmpresas) => { 
         if(mostrarResultados){
+           
           return(
                    <div>
                         <GridContainer>
-                            {listaEmpresas.map(empresa =>(
+                            {listaEmpresas.map( empresa =>(
+                                
                             <GridItem xs={12} sm={6} md={4}>
+                            
                             <Card>
                                 <CardHeader color="warning" stats icon>
                                 <CardIcon>
                                     <TrafficByDevice/>
                                 </CardIcon>
-                                    <p className={classes.cardCategory}>{empresa.nombre}</p>
+                                    <p className={classes.cardCategory}>{empresa}</p>
                                     <h3 className={classes.cardTitle}>49/50</h3>
                                 </CardHeader>
                                 <CardFooter stats>
@@ -83,7 +91,7 @@ export default function DividerLanzadas(props){
                                     Ultimas 24 horas.
                                 </div>
                                 <div stats icon>
-                                    <CustomMenu/>
+                                    <CustomMenu {...empresa}/>
                                 </div>
                                 </CardFooter>
                             </Card>
@@ -123,7 +131,8 @@ export default function DividerLanzadas(props){
                             </Card>
                         </GridItem>
                         <GridItem xs={12} sm={6} md={12}>
-                            {mostrarEmpresas(props.listaEmpresasLanzadas)}
+                        {console.log(props.listaEmpresasLanzadas)}
+                            {mostrarEmpresas(props.listaEmpresasLanzadas[0].split(","))}
                         </GridItem>
                     </GridContainer>
             </GridItem>   

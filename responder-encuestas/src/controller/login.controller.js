@@ -376,8 +376,82 @@ export const getLanzadasPorUsuario = async function(setListEncuestas) {
     };
 }
 
-       
 
 
+
+export const nuevoLanzamiento = async function(listaEmpresas,encuesta){
+     
+    //url webservices
+     let url = urlWebServices.lanzarEncuesta;
+     //armo json con datos
+     const formData = new URLSearchParams();
+     formData.append('idUsuario',localStorage.getItem("id").toString());
+     formData.append('idEncuesta',encuesta);
+     formData.append('responsable',{"nombre":"jose"});
+     formData.append('fechaVencimiento',"2021/05/21");
+     formData.append('listaEmpresasLanzadas',listaEmpresas);
+     
+     //console.log("EMPRESAS LANZADAS")
+     //console.log(listaEmpresas[0])
+     //console.log("dato",formData);
+     //console.log("url",url);
+     try
+     {
+         let response = await fetch(url,{
+             method: 'POST', 
+             mode: "cors",
+             headers:{
+                 'Accept':'application/x-www-form-urlencoded',
+                 //'x-access-token': WebToken.webToken,
+                 'Origin':'http://localhost:8080/',
+                 'Content-Type': 'application/x-www-form-urlencoded'},
+             body: formData
+             
+         });
+         let data = await response.json();
+         console.log("DATA")
+         console.log(data)
+
+        
+        
+}catch(error){
+    console.log("ERROR"+error)
+}
+}
+
+
+
+export const enviarMailDeEncuesta = async function(mailEmpresa){
+     
+    //url webservices
+     let url = urlWebServices.enviarMail;
+     //armo json con datos
+     const formData = new URLSearchParams();
+     formData.append('destinatario',mailEmpresa);
+    formData.append('asunto' , "Se le ha enviado una nueva encuesta a responder")
+    formData.append('texto' , "esta es  una encuesta del observatorio pyme")
+     try
+     {
+         let response = await fetch(url,{
+             method: 'POST', 
+             mode: "cors",
+             headers:{
+                 'Accept':'application/x-www-form-urlencoded',
+                 //'x-access-token': WebToken.webToken,
+                 'Origin':'http://localhost:8080/',
+                 'Content-Type': 'application/x-www-form-urlencoded'},
+             body: formData
+             
+         });
+         let data = await response.json();
+         console.log("DATA")
+         console.log(data)
+
+        
+        
+}catch(error){
+    console.log("ERROR"+error)
+}
+}
 
 

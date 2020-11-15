@@ -61,7 +61,7 @@ export const getEmpresas =  async function()
         
         });
 
-        console.log(response)
+        //console.log(response)
         let data = await response.json();
         let rdo = response.status;
        
@@ -97,5 +97,63 @@ export const getEmpresas =  async function()
     } catch(error)
     {
         console.log("ERROR: ",error);
+    };
+}
+
+
+export const getEmpresaPorId =  async function(idEmpresa)
+{
+    
+    const formData = new URLSearchParams();
+    formData.append('id', idEmpresa);
+    //url webservices
+    let url = urlWebServices.getEmpresaPorId;
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', 
+            mode: "cors",
+            headers:{
+                'Accept':'application/x-www-form-urlencoded',
+                //'x-access-token': WebToken.webToken,
+                'Origin':'http://localhost:8080/',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body:formData,
+        
+        });
+
+        //console.log(response)
+        let data = await response.json();
+        let rdo = response.status;
+       
+        
+        switch(rdo)
+        {
+            case 200:
+            {
+                var empresa = data.data;
+                //console.log(empresa)
+                return empresa;
+            }
+            case 202:
+            {
+                //error mail
+                return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
+            }
+            case 203:
+            {
+                //error password
+                return ({rdo:1,mensaje:"La contraseña no es correcta."});
+            }
+            default:
+            {
+                //otro error
+                return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+            }
+        }
+    } catch(error)
+    {
+        console.log("error",error);
     };
 }
