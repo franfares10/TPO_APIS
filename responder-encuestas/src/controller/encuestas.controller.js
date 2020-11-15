@@ -85,7 +85,7 @@ export const getEncuestaPorId =  async function(idEncuesta)
         
         });
 
-        console.log(response)
+        //console.log(response)
         let data = await response.json();
         let rdo = response.status;
        
@@ -95,7 +95,7 @@ export const getEncuestaPorId =  async function(idEncuesta)
             case 200:
             {
                 var encuesta = data.data;
-                console.log("ENCUESTAAAAA"+encuesta)
+                //console.log("ENCUESTAAAAA"+encuesta)
                 return encuesta;
             }
             case 202:

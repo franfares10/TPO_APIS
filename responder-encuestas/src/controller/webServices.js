@@ -10,8 +10,10 @@ const urlWebServices = {
     getEncuestasLanzadas: urlApi + "api/lanzamientoEncuesta/encuestasLanzadas",
     getEncuestaPorId: urlApi + "api/encuestas/encuestaPorId",
     getEmpresas: urlApi + "api/empresas/empresas",
-    modificarPerfil: urlApi + "api/users/actualizarPerfil"
-    //uploadFileImg: urlApi + "utils/uploadImg",
+    modificarPerfil: urlApi + "api/users/actualizarPerfil",
+    lanzarEncuesta: urlApi + "api/lanzamientoEncuesta/newLanzarEncuesta",
+    getEmpresaPorId: urlApi + "api/empresas/empresaPorId",
+    enviarMail: urlApi + "api/users/sendMail"
     //guardarImgUser: urlApi + "api/users/guardarImgUser",
     //getImgUser: urlApi + "api/users/imgUserByMail",
     //uploadFileImg: urlApi + "api/users/uploadImg",

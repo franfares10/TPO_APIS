@@ -5,7 +5,7 @@ import moment from 'moment';
 import { withStyles, lighten } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
-
+import{getEmpresaPorId} from "controller/empresa.controller"
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Avatar,
@@ -23,6 +23,7 @@ import {
 } from '@material-ui/core';
 import getInitials from 'assets/jss/getInitials.js';
 import { useDividerActions } from 'components/Divider/DividerProvider';
+import { useDividerState } from 'components/Divider/DividerProvider';
 
 const ObsCheckbox = withStyles({
   root: {
@@ -46,18 +47,21 @@ const Results = ({ className, customers, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
+  const [selected,setSelected] = useState([]) 
+  const [alpha,setAlpha] = useState([])
   const getSelected = () =>{
     return selectedCustomerIds;
   }
 
   const handleSelectAll = (event) => {
     let newSelectedCustomerIds;
- 
+    let seleccionados
     if (event.target.checked) {
-      newSelectedCustomerIds = customers.map((customer) => customer);
-    
+      newSelectedCustomerIds = customers.map((customer) => customer._id);
+      seleccionados = customers.map((customer) => customer.nombreEmpresa);
     } else {
       newSelectedCustomerIds = [];
+      seleccionados = []
     }
 
     setSelectedCustomerIds(newSelectedCustomerIds);
@@ -65,23 +69,39 @@ const Results = ({ className, customers, ...rest }) => {
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedCustomerIds.indexOf(id._id);
-   
+    let seleccionados = []
+    let a = []
     let newSelectedCustomerIds = [];
     if (selectedIndex === -1) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id._id);
-     
+     seleccionados = seleccionados.concat(selected,id.nombreEmpresa)
     } else if (selectedIndex === 0) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
+      seleccionados = seleccionados.concat(selected.slice(1))
     } else if (selectedIndex === selectedCustomerIds.length - 1) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
+      seleccionados = seleccionados.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(
         selectedCustomerIds.slice(0, selectedIndex),
         selectedCustomerIds.slice(selectedIndex + 1)
       );
+
+      seleccionados = seleccionados.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+
+
     }
 
+
     setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelected(seleccionados);
+    //console.log(selected)
+
+
+    //console.log(a)
   };
 
   const handleLimitChange = (event) => {
@@ -92,11 +112,16 @@ const Results = ({ className, customers, ...rest }) => {
     setPage(newPage);
   };
 
+  
   const { setFlag } = useDividerActions();
 
+  const { setEmpresas } = useDividerActions();
+  
   useEffect(() => {
     setFlag(selectedCustomerIds.length<1);
-  }, [selectedCustomerIds, setFlag])
+    setEmpresas(selectedCustomerIds);
+    
+  }, [selectedCustomerIds, setFlag, setEmpresas])
 
   
   return (

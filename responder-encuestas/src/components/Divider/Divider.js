@@ -20,22 +20,19 @@ import SendIcon from '@material-ui/icons/Send';
 import CardIcon from "components/Card/CardIcon.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Button from "components/CustomButtons/Button"
-import { getEncuestas } from "controller/encuestas.controller";
-import { getEmpresas } from "controller/empresa.controller";
-import PropTypes from "prop-types";
+import { getEmpresas} from "controller/empresa.controller";
+import {enviarMailDeEncuesta} from "controller/login.controller"
+import{nuevoLanzamiento} from "controller/login.controller"
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 import estilosBoton from "assets/jss/material-dashboard-react/components/buttonStyle.js";
-import CustomerListView from "views/NewPoll/Companies";
 import {
   Box,
   Container
 } from '@material-ui/core';
 import Page from 'components/CompaniesComponents/Page.js';
 import Results from 'components/CompaniesComponents/Results.js';
-import Toolbar from 'components/CompaniesComponents/Toolbar.js';
-import data from 'variables/data.js';
-import { DividerProvider, useDividerState } from "./DividerProvider";
-
+import { DividerProvider, useDividerActions, useDividerState } from "./DividerProvider";
+import{getEmpresaPorId} from "controller/empresa.controller"
 const useStyles = makeStyles(styles,estilosBoton,(theme) => ({
   customers: {
     backgroundColor: theme.palette.background.dark,
@@ -48,8 +45,8 @@ const useStyles = makeStyles(styles,estilosBoton,(theme) => ({
 export default function Divider(props) {
   const classes = useStyles();
 
-const encuesta = props;
- console.log(encuesta)
+
+ //console.log(encuesta)
 const  [mostrarTabla, setMostrarTabla] = React.useState(false);
 const [listEmpresas,setListEmpresas] = React.useState([]);
 
@@ -72,7 +69,11 @@ const mostrarEmpresas = () => {
       }
   }
 
- 
+ const {setFlag} = useDividerActions();
+const flag = useDividerState().bandera;
+const empresas = useDividerState().empresas;
+
+
   const obtenerEmpresas = async function(){
     var empresas = await getEmpresas()
     setListEmpresas(empresas)
@@ -84,8 +85,9 @@ const mostrarEmpresas = () => {
     if(mostrarTabla){
       return (
       <Button  round color="danger" onClick= {
-        () => setMostrarTabla(false)
-
+        () => {setMostrarTabla(false)
+        setFlag(true);
+        }
       }
       >
         Cerrar
@@ -102,6 +104,36 @@ const mostrarEmpresas = () => {
         )
     }
   }
+
+  
+
+
+  const lanzarEncuesta = async (encuesta) =>{
+
+    var lista =[]
+
+    await empresas.map(async empresa =>{
+        
+        let objeto = await getEmpresaPorId(empresa);
+        console.log(objeto)
+
+        await enviarMailDeEncuesta(objeto.responsable.email)
+       //lista[lista.length] = objeto
+       //console.log(objeto)
+      //console.log(lista)
+     })
+
+
+     console.log("LISTA QUE PASA COMO PARAM")
+     console.log(lista)
+    nuevoLanzamiento(empresas,encuesta);
+
+    setMostrarTabla(false)
+   setFlag(true)
+  }
+
+
+
 
   useEffect(()=>{
       obtenerEmpresas()
@@ -126,7 +158,7 @@ const mostrarEmpresas = () => {
                             {props.created}
                             </div>
                             <div stats >
-                            <Button round disabled={useDividerState()} color = "success"><SendIcon /> Lanzar</Button>
+                            <Button round disabled={flag} color = "success" onClick={()=>lanzarEncuesta(props._id)}><SendIcon /> Lanzar</Button>
                               {botonAccion()}
 
                                 </div>   

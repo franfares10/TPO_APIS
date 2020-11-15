@@ -1,21 +1,25 @@
 import React, { useContext, useState, useMemo } from 'react';
+import{getEmpresaPorId} from "controller/empresa.controller"
 
 const DividerContext = React.createContext();
 const DividerActionsContext = React.createContext();
 
 function DividerProvider({ children }) {
     const [flag, setFlagValue] = useState(true);
+    const [empresasLanzar,setEmpresasLanzar] = useState([]);
 
     const actions = useMemo(() => {
         const setFlag = flagValue => setFlagValue(flagValue);
+        const  setEmpresas = empresasValues => setEmpresasLanzar(empresasValues)
 
         return {
-            setFlag
+            setFlag,
+            setEmpresas
         }
-    }, [setFlagValue]);
+    }, [setFlagValue,setEmpresasLanzar]);
 
     return (
-        <DividerContext.Provider value={flag}>
+        <DividerContext.Provider value={{bandera:flag,empresas:empresasLanzar}}>
             <DividerActionsContext.Provider value={actions}>
                 {children}
             </DividerActionsContext.Provider>

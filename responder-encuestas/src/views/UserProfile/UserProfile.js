@@ -92,8 +92,8 @@ function handleChangeApellido(event) {
   
   setData({ 
   nombreUsuario: data.nombreUsuario,
-  nombre: value,
-  apellido: data.apellido,
+  nombre: data.nombre,
+  apellido: value,
   email: data.email,
   })
 
@@ -103,7 +103,7 @@ function handleChangeUsuario(event) {
   var value = event.target.value;
   setData({ 
   nombreUsuario: value,
-  nombre: value,
+  nombre: data.nombre,
   apellido: data.apellido,
   email: data.email,
   })
