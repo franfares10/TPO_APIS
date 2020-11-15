@@ -82,7 +82,7 @@ export default function CustomMenu(props) {
                                 <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList role="menu" >
                                         <MenuItem           
-                                            onClick={eliminarEmpresa(props)}
+                                            onClick={handleCloseMenu}
                                             className={classes.dropdownItem}
                                         >
                                             Retirar empresa de la Encuesta

@@ -91,7 +91,7 @@ const obtenerNombre = async (id) =>{
                                     Ultimas 24 horas.
                                 </div>
                                 <div stats icon>
-                                    <CustomMenu {...empresa}/>
+                                    <CustomMenu/>
                                 </div>
                                 </CardFooter>
                             </Card>

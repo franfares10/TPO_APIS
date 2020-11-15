@@ -117,16 +117,16 @@ const empresas = useDividerState().empresas;
         let objeto = await getEmpresaPorId(empresa);
         console.log(objeto)
 
-        await enviarMailDeEncuesta(objeto.responsable.email)
-       //lista[lista.length] = objeto
+        //await enviarMailDeEncuesta(objeto.responsable.email)
+       lista[lista.length] = objeto
        //console.log(objeto)
-      //console.log(lista)
+      console.log(lista)
      })
 
 
      console.log("LISTA QUE PASA COMO PARAM")
      console.log(lista)
-    nuevoLanzamiento(empresas,encuesta);
+    nuevoLanzamiento(lista,encuesta);
 
     setMostrarTabla(false)
    setFlag(true)
