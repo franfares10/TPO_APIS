@@ -452,19 +452,17 @@ export const enviarMailDeEncuesta = async function(mailEmpresa){
 }
 }
 
-export const eliminarEmpresasDeEncuesta= async function(options){
+export const eliminarEmpresasDeEncuesta= async function(idEmpresa,idEncuesta){
     try{
         let url=urlWebServices.eliminarEmpresasDeEncuesta;  //Defino la url que le pega a este servicio en especifico.
 
         const formData=new URLSearchParams();
-        /*formData.append("flag",flag);
-        formData.append("listaEmpresas",JSON.stringify(listEmpresasEliiminar))
-        formData.append("idEncuesta",idEncuesta);
-        */
-       formData.append("options",JSON.stringify(options)) 
-       console.log(formData.get("options"))
         
-       console.log(options._id,"-",options.listaEmpresasBorrar) 
+       formData.append('idEmpresa',idEmpresa);
+       formData.append('idEncuesta',idEncuesta);
+
+    
+        
         let response = await fetch(url,{
             method: 'PUT', 
             mode: "cors", 
@@ -481,6 +479,6 @@ export const eliminarEmpresasDeEncuesta= async function(options){
         let data = await response.json();
         console.log("Estado de la encuesta luego de haber sido actualizada: ",data)
     }catch(e){
-        console.log("Error al actualizar la  encuesta con el id: ",options._id," el error fue: ", e)
+        console.log("Error al actualizar la  encuesta con el id: ",idEncuesta," el error fue: ", e)
     }
 }

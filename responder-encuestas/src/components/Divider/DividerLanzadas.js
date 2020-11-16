@@ -33,7 +33,7 @@ const useStyles = makeStyles(styles);
 export default function DividerLanzadas(props){
     const classes = useStyles();
     const  [mostrarResultados, setMostrarResultados] = React.useState(false);
-  
+    const [e,setListE] = React.useState([])
 
 
    //HACER UN COMPONENTE NUEVO CONTEXT REDUCE AVERIGUAR PARA MANDAR CONTEXTOS ENTRE COMPONENTES 
@@ -61,7 +61,17 @@ export default function DividerLanzadas(props){
         }
       }
 
+      useEffect(()=>{
+          setListE(props.listaEmpresasLanzadas)
+      },[setListE])
 
+      const pasarProps = (empresa,encuesta) =>{
+          var objeto = {
+          empresa: empresa,
+            encuesta: encuesta
+          }
+          return objeto;
+      }
 
       const mostrarEmpresas = (listaEmpresas) => { 
         if(mostrarResultados){
@@ -87,7 +97,7 @@ export default function DividerLanzadas(props){
                                     Ultimas 24 horas.
                                 </div>
                                 <div stats icon>
-                                    <CustomMenu/>
+                                    <CustomMenu {...pasarProps(empresa,props)}/>
                                 </div>
                                 </CardFooter>
                             </Card>

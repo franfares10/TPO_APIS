@@ -16,17 +16,22 @@ import Poppers from "@material-ui/core/Popper";
 import { DividerProvider, useDividerActions, useDividerState } from "components/Divider/DividerProvider";
 import classNames from "classnames";
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
-import { Button } from "@material-ui/core";
+import Button from 'components/CustomButtons/Button';
 import {eliminarEmpresasDeEncuesta} from "../../controller/login.controller"
-
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import history from "utils/History/history"
 
 const useStyles = makeStyles(styles);
 
 export default function CustomMenu(props) {
   const classes = useStyles();
   const [openMenu, setOpenMenu] = React.useState(null);
-
+  const [open, setOpen] = React.useState(false);
   const handleClickMenu = event => {
     if (openMenu && openMenu.contains(event.target)) {
       setOpenMenu(null);
@@ -40,38 +45,34 @@ export default function CustomMenu(props) {
   };
 
   
-  
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   const eliminarEmpresa =async function (idEncuestaLanzada){
     var flag=2; //Defino el flag de borrado de la empresa.
     //Me faltan la lista de las emmpresas y el ide de la encuesta.
     //Ivan acordate que dentro del Lanzamiento tenemos idEmpresa, y nombre.
-    console.log("Los props son:",props)
+    console.log("Los props son:",props.empresa)
+    console.log(props.encuesta)
     //Preguntarle a fran como hacer para linkear los props, o sea, que cuando clickee mostrarEmpresas desde el Dashboarde encuestas lanzadas,
     //Si podemos setear una variable en el localStorage que por cada onClick se actualice.
 
-    handleCloseMenu();
-    var idEncuestaLanzada2="5fb1770a0492395824f7ed8a";
-    var listaBorrar=[]
-    listaBorrar.push(props)
-    var options={
-      _id:idEncuestaLanzada2,
-      listaEmpresasNueva:null,
-      listaEmpresasBorrar:listaBorrar
-    }
-    await listaBorrar.map(async element=>{
-      console.log("Entrando a borrar las empresas:")
-      await eliminarEmpresasDeEncuesta(options);
-    })
+    await eliminarEmpresasDeEncuesta(props.empresa._id,props.encuesta._id);
+   
     //await eliminarEmpresasDeEncuesta(flag,listaEmpresas,idEncuestaLanzada)
     //console.log(idEmpresa)
-
+    history.push("admin/dashboard")
   }
 
 
   return(
       <div>
-                    <Button color = "danger"
+                    <Button color = "primary"
                     onClick={handleClickMenu}>
                 <MenuIcon/>
                 </Button>
@@ -102,12 +103,12 @@ export default function CustomMenu(props) {
                                 <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList role="menu" >
                                         <MenuItem           
-<<<<<<< HEAD
-                                            onClick={handleCloseMenu}
-=======
-                                            onClick={eliminarEmpresa()}
->>>>>>> 51ef86eae5b95a52562780fb0f1803bd9906e9b8
                                             className={classes.dropdownItem}
+                                            onClick={() =>{
+                                          
+                                              handleCloseMenu()
+                                              setOpen(true)
+                                              }}
                                         >  
                                             Retirar empresa de la Encuesta
                                             
@@ -119,6 +120,38 @@ export default function CustomMenu(props) {
                             </Grow>
                         )}
                         </Poppers>
+                        <div>
+                        <Dialog
+            
+                              open={open}
+                              TransitionComponent={Transition}
+                              keepMounted
+                              onClose={handleClose}
+                              aria-labelledby="alert-dialog-slide-title"
+                              aria-describedby="alert-dialog-slide-description"
+                            >
+                              <DialogTitle id="alert-dialog-slide-title">{'¿Estas seguro de eliminar la empresa?'}</DialogTitle>
+                              <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                Si deseas eliminar la empresa de la encuesta de forma permanente presione "aceptar", de lo contrario presione "cancelar"
+                                </DialogContentText>
+                              </DialogContent>
+                              <DialogActions>
+                                <Button onClick={() => {
+                                      eliminarEmpresa()
+                                      
+                                      handleClose();
+                                }} color="success">
+                                  Aceptar
+                                </Button>
+                                <Button onClick={() =>{
+                            
+                                  handleClose()}} color="danger">
+                                  Cancelar
+                                </Button>
+                              </DialogActions>
+                            </Dialog>
+                            </div>
                         </div>
         )
 

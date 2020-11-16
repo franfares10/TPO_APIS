@@ -38,7 +38,7 @@ export default function PollSelection(){
 
     useEffect(() => { 
        getLanzadasPorUsuario(setListEncuestas)
-    
+
       },[setListEncuestas]);
 
 
