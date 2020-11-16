@@ -14,7 +14,7 @@ const useStyles = makeStyles(styles);
 
 export default function SnackbarContent(props) {
   const classes = useStyles();
-  const { message, color, close, icon } = props;
+  const { message, color, close, icon, rtlActive } = props;
   var action = [];
   const messageClasses = classNames({
     [classes.iconMessage]: icon !== undefined
@@ -41,8 +41,10 @@ export default function SnackbarContent(props) {
       }
       classes={{
         root: classes.root + " " + classes[color],
-        message: classes.message
+        message: classes.message,
+        action: classNames({ [classes.actionRTL]: rtlActive })
       }}
+      action={action}
     />
   );
 }
@@ -52,4 +54,5 @@ SnackbarContent.propTypes = {
   color: PropTypes.oneOf([ "success", "warning", "danger", "primary"]),
   close: PropTypes.bool,
   icon: PropTypes.object,
+  rtlActive: PropTypes.bool
 };

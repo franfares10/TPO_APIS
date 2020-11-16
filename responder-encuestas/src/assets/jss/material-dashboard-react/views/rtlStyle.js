@@ -1,29 +1,17 @@
-
 import {
   successColor,
-  dangerColor,
   whiteColor,
   grayColor,
   hexToRgb
 } from "assets/jss/material-dashboard-react.js";
 
-
-const dashboardStyle = {
+const rtlStyle = {
   successText: {
     color: successColor[0]
   },
-<<<<<<< HEAD
- 
-=======
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
   upArrowCardCategory: {
     width: "16px",
     height: "16px"
-  },
-  closeButton:{
-    backgroundColor: dangerColor[0],
-    marginRight:"0"
-    
   },
   stats: {
     color: grayColor[0],
@@ -46,9 +34,6 @@ const dashboardStyle = {
       marginLeft: "3px"
     }
   },
-  StatesButton:{
-    marginLeft:"1300px"
-  },
   cardCategory: {
     color: grayColor[0],
     margin: "0",
@@ -62,7 +47,10 @@ const dashboardStyle = {
     margin: "0",
     fontSize: "14px",
     marginTop: "0",
-    marginBottom: "0"
+    marginBottom: "0",
+    "& a": {
+      color: whiteColor
+    }
   },
   cardTitle: {
     color: grayColor[2],
@@ -92,8 +80,6 @@ const dashboardStyle = {
       lineHeight: "1"
     }
   }
- 
 };
 
-
-export default dashboardStyle;
+export default rtlStyle;

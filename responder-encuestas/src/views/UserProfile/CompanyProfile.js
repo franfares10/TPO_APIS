@@ -12,9 +12,35 @@ import CardAvatar from "components/Card/CardAvatar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Snackbar from "components/Snackbar/Snackbar.js";
+import Checkbox from '@material-ui/core/Checkbox';
+import { withStyles } from '@material-ui/core/styles';
+import { cyan } from '@material-ui/core/colors';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import avatar from "assets/img/faces/marc.jpg";
+import avatar from "assets/img/iconos/ayudaIcono.png";
+
+const ObsInput = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: cyan[600]
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "grey"
+    }
+  },
+  after: {},
+})((props) => <TextField {...props} />);
+
+const ObsCheckbox = withStyles({
+  root: {
+    color: [400],
+    '&$checked': {
+      color: cyan[600],
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
 const styles = {
   cardCategoryWhite: {
@@ -33,24 +59,14 @@ const styles = {
     marginBottom: "3px",
     textDecoration: "none"
   },
-  TextField:{
+  TextField: {
     marginTop: "2em"
   }
 };
 
-let state = {
-  email: ""
-}
-
 const useStyles = makeStyles(styles);
 
 export default function CompanyProfile() {
-  const [value, setValue] = React.useState(null);
-  let estado = state;
-
-  const controladorEstado = input => {
-    estado.email=input;
-  }
 
   const classes = useStyles();
   const [tl, setTL] = React.useState(false);
@@ -74,7 +90,7 @@ export default function CompanyProfile() {
       case "tl":
         if (!tl) {
           setTL(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setTL(false);
           }, 6000);
         }
@@ -82,7 +98,7 @@ export default function CompanyProfile() {
       case "tc":
         if (!tc) {
           setTC(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setTC(false);
           }, 6000);
         }
@@ -90,7 +106,7 @@ export default function CompanyProfile() {
       case "tr":
         if (!tr) {
           setTR(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setTR(false);
           }, 6000);
         }
@@ -98,7 +114,7 @@ export default function CompanyProfile() {
       case "bl":
         if (!bl) {
           setBL(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setBL(false);
           }, 6000);
         }
@@ -106,7 +122,7 @@ export default function CompanyProfile() {
       case "bc":
         if (!bc) {
           setBC(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setBC(false);
           }, 6000);
         }
@@ -114,7 +130,7 @@ export default function CompanyProfile() {
       case "br":
         if (!br) {
           setBR(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setBR(false);
           }, 6000);
         }
@@ -126,17 +142,16 @@ export default function CompanyProfile() {
   return (
     <div>
       <GridContainer>
-        <GridItem xs={12} sm={12} md={8}>
+        <GridItem xs={12} sm={9}>
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Editar Perfil</h4>
-              <p className={classes.cardCategoryWhite}>Complete su perfil</p>
             </CardHeader>
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Empresa"
                     id="company-disabled"
                     fullWidth="true"
@@ -146,17 +161,16 @@ export default function CompanyProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Email de contacto"
                     id="email"
                     fullWidth="true"
                     type="email"
-                    value={value}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Numero de Teléfono"
                     id="num"
                     fullWidth="true"
@@ -176,7 +190,7 @@ export default function CompanyProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Código Postal"
                     id="zipCode"
                     fullWidth="true"
@@ -185,7 +199,7 @@ export default function CompanyProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Razón Social"
                     id="postal-code"
                     fullWidth="true"
@@ -199,34 +213,34 @@ export default function CompanyProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Historia"
                     id="about-me"
                     fullWidth="true"
-                    multiline= "true"
-                    rows= "5"
+                    multiline="true"
+                    rows="5"
                     type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Misión"
                     id="mision"
                     fullWidth="true"
-                    multiline= "true"
-                    rows= "5"
+                    multiline="true"
+                    rows="5"
                     type="text"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <TextField
-                  className={classes.TextField}
+                    className={classes.TextField}
                     label="Visión"
                     id="vision"
                     fullWidth="true"
-                    multiline= "true"
-                    rows= "5"
+                    multiline="true"
+                    rows="5"
                     type="text"
                   />
                 </GridItem>
@@ -235,18 +249,18 @@ export default function CompanyProfile() {
             <CardFooter>
               <Button color="primary" onClick={() => showNotification("br")}>Actualizar perfil</Button>
               <Snackbar
-                        place="br"
-                        color="primary"
-                        icon={CheckCircleIcon}
-                        message="Perfil Actualizado"
-                        open={br}
-                        closeNotification={() => setBR(false)}
-                        close
-                    />
+                place="br"
+                color="primary"
+                icon={CheckCircleIcon}
+                message="Perfil Actualizado"
+                open={br}
+                closeNotification={() => setBR(false)}
+                close
+              />
             </CardFooter>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={12} md={4}>
+        <GridItem xs={6} sm={3}>
           <Card profile>
             <CardAvatar profile>
               <a href="#pablo" onClick={e => e.preventDefault()}>
@@ -270,4 +284,4 @@ export default function CompanyProfile() {
       </GridContainer>
     </div>
   );
-}
+} 

@@ -15,10 +15,22 @@ const urlWebServices = {
     lanzarEncuesta: urlApi + "api/lanzamientoEncuesta/newLanzarEncuesta",
     getEmpresaPorId: urlApi + "api/empresas/empresaPorId",
     enviarMail: urlApi + "api/users/sendMail",
-    eliminarEmpresasDeEncuesta: urlApi+"api/lanzamientoEncuesta/encuestasLanzadas/update"
+    eliminarEmpresasDeEncuesta: urlApi+"api/lanzamientoEncuesta/encuestasLanzadas/update",
     //guardarImgUser: urlApi + "api/users/guardarImgUser",
     //getImgUser: urlApi + "api/users/imgUserByMail",
     //uploadFileImg: urlApi + "api/users/uploadImg",
+
+
+    //RUTAS LEO Y LUCAS http://localhost:5000/
+    encuestas:urlApi +"api/encuestas",
+    respuestas: urlApi + "bd/respuestas",
+    respuestasUser: urlApi + "bd/respuestas/user/notCompleted",
+    respuestaId: urlApi + "bd/respuestas/id",
+    nuevaRespuesta: urlApi + "bd/insertRespuesta",
+    actualizarRespuesta: urlApi + "bd/updateRespuesta",
+    actualizarEncuesta: urlApi + "bd/updateEncuesta",
+    uploadFile: urlApi + "bd/uploadFile",
+    respondidas: urlApi + "bd/respondidas"
 }
 
 export default urlWebServices;

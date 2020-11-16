@@ -53,7 +53,6 @@ const ObsInput = withStyles({
   after: {},
 })((props) => <TextField {...props} />);
 
-
 const tema=createMuiTheme({
   overrides:{
     MuiCssBaseline:{
@@ -205,4 +204,3 @@ const handlePassword=(event)=>{
       
     );
   }
-

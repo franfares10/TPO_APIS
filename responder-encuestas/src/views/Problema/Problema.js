@@ -113,7 +113,6 @@ export default function Problema() {
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Enviar reporte</h4>
-              <p className={classes.cardCategoryWhite}>Complete los datos del problema</p>
             </CardHeader>
             <CardBody>
               <GridContainer>

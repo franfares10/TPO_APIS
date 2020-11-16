@@ -5,6 +5,14 @@ import GridItem from "components/Grid/GridItem"
 import Button from "components/CustomButtons/Button";
 import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
+<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
+import Pades from 'components/Preguntas/preguntaText'
+import Pradio from 'components/Preguntas/preguntaRadio'
+import Pselect from 'components/Preguntas/preguntaSelect'
+import Pcheck from 'components/Preguntas/preguntaCheck'
+import Pfile from 'components/Preguntas/preguntaUpload'
+import Pdate from 'components/Preguntas/preguntaDate'
+=======
 import SendIcon from '@material-ui/icons/Send';
 import Pades from 'components/Preguntas/PreguntaText'
 import Pradio from 'components/Preguntas/PreguntaRadio'
@@ -15,27 +23,36 @@ import Pdate from 'components/Preguntas/PreguntaDate'
 import Plong from 'components/Preguntas/PreguntaLong'
 
 import {encuestaPorId, updateEncuesta} from "controller/appController";
+import { Redirect } from "react-router-dom";
+>>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
 
 const styles = {
     pyrCard: {
-        height: 'auto',
-        width: 'auto',
+        height: '250px',
+        width: '600px',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
         transition: '0.3s',
-        paddingLeft: '60px',
-        paddingRight: '60px',
-        paddingBottom: '30px',
-        margin: '3em',
+        paddingTop: '20px',
+        margin: '2em',
         "& h4": {
             fontSize: '150%'
         },
-    },    
-    fabEnv: {
+    },
+
+    fabGys: {
         color: "white",
         backgroundColor: "rgb(30, 154, 159)",
         position: "fixed",
         bottom: "20px",
         right: "20px"
+    },
+    
+    fabEnv: {
+        color: "white",
+        backgroundColor: "rgb(30, 154, 159)",
+        position: "fixed",
+        bottom: "20px",
+        right: "200px"
     }
 
 };
@@ -90,6 +107,14 @@ export default function Encuesta() {
 
     return (
         <div>
+<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
+            <Fab className={classes.fab} color="inherit" variant="extended" href="/admin/dashboard">
+=======
+            <Fab className={classes.fabGys} color="inherit" variant="extended" href="/companyAdmin/dashboard">
+>>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
+                <SaveIcon className={classes.extendedIcon} />
+                       Guardar y Salir
+            </Fab>
             <Fab className={classes.fabEnv} color="inherit" variant="extended" onClick={revisarResp}>
                 <SendIcon className={classes.extendedIcon} />
                        Enviar Respuestas
@@ -116,53 +141,52 @@ export default function Encuesta() {
                     let multi = ques.multiline
                     let mand = ques.mandatory
                     let val = ques.value
-                    let qdesc = ques.description
                     if(type === "TEXT" && multi == false){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pades title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pades title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "SELECT"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "FILE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pfile title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pfile title={title} mandatory={mand}/>
                             </div>
                         )
                     }
                     else if(type === "RADIO"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "CHECK"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "DATE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pdate title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pdate title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "TEXT" && multi == true){
                         return(
                             <div className={classes.pyrCard}>
-                                <Plong title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Plong title={title} mandatory={mand} value={val}/>
                             </div>
                         )
                     }
@@ -205,7 +229,17 @@ export default function Encuesta() {
                 </GridItem>
                 <GridItem>
                     <div className={classes.pyrCard}>
-                        <Pdate/>
+                        <Pdate />
                     </div>
                 </GridItem>
+<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
+                <GridItem>
+                    <Button className={classes.Button} href="/admin/dashboard" color="primary">Enviar Respuestas</Button>
+                </GridItem>
+            </GridContainer>
+        </div>
+    );
+}
+=======
             </GridContainer>*/ 
+>>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
