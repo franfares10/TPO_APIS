@@ -1,3 +1,4 @@
+import { eliminarEmpresasDeEncuesta } from "./login.controller";
 
 const urlApi = "http://localhost:8080/";
 console.log("url",urlApi);
@@ -13,7 +14,8 @@ const urlWebServices = {
     modificarPerfil: urlApi + "api/users/actualizarPerfil",
     lanzarEncuesta: urlApi + "api/lanzamientoEncuesta/newLanzarEncuesta",
     getEmpresaPorId: urlApi + "api/empresas/empresaPorId",
-    enviarMail: urlApi + "api/users/sendMail"
+    enviarMail: urlApi + "api/users/sendMail",
+    eliminarEmpresasDeEncuesta: urlApi+"api/lanzamientoEncuesta/encuestasLanzadas/update"
     //guardarImgUser: urlApi + "api/users/guardarImgUser",
     //getImgUser: urlApi + "api/users/imgUserByMail",
     //uploadFileImg: urlApi + "api/users/uploadImg",

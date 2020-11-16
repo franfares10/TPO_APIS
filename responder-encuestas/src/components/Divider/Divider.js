@@ -124,10 +124,10 @@ const empresas = useDividerState().empresas;
         if(empresas.length-1===contador){
           var objReturn=new Objecto(lista);
           nuevoLanzamiento(objReturn.listaEmpresas,encuesta);
-        }
+        } 
         contador++;
         console.log(contador)
-        await enviarMailDeEncuesta(objeto.responsable.email)
+        //await enviarMailDeEncuesta(objeto.responsable.email)
        //lista[lista.length] = objeto
        
      })

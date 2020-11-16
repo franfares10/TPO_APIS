@@ -17,7 +17,7 @@ import { DividerProvider, useDividerActions, useDividerState } from "components/
 import classNames from "classnames";
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
 import { Button } from "@material-ui/core";
-
+import {eliminarEmpresasDeEncuesta} from "../../controller/login.controller"
 
 
 
@@ -42,9 +42,29 @@ export default function CustomMenu(props) {
   
   
 
-  const eliminarEmpresa = (idEmpresa) =>{
+  const eliminarEmpresa =async function (idEncuestaLanzada){
+    var flag=2; //Defino el flag de borrado de la empresa.
+    //Me faltan la lista de las emmpresas y el ide de la encuesta.
+    //Ivan acordate que dentro del Lanzamiento tenemos idEmpresa, y nombre.
+    console.log("Los props son:",props)
+    //Preguntarle a fran como hacer para linkear los props, o sea, que cuando clickee mostrarEmpresas desde el Dashboarde encuestas lanzadas,
+    //Si podemos setear una variable en el localStorage que por cada onClick se actualice.
+
     handleCloseMenu();
-    console.log(idEmpresa)
+    var idEncuestaLanzada2="5fb1770a0492395824f7ed8a";
+    var listaBorrar=[]
+    listaBorrar.push(props)
+    var options={
+      _id:idEncuestaLanzada2,
+      listaEmpresasNueva:null,
+      listaEmpresasBorrar:listaBorrar
+    }
+    await listaBorrar.map(async element=>{
+      console.log("Entrando a borrar las empresas:")
+      await eliminarEmpresasDeEncuesta(options);
+    })
+    //await eliminarEmpresasDeEncuesta(flag,listaEmpresas,idEncuestaLanzada)
+    //console.log(idEmpresa)
 
   }
 
@@ -82,10 +102,11 @@ export default function CustomMenu(props) {
                                 <ClickAwayListener onClickAway={handleCloseMenu}>
                                 <MenuList role="menu" >
                                         <MenuItem           
-                                            onClick={eliminarEmpresa(props)}
+                                            onClick={eliminarEmpresa()}
                                             className={classes.dropdownItem}
-                                        >
+                                        >  
                                             Retirar empresa de la Encuesta
+                                            
                                         </MenuItem>  
                                         
                                 </MenuList>
