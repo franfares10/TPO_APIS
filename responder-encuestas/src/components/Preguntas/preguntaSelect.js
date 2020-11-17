@@ -45,14 +45,14 @@ export default function SimpleSelect(props) {
         if (isInitialMount.current) {
             isInitialMount.current = false;
          } else {
-            updateRespuesta(props.sectionIndex, props.questionIndex, value)
+            updateRespuesta(props.questionIndex, value)
             respondidas()
          }})
 
     const cancelar = () => {
         setValue("")
         setCancelarVisible("hidden")
-        updateRespuesta(props.sectionIndex, props.questionIndex, "")
+        updateRespuesta(props.questionIndex, "")
     }
 
     return (
@@ -70,7 +70,7 @@ export default function SimpleSelect(props) {
                     <InputLabel id="demo-simple-select-label">Opciones</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
-                        id={"sInd:"+props.sectionIndex+"-qInd:"+props.questionIndex}
+                        id={"qInd:"+props.questionIndex}
                         value={value}
                         onChange={handleChange}
                     >

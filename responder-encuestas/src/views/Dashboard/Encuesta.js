@@ -7,11 +7,11 @@ import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
 import SendIcon from '@material-ui/icons/Send';
 import Pades from 'components/Preguntas/PreguntaText'
-import Pradio from 'components/Preguntas/PreguntaRadio'
-import Pselect from 'components/Preguntas/PreguntaSelect'
+import Pradio from 'components/Preguntas/preguntaRadio'
+import Pselect from 'components/Preguntas/preguntaSelect'
 import Pcheck from 'components/Preguntas/PreguntaCheck'
 import Pfile from 'components/Preguntas/PreguntaUpload'
-import Pdate from 'components/Preguntas/PreguntaDate'
+import Pdate from 'components/Preguntas/preguntaDate'
 import Plong from 'components/Preguntas/PreguntaLong'
 
 import {encuestaPorId, updateEncuesta} from "controller/appController";
@@ -64,7 +64,7 @@ export default function Encuesta() {
     async function revisarResp() {
         let ok = true
         let resp = await encuestaPorId()
-        resp.map((enc)=>enc.sections.map((sec)=>sec.questions.map(ques=>{
+        resp.map((enc)=>enc.questions.map((sec)=>sec.questions.map(ques=>{
             let mand= ques.mandatory
             let val= ques.value
             if(mand===true && val === ""){
@@ -95,21 +95,12 @@ export default function Encuesta() {
                        Enviar Respuestas
             </Fab>
             <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-            {encuesta.map((enc)=>enc.sections.map((sec)=>{
-                let tit = sec.sectionTitle
-                let desc = sec.sectionDescription
+            {encuesta.map((enc)=>enc.questions.map((sec)=>{
                 return(
                     <GridItem>
                         <GridContainer justify={"center"}>
-                            <GridItem xs={12}>
-                                <h4>{tit}</h4>
-                            </GridItem>
-                            <GridItem xs={12}>
-                                <p>{desc}</p>
-                            </GridItem>
                             <GridItem>
                             {sec.questions.map((ques)=>{
-                    let sInd = sec.sectionIndex
                     let qInd = ques.questionIndex
                     let title = ques.questionTitle
                     let type = ques.questionType
@@ -120,49 +111,49 @@ export default function Encuesta() {
                     if(type === "TEXT" && multi == false){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pades title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pades title={title} mandatory={mand} value={val} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "SELECT"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "FILE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pfile title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pfile title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "RADIO"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "CHECK"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "DATE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pdate title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Pdate title={title} mandatory={mand} value={val} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }
                     else if(type === "TEXT" && multi == true){
                         return(
                             <div className={classes.pyrCard}>
-                                <Plong title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd} description={qdesc}/>
+                                <Plong title={title} mandatory={mand} value={val} questionIndex={qInd} description={qdesc}/>
                             </div>
                         )
                     }

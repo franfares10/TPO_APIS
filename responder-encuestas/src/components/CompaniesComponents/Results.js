@@ -1,19 +1,11 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
-=======
-import React, { useState } from 'react';
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles, lighten } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
-<<<<<<< HEAD
 import{getEmpresaPorId} from "controller/empresa.controller"
-=======
-
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Avatar,
@@ -30,11 +22,8 @@ import {
   makeStyles
 } from '@material-ui/core';
 import getInitials from 'assets/jss/getInitials.js';
-<<<<<<< HEAD
 import { useDividerActions } from 'components/Divider/DividerProvider';
 import { useDividerState } from 'components/Divider/DividerProvider';
-=======
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
 
 const ObsCheckbox = withStyles({
   root: {

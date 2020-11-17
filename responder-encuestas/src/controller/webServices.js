@@ -1,6 +1,7 @@
 import { eliminarEmpresasDeEncuesta } from "./login.controller";
 
 const urlApi = "http://localhost:8080/";
+const urlBD = "http://localhost:5000/"
 console.log("url",urlApi);
 
 const urlWebServices = {
@@ -22,15 +23,15 @@ const urlWebServices = {
 
 
     //RUTAS LEO Y LUCAS http://localhost:5000/
-    encuestas:urlApi +"api/encuestas",
-    respuestas: urlApi + "bd/respuestas",
-    respuestasUser: urlApi + "bd/respuestas/user/notCompleted",
-    respuestaId: urlApi + "bd/respuestas/id",
-    nuevaRespuesta: urlApi + "bd/insertRespuesta",
-    actualizarRespuesta: urlApi + "bd/updateRespuesta",
-    actualizarEncuesta: urlApi + "bd/updateEncuesta",
-    uploadFile: urlApi + "bd/uploadFile",
-    respondidas: urlApi + "bd/respondidas"
+    encuestas:urlBD +"api/encuestas",
+    respuestas: urlBD + "bd/respuestas",
+    respuestasUser: urlBD + "bd/respuestas/user/notCompleted",
+    respuestaId: urlBD + "bd/respuestas/id",
+    nuevaRespuesta: urlBD + "bd/insertRespuesta",
+    actualizarRespuesta: urlBD + "bd/updateRespuesta",
+    actualizarEncuesta: urlBD + "bd/updateEncuesta",
+    uploadFile: urlBD + "bd/uploadFile",
+    respondidas: urlBD + "bd/respondidas"
 }
 
 export default urlWebServices;

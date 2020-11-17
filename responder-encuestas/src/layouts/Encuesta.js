@@ -5,14 +5,6 @@ import GridItem from "components/Grid/GridItem"
 import Button from "components/CustomButtons/Button";
 import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
-<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
-import Pades from 'components/Preguntas/preguntaText'
-import Pradio from 'components/Preguntas/preguntaRadio'
-import Pselect from 'components/Preguntas/preguntaSelect'
-import Pcheck from 'components/Preguntas/preguntaCheck'
-import Pfile from 'components/Preguntas/preguntaUpload'
-import Pdate from 'components/Preguntas/preguntaDate'
-=======
 import SendIcon from '@material-ui/icons/Send';
 import Pades from 'components/Preguntas/PreguntaText'
 import Pradio from 'components/Preguntas/PreguntaRadio'
@@ -24,7 +16,6 @@ import Plong from 'components/Preguntas/PreguntaLong'
 
 import {encuestaPorId, updateEncuesta} from "controller/appController";
 import { Redirect } from "react-router-dom";
->>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
 
 const styles = {
     pyrCard: {
@@ -81,7 +72,7 @@ export default function Encuesta() {
     async function revisarResp() {
         let ok = true
         let resp = await encuestaPorId()
-        resp.map((enc)=>enc.sections.map((sec)=>sec.questions.map(ques=>{
+        resp.map((enc)=>enc.questions.map((sec)=>sec.questions.map(ques=>{
             let mand= ques.mandatory
             let val= ques.value
             if(mand===true && val === ""){
@@ -107,11 +98,7 @@ export default function Encuesta() {
 
     return (
         <div>
-<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
-            <Fab className={classes.fab} color="inherit" variant="extended" href="/admin/dashboard">
-=======
             <Fab className={classes.fabGys} color="inherit" variant="extended" href="/companyAdmin/dashboard">
->>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js
                 <SaveIcon className={classes.extendedIcon} />
                        Guardar y Salir
             </Fab>
@@ -120,21 +107,12 @@ export default function Encuesta() {
                        Enviar Respuestas
             </Fab>
             <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-            {encuesta.map((enc)=>enc.sections.map((sec)=>{
-                let tit = sec.sectionTitle
-                let desc = sec.sectionDescription
+            {encuesta.map((enc)=>enc.questions.map((sec)=>{
                 return(
                     <GridItem>
                         <GridContainer justify={"center"}>
-                            <GridItem xs={12}>
-                                <h4>{tit}</h4>
-                            </GridItem>
-                            <GridItem xs={12}>
-                                <p>{desc}</p>
-                            </GridItem>
                             <GridItem>
                             {sec.questions.map((ques)=>{
-                    let sInd = sec.sectionIndex
                     let qInd = ques.questionIndex
                     let title = ques.questionTitle
                     let type = ques.questionType
@@ -144,14 +122,14 @@ export default function Encuesta() {
                     if(type === "TEXT" && multi == false){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pades title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pades title={title} mandatory={mand} value={val} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "SELECT"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pselect title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd}/>
                             </div>
                         )
                     }
@@ -165,28 +143,28 @@ export default function Encuesta() {
                     else if(type === "RADIO"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pradio title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "CHECK"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pcheck title={title} mandatory={mand} value={val} options={ques.options} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "DATE"){
                         return(
                             <div className={classes.pyrCard}>
-                                <Pdate title={title} mandatory={mand} value={val} sectionIndex={sInd} questionIndex={qInd}/>
+                                <Pdate title={title} mandatory={mand} value={val} questionIndex={qInd}/>
                             </div>
                         )
                     }
                     else if(type === "TEXT" && multi == true){
                         return(
                             <div className={classes.pyrCard}>
-                                <Plong title={title} mandatory={mand} value={val}/>
+                                <Plong title={title} mandatory={mand} value={val} questionIndex={qInd}/>
                             </div>
                         )
                     }
@@ -232,14 +210,4 @@ export default function Encuesta() {
                         <Pdate />
                     </div>
                 </GridItem>
-<<<<<<< Updated upstream:responder-encuestas/src/layouts/Encuesta.js
-                <GridItem>
-                    <Button className={classes.Button} href="/admin/dashboard" color="primary">Enviar Respuestas</Button>
-                </GridItem>
-            </GridContainer>
-        </div>
-    );
-}
-=======
             </GridContainer>*/ 
->>>>>>> Stashed changes:responder-encuestas/src/views/Dashboard/Encuesta.js

@@ -37,7 +37,7 @@ export default function SubirArchivos(props) {
             let files = []
             files.push(file)
             uploadFile(files)
-            updateRespuesta(props.sectionIndex, props.questionIndex, nombreFile)
+            updateRespuesta(props.questionIndex, nombreFile)
             respondidas()
             }
        }})
@@ -54,7 +54,7 @@ export default function SubirArchivos(props) {
         setFile({})
         setNombreFile("")
         setCancelarVisible("hidden")
-        updateRespuesta(props.sectionIndex, props.questionIndex, "")
+        updateRespuesta(props.questionIndex, "")
     }
 
     return (

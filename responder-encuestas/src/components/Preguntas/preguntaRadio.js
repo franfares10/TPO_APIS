@@ -44,14 +44,14 @@ export default function RadioButtonsGroup(props) {
         if (isInitialMount.current) {
             isInitialMount.current = false;
          } else {
-            updateRespuesta(props.sectionIndex, props.questionIndex, value)
+            updateRespuesta(props.questionIndex, value)
             respondidas()
          }})
 
     const cancelar = () => {
         setValue("")
         setCancelarVisible("hidden")
-        updateRespuesta(props.sectionIndex, props.questionIndex, "")
+        updateRespuesta(props.questionIndex, "")
     }
 
     return (

@@ -41,7 +41,7 @@ useEffect(()=>{
   if (isInitialMount.current) {
     isInitialMount.current = false;
  } else {
-    updateRespuesta(props.sectionIndex, props.questionIndex, value)
+    updateRespuesta(props.questionIndex, value)
     respondidas()
  }})
 

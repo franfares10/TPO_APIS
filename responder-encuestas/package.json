@@ -13,10 +13,6 @@
     "chart.js": "^2.9.3",
     "chartist": "^0.11.4",
     "classnames": "^2.2.6",
-<<<<<<< HEAD
-=======
-    "cloudinary": "^1.23.0",
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "history": "^4.10.1",
@@ -28,10 +24,6 @@
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
     "react-helmet": "^6.1.0",
-<<<<<<< HEAD
-=======
-    "react-hot-loader": "^4.13.0",
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",

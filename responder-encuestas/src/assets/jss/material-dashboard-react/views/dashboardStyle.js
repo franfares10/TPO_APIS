@@ -12,10 +12,7 @@ const dashboardStyle = {
   successText: {
     color: successColor[0]
   },
-<<<<<<< HEAD
  
-=======
->>>>>>> 5691b3918f68f14ece51374c539969ed22e32c7f
   upArrowCardCategory: {
     width: "16px",
     height: "16px"

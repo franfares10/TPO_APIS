@@ -2,9 +2,10 @@ import urlWebServices from './webServices';
 
 export const encuestasUser = async function()
 {
+    console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    formData.append('userId', 13);
+    formData.append('userId', "5fb4089439516e41acef9f2d");
 
     try{
         let response = await fetch(url,{
@@ -16,6 +17,7 @@ export const encuestasUser = async function()
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
+        console.log(response)
         if(response.status===200)
         {
             let data = await response.json()
@@ -71,15 +73,14 @@ export const encuestaPorId = async function()
     }
 }
 
-export const updateRespuesta = async function(sectionIndex, questionIndex, value)
+export const updateRespuesta = async function(questionIndex, value)
 {
     let url = urlWebServices.actualizarRespuesta;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
-    formData.append('sectionIndex', sectionIndex)
     formData.append('questionIndex', questionIndex)
     formData.append('value', value)
-    console.log(localStorage.getItem('idEncuesta'),sectionIndex, questionIndex, value)
+    console.log(localStorage.getItem('idEncuesta'),questionIndex, value)
     try{
         let response = await fetch(url,{
             method: 'POST',

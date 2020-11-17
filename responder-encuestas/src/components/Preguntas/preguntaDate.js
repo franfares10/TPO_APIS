@@ -79,7 +79,7 @@ export default function MaterialUIPickers(props) {
             else if(selectedDate1 != "" && selectedDate2 != ""){
                 aux = "fechaIni: "+selectedDate1+" | fechaFin: "+selectedDate2
             }
-            updateRespuesta(props.sectionIndex, props.questionIndex, aux)
+            updateRespuesta(props.questionIndex, aux)
             respondidas()
          }})
 

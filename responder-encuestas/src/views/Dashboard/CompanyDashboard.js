@@ -18,6 +18,7 @@ export default function CompanyDashboard() {
 
     console.log("cargacomponente");
     useEffect(()=>{
+      console.log("Llegaste al use effect")
       async function componentDidMount() 
       {
         //traer encuestas de User

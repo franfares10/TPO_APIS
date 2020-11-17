@@ -79,7 +79,7 @@ export default function CheckboxLabels(props) {
                     arr.remove(item)
                 }
             })
-            updateRespuesta(props.sectionIndex, props.questionIndex, arr)
+            updateRespuesta(props.questionIndex, arr)
             respondidas()
          }})
 
