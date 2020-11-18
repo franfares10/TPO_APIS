@@ -25,7 +25,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import history from "utils/History/history"
-
+import {eliminarRespuesta} from 'controller/appController';
 const useStyles = makeStyles(styles);
 
 export default function CustomMenu(props) {
@@ -63,6 +63,7 @@ export default function CustomMenu(props) {
     //Si podemos setear una variable en el localStorage que por cada onClick se actualice.
 
     await eliminarEmpresasDeEncuesta(props.empresa._id,props.encuesta._id);
+    await eliminarRespuesta(props.encuesta._id,props.empresa._id)
    
     //await eliminarEmpresasDeEncuesta(flag,listaEmpresas,idEncuestaLanzada)
     //console.log(idEmpresa)

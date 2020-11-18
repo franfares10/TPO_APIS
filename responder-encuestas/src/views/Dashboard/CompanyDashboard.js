@@ -7,7 +7,7 @@ import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card"
 
-import {encuestasUser} from "controller/appController";
+import {encuestasUser} from "../../controller/login.controller";
 
 const useStyles = makeStyles(styles);
 
