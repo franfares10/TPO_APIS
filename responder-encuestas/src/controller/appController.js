@@ -43,6 +43,7 @@ export const encuestaPorId = async function()
     let url = urlWebServices.respuestaId;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
+    console.log("form data lista")
     try{
         let response = await fetch(url,{
             method: 'POST',
@@ -53,11 +54,14 @@ export const encuestaPorId = async function()
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
+        console.log("response traido")
+        console.log(response)
         if(response.status===200)
         {
             let data = await response.json()
             //console.log("respuestasUser", data)
             //let listResp = data.result
+            console.log(data)
             return data
         }
         else

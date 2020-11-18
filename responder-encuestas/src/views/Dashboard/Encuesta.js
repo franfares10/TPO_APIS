@@ -55,8 +55,9 @@ export default function Encuesta() {
       async function componentDidMount() 
       {
         //traer encuestas de User
+        console.log("estoy cargando la encuesta")
         let rdo = await encuestaPorId();
-        setEncuesta(rdo); 
+        setEncuesta(rdo);
       }
       componentDidMount();
     },[]);
@@ -64,13 +65,15 @@ export default function Encuesta() {
     async function revisarResp() {
         let ok = true
         let resp = await encuestaPorId()
-        resp.map((enc)=>enc.questions.map((sec)=>sec.questions.map(ques=>{
-            let mand= ques.mandatory
-            let val= ques.value
-            if(mand===true && val === ""){
-                ok = false
-            }
-        })))
+        resp.map(enc=>{
+            enc.questions.questions.map(ques=>{
+                let mand= ques.mandatory
+                let val= ques.value
+                if(mand===true && val === ""){
+                    ok = false
+                }
+            })
+        })
         if(ok === true){
             mandarResp()
         }
@@ -95,12 +98,16 @@ export default function Encuesta() {
                        Enviar Respuestas
             </Fab>
             <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-            {encuesta.map((enc)=>enc.questions.map((sec)=>{
+            <GridItem>
+                <h4>{encuesta.map(enc=>{return enc.name})}</h4>
+            </GridItem>
+            <GridItem>
+                <p>{encuesta.map(enc=>{return enc.description})}</p>
+            </GridItem>
+            <GridItem>
+            {encuesta.map(enc=>{
                 return(
-                    <GridItem>
-                        <GridContainer justify={"center"}>
-                            <GridItem>
-                            {sec.questions.map((ques)=>{
+                enc.questions.questions.map(ques=>{
                     let qInd = ques.questionIndex
                     let title = ques.questionTitle
                     let type = ques.questionType
@@ -108,6 +115,7 @@ export default function Encuesta() {
                     let mand = ques.mandatory
                     let val = ques.value
                     let qdesc = ques.description
+                    console.log(qInd, title, type, multi, mand, val, qdesc)
                     if(type === "TEXT" && multi == false){
                         return(
                             <div className={classes.pyrCard}>
@@ -157,46 +165,14 @@ export default function Encuesta() {
                             </div>
                         )
                     }
-                })}
-                            </GridItem>
-                        </GridContainer>
-                    </GridItem>
-                )
-            }))}
+                }))
+            })}
+            </GridItem>
             </GridContainer>
         </div>
     );
 }
 
-/*<GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
-                <GridItem>
-                    <div className={classes.pyrCard}>
-                        <Pades />
-                    </div>
-                </GridItem>
-                <GridItem>
-                    <div className={classes.pyrCard}>
-                        <Pradio />
-                    </div>
-                </GridItem>
-                <GridItem>
-                    <div className={classes.pyrCard}>
-                        <Pselect />
-                    </div>
-                </GridItem>
-                <GridItem>
-                    <div className={classes.pyrCard}>
-                        <Pcheck />
-                    </div>
-                </GridItem>
-                <GridItem>
-                    <div className={classes.pyrCard}>
-                        <Pfile />
-                    </div>
-                </GridItem>
-                <GridItem>
-                    <div className={classes.pyrCard}>
-                        <Pdate/>
-                    </div>
-                </GridItem>
-            </GridContainer>*/ 
+/*{encuesta.questions.questions.map(ques=>{
+                
+            })}*/ 

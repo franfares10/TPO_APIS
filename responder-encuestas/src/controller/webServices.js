@@ -2,7 +2,6 @@ import { eliminarEmpresasDeEncuesta } from "./login.controller";
 
 const urlApi = "http://localhost:8080/";
 const urlBD = "http://localhost:5000/"
-console.log("url",urlApi);
 
 const urlWebServices = {
     login:urlApi +"api/users/login",
