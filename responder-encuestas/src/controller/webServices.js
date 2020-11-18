@@ -1,7 +1,7 @@
 import { eliminarEmpresasDeEncuesta } from "./login.controller";
 
 const urlApi = "http://localhost:8080/";
-const urlBD = "http://localhost:5000/"
+const urlBD = "http://localhost:8080/api/"
 
 const urlWebServices = {
     login:urlApi +"api/users/login",
@@ -21,8 +21,8 @@ const urlWebServices = {
     //uploadFileImg: urlApi + "api/users/uploadImg",
 
 
-    //RUTAS LEO Y LUCAS http://localhost:5000/
-    encuestas:urlBD +"api/encuestas",
+    //RUTAS LEO Y LUCAS http://localhost:5000/ --> Las pasamos al 8080 porque sino nos tira error de puerto y conexion.
+    encuestas:urlBD +"encuestas/LL",
     respuestas: urlBD + "bd/respuestas",
     respuestasUser: urlBD + "bd/respuestas/user/notCompleted",
     respuestaId: urlBD + "bd/respuestas/id",

@@ -5,15 +5,15 @@ export const encuestasUser = async function()
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    formData.append('userId', "5fb4089439516e41acef9f2d");
-
+    formData.append('userId', "5fb525cc5e8f811ab08f0356");
+    var PORT_CONTROLLER=8080
     try{
         let response = await fetch(url,{
             method: 'POST',
             mode: 'cors',
             headers:{
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
+                'Origin': 'http://localhost:'+PORT_CONTROLLER,
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
@@ -50,7 +50,7 @@ export const encuestaPorId = async function()
             mode: 'cors',
             headers:{
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
+                'Origin': 'http://localhost:8080',
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
@@ -91,7 +91,7 @@ export const updateRespuesta = async function(questionIndex, value)
             mode: 'cors',
             headers:{
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
+                'Origin': 'http://localhost:8080',
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
@@ -124,7 +124,7 @@ export const updateEncuesta = async function()
             mode: 'cors',
             headers:{
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
+                'Origin': 'http://localhost:8080',
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         })
@@ -159,7 +159,7 @@ export const uploadFile = async function(files)
             mode: "cors",
             headers:{
                 'Accept':'application/form-data',
-                'Origin':'http://localhost:5000',
+                'Origin':'http://localhost:8080',
                 //'Content-Type': 'application/form-data'
             },
             body:formData
@@ -186,7 +186,7 @@ export const respondidas = async function()
             mode: 'cors',
             headers:{
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
+                'Origin': 'http://localhost:8080',
                 'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
