@@ -4,17 +4,16 @@ export const encuestasUser = async function () {
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    formData.append('userId', "5fb5140b6c285c02c49636f1");
-    
-    try {
-        let response = await fetch(url, {
+    formData.append('userId', "5fb525cc5e8f811ab08f0356");
+    var PORT_CONTROLLER=8080
+    try{
+        let response = await fetch(url,{
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+                'Origin': 'http://localhost:'+PORT_CONTROLLER,
+                'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
         console.log(response)
@@ -46,9 +45,8 @@ export const encuestaPorId = async function () {
             mode: 'cors',
             headers: {
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
         console.log("response traido")
@@ -84,9 +82,8 @@ export const updateRespuesta = async function (questionIndex, value) {
             mode: 'cors',
             headers: {
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
         if (response.status === 200) {
@@ -114,9 +111,8 @@ export const updateEncuesta = async function () {
             mode: 'cors',
             headers: {
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         })
         if (response.status === 200) {
@@ -143,9 +139,9 @@ export const uploadFile = async function (files) {
         let response = await fetch(url, {
             method: 'POST', // or 'PUT'
             mode: "cors",
-            headers: {
-                'Accept': 'application/form-data',
-                'Origin': 'http://localhost:5000',
+            headers:{
+                'Accept':'application/form-data',
+                'Origin':'http://localhost:8080',
                 //'Content-Type': 'application/form-data'
             },
             body: formData
@@ -171,9 +167,8 @@ export const respondidas = async function () {
             mode: 'cors',
             headers: {
                 'Accept': 'application/x-www-form-urlencoded',
-                'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'},
             body: formData
         });
         if (response.status === 200) {
