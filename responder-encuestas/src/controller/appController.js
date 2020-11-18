@@ -1,170 +1,156 @@
 import urlWebServices from './webServices';
 
-export const encuestasUser = async function()
-{
+export const encuestasUser = async function () {
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
     formData.append('userId', "5fb4089439516e41acef9f2d");
 
-    try{
-        let response = await fetch(url,{
+    try {
+        let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
-            headers:{
+            headers: {
                 'Accept': 'application/x-www-form-urlencoded',
                 'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'},
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData
         });
         console.log(response)
-        if(response.status===200)
-        {
+        if (response.status === 200) {
             let data = await response.json()
             //console.log("respuestasUser", data)
             //let listResp = data.result
             return data
         }
-        else
-        {
+        else {
             let vacio = []
             console.log("No hay respuestas")
             return vacio
         }
     }
-    catch(error)
-    {
+    catch (error) {
         console.log("error", error)
     }
-} 
+}
 
-export const encuestaPorId = async function()
-{
+export const encuestaPorId = async function () {
     let url = urlWebServices.respuestaId;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
     console.log("form data lista")
-    try{
-        let response = await fetch(url,{
+    try {
+        let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
-            headers:{
+            headers: {
                 'Accept': 'application/x-www-form-urlencoded',
                 'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'},
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData
         });
         console.log("response traido")
         console.log(response)
-        if(response.status===200)
-        {
+        if (response.status === 200) {
             let data = await response.json()
             //console.log("respuestasUser", data)
             //let listResp = data.result
             console.log(data)
             return data
         }
-        else
-        {
+        else {
             let vacio = []
             console.log("No hay respuestas")
             return vacio
         }
     }
-    catch(error)
-    {
+    catch (error) {
         console.log("error", error)
     }
 }
 
-export const updateRespuesta = async function(questionIndex, value)
-{
+export const updateRespuesta = async function (questionIndex, value) {
     let url = urlWebServices.actualizarRespuesta;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
     formData.append('questionIndex', questionIndex)
     formData.append('value', value)
-    console.log(localStorage.getItem('idEncuesta'),questionIndex, value)
-    try{
-        let response = await fetch(url,{
+    console.log(localStorage.getItem('idEncuesta'), questionIndex, value)
+    try {
+        let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
-            headers:{
+            headers: {
                 'Accept': 'application/x-www-form-urlencoded',
                 'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'},
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData
         });
-        if(response.status===200)
-        {
+        if (response.status === 200) {
             let data = await response.json()
             //console.log("respuestasUser", data)
             //let listResp = data.result
             return data
         }
-        else
-        {
+        else {
             console.log("Error")
         }
     }
-    catch(error)
-    {
+    catch (error) {
         console.log("error", error)
     }
 }
 
-export const updateEncuesta = async function()
-{
+export const updateEncuesta = async function () {
     let url = urlWebServices.actualizarEncuesta
     const formData = new URLSearchParams()
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
-    try{
-        let response = await fetch(url,{
+    try {
+        let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
-            headers:{
+            headers: {
                 'Accept': 'application/x-www-form-urlencoded',
                 'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'},
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData
         })
-        if(response.status===200)
-        {
+        if (response.status === 200) {
             let data = await response.json()
             //console.log("respuestasUser", data)
             //let listResp = data.result
             return data
         }
-        else
-        {
+        else {
             console.log("Error")
         }
-    }catch(error){
+    } catch (error) {
         console.log("error", error)
     }
 }
 
-export const uploadFile = async function(files)
-{
+export const uploadFile = async function (files) {
     let url = urlWebServices.uploadFile;
     const formData = new FormData();
-    for (let i = 0; i < files.length; i++)
-    {
+    for (let i = 0; i < files.length; i++) {
         formData.append('files', files[i])
     }
-    try
-    {
-        let response = await fetch(url,{
+    try {
+        let response = await fetch(url, {
             method: 'POST', // or 'PUT'
             mode: "cors",
-            headers:{
-                'Accept':'application/form-data',
-                'Origin':'http://localhost:5000',
+            headers: {
+                'Accept': 'application/form-data',
+                'Origin': 'http://localhost:5000',
                 //'Content-Type': 'application/form-data'
             },
-            body:formData
+            body: formData
         });
-    
+
         let archivo = await response.json()
         console.log('respuestaUpload', archivo);
         return archivo;
@@ -175,37 +161,34 @@ export const uploadFile = async function(files)
 
 }
 
-export const respondidas = async function()
-{
+export const respondidas = async function () {
     let url = urlWebServices.respondidas;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
-    try{
-        let response = await fetch(url,{
+    try {
+        let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
-            headers:{
+            headers: {
                 'Accept': 'application/x-www-form-urlencoded',
                 'Origin': 'http://localhost:5000',
-                'Content-Type': 'application/x-www-form-urlencoded'},
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData
         });
-        if(response.status===200)
-        {
+        if (response.status === 200) {
             let data = await response.json()
             //console.log("respuestasUser", data)
             //let listResp = data.result
             return data
         }
-        else
-        {
+        else {
             let vacio = []
             console.log("No hay respuestas")
             return vacio
         }
     }
-    catch(error)
-    {
+    catch (error) {
         console.log("error", error)
     }
 }
