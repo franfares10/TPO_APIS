@@ -4,8 +4,8 @@ export const encuestasUser = async function () {
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    formData.append('userId', "5fb4089439516e41acef9f2d");
-
+    formData.append('userId', "5fb5140b6c285c02c49636f1");
+    
     try {
         let response = await fetch(url, {
             method: 'POST',
