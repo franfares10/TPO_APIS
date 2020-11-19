@@ -56,7 +56,7 @@ export default function CompanyDashboard() {
                     {listaEncuestas.map(encuesta => {
                         let nombre = encuesta.name
                         let fechaCreacion = encuesta.created
-                        let idEncuesta = encuesta.idEncuesta
+                        let idEncuesta = encuesta._id
                         return(
                             <div className={classes.encuestaCard}>
                                 <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png" alt=""></img>

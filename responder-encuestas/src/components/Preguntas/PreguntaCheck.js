@@ -44,7 +44,11 @@ const mandatory = (mand) => {
 export default function CheckboxLabels(props) {
 
     let val = {}
-    let arr= props.value.split(',');
+    let arr= []
+    if(props.value !== ""){
+        arr = props.value
+    }
+    
     let arr2 = []
     props.options.map(elem=>{
         let n = elem.option
@@ -79,7 +83,13 @@ export default function CheckboxLabels(props) {
                     arr.remove(item)
                 }
             })
-            updateRespuesta(props.questionIndex, arr)
+            if(arr.length === 0){
+                updateRespuesta(props.questionIndex, "")
+            }
+            else{
+                updateRespuesta(props.questionIndex, arr)
+            }
+            respondidas()
             respondidas()
          }})
 
