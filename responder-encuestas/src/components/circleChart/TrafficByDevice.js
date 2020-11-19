@@ -31,7 +31,9 @@ const useStyles = makeStyles(() => ({
 const TrafficByDevice = (propp) => {
   const classes = useStyles();
   const theme = useTheme();
-  
+  const [data,setData] = React.useState({})
+
+  const [devices,setDevices] = React.useState([])
   console.log("PROPSSS")
 
 console.log(propp)
@@ -52,17 +54,20 @@ const propiedades = async (empresa,lanzamiento) =>{
       respondidas: respondidas,
       noRespondidas: faltan
   }
+  console.log(data)
 
-  return data
+  setParametros(data)
 }
 
- propiedades(empresa,lanzamiento)
+const setParametros =  (info) =>{
+
+
 console.log("infoo")
 
-  const data = {
+  const datat = {
     datasets: [
       {
-        data:[1,2,3],
+        data:[info.respondidas,info.noRespondidas,info.opcional],
         backgroundColor: [
           colors.green[600],
           colors.red[600],
@@ -77,65 +82,74 @@ console.log("infoo")
   };
 
 
-
-  
-  
-  
-  const options = {
-    animation: false,
-    cutoutPercentage: 75,
-    layout: { padding: 0 },
-    legend: {
-      display: false
-    },
-    maintainAspectRatio: false,
-    responsive: true,
-    tooltips: {
-      backgroundColor: theme.palette.background.default,
-      bodyFontColor: theme.palette.text.secondary,
-      borderColor: theme.palette.divider,
-      borderWidth: 1,
-      enabled: true,
-      footerFontColor: theme.palette.text.secondary,
-      intersect: false,
-      mode: 'index',
-      titleFontColor: theme.palette.text.primary
-    }
-  };
+  console.log("OPTIONS ADENTRO DE METODO")
+  console.log(options)
  
   
   //Para poner los valores directos a value, no se puede hacer un data[0] pq es un objeto en JSON. Hay que entrar por el JSON , agarrar el primer objeto y despues la data con el subindice.
   const devices = [
     {
       title: 'Respondidas',
-      value: data.datasets[0].data[0],
+      value: datat.datasets[0].data[0],
       icon: CheckIcon,
       color: colors.green[600]
     },
     {
       title: 'Sin responder',
-      value: data.datasets[0].data[1],
+      value: datat.datasets[0].data[1],
       icon: ClearIcon,
       color: colors.red[600]
     },
     {
       title: 'Opcionales',
-      value: data.datasets[0].data[2],
+      value: datat.datasets[0].data[2],
       icon:ErrorIcon ,
       color: colors.orange[600]
     }
   ];
 
+  setData(datat)
+ 
+  setDevices(devices)
 
 
+}
 
-  
+
+const options = {
+  animation: false,
+  cutoutPercentage: 75,
+  layout: { padding: 0 },
+  legend: {
+    display: false
+  },
+  maintainAspectRatio: false,
+  responsive: true,
+  tooltips: {
+    backgroundColor: theme.palette.background.default,
+    bodyFontColor: theme.palette.text.secondary,
+    borderColor: theme.palette.divider,
+    borderWidth: 1,
+    enabled: true,
+    footerFontColor: theme.palette.text.secondary,
+    intersect: false,
+    mode: 'index',
+    titleFontColor: theme.palette.text.primary
+  }
+};
+
+  useEffect(()=>{
+    propiedades(empresa,lanzamiento)
+    console.log("DATAAA")
+    console.log(data)
+
+  },[])
 
 
   return(
-    <Card
+    <Card>
       
-    >
+
       <CardHeader title="% DE RESPUESTAS" allign={AlignCenter}/>
       <Divider />
       <CardContent>

@@ -6,11 +6,11 @@ import Button from "components/CustomButtons/Button";
 import Fab from '@material-ui/core/Fab';
 import SaveIcon from '@material-ui/icons/Save';
 import SendIcon from '@material-ui/icons/Send';
-import Pades from 'components/Preguntas/PreguntaText'
+import Pades from 'components/Preguntas/preguntaText'
 import Pradio from 'components/Preguntas/preguntaRadio'
 import Pselect from 'components/Preguntas/preguntaSelect'
 import Pcheck from 'components/Preguntas/PreguntaCheck'
-import Pfile from 'components/Preguntas/PreguntaUpload'
+import Pfile from 'components/Preguntas/preguntaUpload'
 import Pdate from 'components/Preguntas/preguntaDate'
 import Plong from 'components/Preguntas/PreguntaLong'
 
@@ -65,6 +65,7 @@ export default function Encuesta() {
     async function revisarResp() {
         let ok = true
         let resp = await encuestaPorId()
+        console.log(resp)
         resp.map(enc=>{
             enc.questions.questions.map(ques=>{
                 let mand= ques.mandatory

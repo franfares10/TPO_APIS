@@ -156,6 +156,7 @@ export const login =  async function(login)
                             console.log("ID")
                             console.log(user._id)
                             localStorage.setItem("id",user.idEmpresa);
+                            localStorage.setItem("idFRANIVAN",user._id)
                             history.push("/companyAdmin/dashboard");
                             return ({rdo:0,mensaje:"Ok"});//correcto
                         }
@@ -488,7 +489,9 @@ export const encuestasUser = async function () {
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    const id = localStorage.getItem("id").toString()
+    const id = localStorage.getItem("idFRANIVAN").toString()
+    console.log("IDDDDDDD")
+    console.log(id)
     formData.append('userId', id);
     var PORT_CONTROLLER=8080
     try{

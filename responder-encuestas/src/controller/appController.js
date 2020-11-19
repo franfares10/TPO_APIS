@@ -162,7 +162,7 @@ export const uploadFile = async function (files) {
 }
 
 export const respondidas = async function () {
-    let url = urlWebServices.respondidas;
+    let url = urlWebServices.respuestaId;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
     try {
@@ -221,6 +221,35 @@ export const eliminarRespuesta = async function (idEncuesta, idEmpresa, idLanzam
         console.log("error", error)
     }
 }
+
+export const respuestaPorId = async function(idLanzamiento,idEmpresa){
+    let url = urlWebServices.obtenerRespuesta;
+    const formData = new URLSearchParams();
+    formData.append('idLanzamiento',idLanzamiento)
+    formData.append('idEmpresa', idEmpresa)
+    try{
+        let response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/x-www-form-urlencoded',
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+        if (response.status === 200) {
+            let data = await response.json()
+            //console.log("respuestasUser", data)
+            //let listResp = data.result
+            return data
+        }
+    }
+    catch (error) {
+        console.log("error", error)
+    }
+}
+
 
 export const getUserProfile = async function (idEmpresa) {
     let url = urlWebServices.getUserProfile;
