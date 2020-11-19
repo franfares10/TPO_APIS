@@ -489,7 +489,46 @@ export const encuestasUser = async function () {
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    const id = localStorage.getItem("idFRANIVAN").toString()
+    const idFranIvan = localStorage.getItem('idFRANIVAN').toString()
+    const id = localStorage.getItem("id").toString()
+    console.log("IDDDDDDD")
+    console.log(id)
+    formData.append('userId', idFranIvan);
+    var PORT_CONTROLLER=8080
+    try{
+        let response = await fetch(url,{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/x-www-form-urlencoded',
+                'Origin': 'http://localhost:'+PORT_CONTROLLER,
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData
+        });
+        console.log(response)
+        if (response.status === 200) {
+            let data = await response.json()
+            //console.log("respuestasUser", data)
+            //let listResp = data.result
+            return data
+        }
+        else {
+            let vacio = []
+            console.log("No hay respuestas")
+            return vacio
+        }
+    }
+    catch (error) {
+        console.log("error", error)
+    }
+}
+
+export const encuestasUserCompany = async function () {
+    console.log("llegaste a encuestasUser")
+    let url = urlWebServices.respuestasUser
+    const formData = new URLSearchParams();
+    const idFranIvan = localStorage.getItem('idFRANIVAN').toString()
+    const id = localStorage.getItem("id").toString()
     console.log("IDDDDDDD")
     console.log(id)
     formData.append('userId', id);

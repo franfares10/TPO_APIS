@@ -42,7 +42,9 @@ var empresa = propp.empresa
 var lanzamiento = propp.lanzamiento
 
 const propiedades = async (empresa,lanzamiento) =>{
-  var respuesta = await respuestaPorId(lanzamiento._id,empresa._id)
+  console.log("ACA ESTA EL ID E ID EMPRESA")
+  console.log(empresa._id, empresa.idEmpresa, lanzamiento._id)
+  var respuesta = await respuestaPorId(lanzamiento._id,empresa.idEmpresa)
   console.log("RESPUESTAAA")
   console.log(respuesta);
   var opcionales = respuesta.data.questions.total - respuesta.data.mandatory 
@@ -54,6 +56,7 @@ const propiedades = async (empresa,lanzamiento) =>{
       respondidas: respondidas,
       noRespondidas: faltan
   }
+  console.log("ACA ESTA LA DATA")
   console.log(data)
 
   setParametros(data)

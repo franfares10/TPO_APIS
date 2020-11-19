@@ -78,16 +78,21 @@ export const updateRespuesta = async function (questionIndex, value) {
     formData.append('questionIndex', questionIndex)
     formData.append('value', value)
     console.log(localStorage.getItem('idEncuesta'), questionIndex, value)
+    let obj = {
+        idEncuesta: localStorage.getItem('idEncuesta'),
+        questionIndex: questionIndex,
+        value: value
+    }
     try {
         let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
             headers: {
-                'Accept': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json',
                 'Origin': 'http://localhost:8080',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: formData
+            body: JSON.stringify(obj)
         });
         if (response.status === 200) {
             let data = await response.json()
@@ -162,7 +167,7 @@ export const uploadFile = async function (files) {
 }
 
 export const respondidas = async function () {
-    let url = urlWebServices.respuestaId;
+    let url = urlWebServices.respondidas;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', localStorage.getItem('idEncuesta'))
     try {

@@ -7,7 +7,7 @@ import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card"
 
-import {encuestasUser} from "../../controller/login.controller";
+import {encuestasUserCompany} from "../../controller/login.controller";
 
 const useStyles = makeStyles(styles);
 
@@ -22,7 +22,7 @@ export default function CompanyDashboard() {
       async function componentDidMount() 
       {
         //traer encuestas de User
-        let rdo = await encuestasUser();
+        let rdo = await encuestasUserCompany();
         setListaEncuestas(rdo); 
       }
     
