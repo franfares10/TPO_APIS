@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
@@ -8,39 +8,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
-import CardAvatar from "components/Card/CardAvatar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Snackbar from "components/Snackbar/Snackbar.js";
-import Checkbox from '@material-ui/core/Checkbox';
-import { withStyles } from '@material-ui/core/styles';
-import { cyan } from '@material-ui/core/colors';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import avatar from "assets/img/iconos/ayudaIcono.png";
 
-const ObsInput = withStyles({
-  root: {
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: cyan[600]
-    },
-    "& .MuiInputLabel-outlined.Mui-focused": {
-      color: "grey"
-    }
-  },
-  after: {},
-})((props) => <TextField {...props} />);
-
-const ObsCheckbox = withStyles({
-  root: {
-    color: [400],
-    '&$checked': {
-      color: cyan[600],
-    },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+import {getUserProfile, updateUserProfile} from "controller/appController"
 
 const styles = {
   cardCategoryWhite: {
@@ -75,16 +49,64 @@ export default function CompanyProfile() {
   const [bl, setBL] = React.useState(false);
   const [bc, setBC] = React.useState(false);
   const [br, setBR] = React.useState(false);
-  React.useEffect(() => {
-    // Specify how to clean up after this effect:
-    return function cleanup() {
-      // to stop the warning of calling setState of unmounted component
-      var id = window.setTimeout(null, 0);
-      while (id--) {
-        window.clearTimeout(id);
-      }
-    };
-  });
+  const [datos, setDatos] = React.useState({})
+  const [email,setEmail] = React.useState()
+  const [numTel,setNumTel] = React.useState()
+  const [ciudad,setCiudad] = React.useState()
+  const [zip,setZip] = React.useState()
+  const [hist,setHist] = React.useState()
+  const [mision,setMision] = React.useState()
+  const [vision, setVision] = React.useState()
+
+  useEffect(()=>{
+    async function componentDidMount() 
+    {
+      //traer profile
+      let rdo = await getUserProfile(localStorage.getItem('id'));
+      setDatos(rdo);
+      setEmail(rdo.email)
+      setNumTel(rdo.numTel)
+      setCiudad(rdo.ciudad)
+      setZip(rdo.zip)
+      setHist(rdo.hist)
+      setMision(rdo.mision)
+      setVision(rdo.vision)
+    }
+    componentDidMount();
+  },[]);
+
+  const updateProfile = () => {
+    updateUserProfile(localStorage.getItem('id'), email, numTel, ciudad, zip, hist, mision, vision)
+  }
+
+  const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+  };
+
+  const handleNumTelChange = (event) => {
+    setNumTel(event.target.value);
+  };
+
+  const handleCiudadChange = (event) => {
+    setCiudad(event.target.value);
+  };
+
+  const handleZipChange = (event) => {
+    setZip(event.target.value);
+  };
+
+  const handleHistChange = (event) => {
+    setHist(event.target.value);
+  };
+
+  const handleMisionChange = (event) => {
+    setMision(event.target.value);
+  };
+
+  const handleVisionChange = (event) => {
+    setVision(event.target.value);
+  };
+
   const showNotification = place => {
     switch (place) {
       case "tl":
@@ -151,12 +173,12 @@ export default function CompanyProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <TextField
+                    disabled
                     className={classes.TextField}
-                    label="Empresa"
-                    id="company-disabled"
+                    label="Nombre Empresa"
                     fullWidth="true"
-                    disabled="true"
-                    type="text"
+                    value={datos.nombreEmpresa}
+                    InputLabelProps={{shrink: true}}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
@@ -166,6 +188,9 @@ export default function CompanyProfile() {
                     id="email"
                     fullWidth="true"
                     type="email"
+                    value={email}
+                    InputLabelProps={{shrink: true}}
+                    onChange={handleEmailChange}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
@@ -175,6 +200,9 @@ export default function CompanyProfile() {
                     id="num"
                     fullWidth="true"
                     type="tel"
+                    value={numTel}
+                    InputLabelProps={{shrink: true}}
+                    onChange={handleNumTelChange}
                   />
                 </GridItem>
               </GridContainer>
@@ -186,6 +214,9 @@ export default function CompanyProfile() {
                     id="city"
                     fullWidth="true"
                     type="text"
+                    InputLabelProps={{shrink: true}}
+                    value={ciudad}
+                    onChange={handleCiudadChange}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
@@ -195,6 +226,9 @@ export default function CompanyProfile() {
                     id="zipCode"
                     fullWidth="true"
                     type="text"
+                    InputLabelProps={{shrink: true}}
+                    value={zip}
+                    onChange={handleZipChange}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
@@ -205,6 +239,8 @@ export default function CompanyProfile() {
                     fullWidth="true"
                     disabled="true"
                     type="text"
+                    value={datos.razonSocial}
+                    InputLabelProps={{shrink: true}}
                   />
                 </GridItem>
               </GridContainer>
@@ -220,6 +256,9 @@ export default function CompanyProfile() {
                     multiline="true"
                     rows="5"
                     type="text"
+                    InputLabelProps={{shrink: true}}
+                    value={hist}
+                    onChange={handleHistChange}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
@@ -231,6 +270,9 @@ export default function CompanyProfile() {
                     multiline="true"
                     rows="5"
                     type="text"
+                    InputLabelProps={{shrink: true}}
+                    value={mision}
+                    onChange={handleMisionChange}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
@@ -242,12 +284,15 @@ export default function CompanyProfile() {
                     multiline="true"
                     rows="5"
                     type="text"
+                    InputLabelProps={{shrink: true}}
+                    value={vision}
+                    onChange={handleVisionChange}
                   />
                 </GridItem>
               </GridContainer>
             </CardBody>
             <CardFooter>
-              <Button color="primary" onClick={() => showNotification("br")}>Actualizar perfil</Button>
+              <Button color="primary" onClick={() => {updateProfile(); showNotification("br")}}>Actualizar perfil</Button>
               <Snackbar
                 place="br"
                 color="primary"
@@ -262,21 +307,16 @@ export default function CompanyProfile() {
         </GridItem>
         <GridItem xs={6} sm={3}>
           <Card profile>
-            <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
-              </a>
-            </CardAvatar>
             <CardBody profile>
-              <h4 className={classes.cardTitle}>PyMe Ejemplo</h4>
-              <h6 className={classes.cardCategory}>SA</h6>
-              <h6 className={classes.cardCategory}>CABA</h6>
+              <h4 className={classes.cardTitle}>{datos.nombreEmpresa}</h4>
+              <h6 className={classes.cardCategory}>{datos.razonSocial}</h6>
+              <h6 className={classes.cardCategory}>{ciudad}</h6>
               <p className={classes.description}>
-                1000<br></br>
+                {zip}<br></br>
               </p>
               <p className={classes.description}>
-                ejemplo@ejemplo.com<br></br>
-                Tel: 0000-0000<br></br>
+                {email}<br></br>
+                {numTel}<br></br>
               </p>
             </CardBody>
           </Card>
