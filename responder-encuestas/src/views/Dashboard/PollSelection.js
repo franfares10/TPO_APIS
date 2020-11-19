@@ -25,7 +25,7 @@ import CustomMenu from "components/CustomGrowMenu/CustomMenu"
 import TrafficByDevice from "components/circleChart/TrafficByDevice";
 import DividerLanzadas from "components/Divider/DividerLanzadas"
 
-
+import { eliminarLanzamiento } from "controller/login.controller";
 
 const useStyles = makeStyles(styles);
 
@@ -42,13 +42,16 @@ export default function PollSelection(){
       },[setListEncuestas]);
 
 
+
      
+
     return(
         
         <div>
        
         {listEncuestas.map(encuesta =>(
-           <DividerLanzadas {...encuesta}/>
+          
+          <DividerLanzadas {...encuesta}/>
       ))}
   
     </div>

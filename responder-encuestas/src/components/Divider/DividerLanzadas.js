@@ -25,6 +25,7 @@ import CustomMenu from "components/CustomGrowMenu/CustomMenu"
 import TrafficByDevice from "components/circleChart/TrafficByDevice";
 import { getEmpresaPorId } from "controller/empresa.controller";
 import {respuestaPorId} from "controller/appController"
+import { eliminarLanzamiento } from "controller/login.controller";
 
 
 
@@ -115,11 +116,15 @@ export default function DividerLanzadas(props){
                )
         }
     }
+
+
+
+    
     return(
         
         <div>
         <GridContainer>
-    
+            
             <GridItem xs={12} sm={6} md={12}>
                     <GridContainer>
                         <GridItem xs={12} sm={6} md={12}>
