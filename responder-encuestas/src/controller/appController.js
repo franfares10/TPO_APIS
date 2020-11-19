@@ -4,7 +4,7 @@ export const encuestasUser = async function () {
     console.log("llegaste a encuestasUser")
     let url = urlWebServices.respuestasUser
     const formData = new URLSearchParams();
-    formData.append('userId', "5fb525cc5e8f811ab08f0356");
+    formData.append('userId', localStorage.getItem('id'));
     var PORT_CONTROLLER = 8080
     try {
         let response = await fetch(url, {
@@ -199,6 +199,67 @@ export const eliminarRespuesta = async function (idEncuesta, idEmpresa) {
     formData.append('idEncuesta', idEncuesta)
     formData.append('idEmpresa', idEmpresa)
     try {
+        let response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/x-www-form-urlencoded',
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+        if (response.status === 200) {
+            let data = await response.json()
+            //console.log("respuestasUser", data)
+            //let listResp = data.result
+            return data
+        }
+    }
+    catch (error) {
+        console.log("error", error)
+    }
+}
+
+export const getUserProfile = async function (idEmpresa) {
+    let url = urlWebServices.getUserProfile;
+    const formData = new URLSearchParams();
+    formData.append('idEmpresa', idEmpresa)
+    try{
+        let response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/x-www-form-urlencoded',
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+        if (response.status === 200) {
+            let data = await response.json()
+            //console.log("respuestasUser", data)
+            //let listResp = data.result
+            return data
+        }
+    }
+    catch (error) {
+        console.log("error", error)
+    }
+}
+
+export const updateUserProfile = async function(idEmpresa, email, numTel, ciudad, zip, hist, mision, vision){
+    let url = urlWebServices.updateUserProfile;
+    const formData = new URLSearchParams();
+    formData.append('idEmpresa', idEmpresa)
+    formData.append('email', email)
+    formData.append('numTel', numTel)
+    formData.append('ciudad', ciudad)
+    formData.append('zip', zip)
+    formData.append('hist', hist)
+    formData.append('mision', mision)
+    formData.append('vision', vision)
+    try{
         let response = await fetch(url, {
             method: 'POST',
             mode: 'cors',

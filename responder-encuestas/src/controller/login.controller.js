@@ -117,6 +117,7 @@ export const login =  async function(login)
                             localStorage.setItem("x",data.loginUser.token);
                             //guardo usuario logueado
                             let user = data.loginUser.user;
+                            console.log(user._id)
                             
                             //localStorage.setItem("user",user);
                            // console.log("ID")
@@ -154,7 +155,7 @@ export const login =  async function(login)
                             let user = data.loginUser.user;
                             console.log("ID")
                             console.log(user._id)
-                            localStorage.setItem("id",user._id);
+                            localStorage.setItem("id",user.idEmpresa);
                             history.push("/companyAdmin/dashboard");
                             return ({rdo:0,mensaje:"Ok"});//correcto
                         }
