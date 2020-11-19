@@ -193,11 +193,12 @@ export const respondidas = async function () {
     }
 }
 
-export const eliminarRespuesta = async function (idEncuesta, idEmpresa) {
+export const eliminarRespuesta = async function (idEncuesta, idEmpresa, idLanzamiento) {
     let url = urlWebServices.eliminarRespuesta;
     const formData = new URLSearchParams();
     formData.append('idEncuesta', idEncuesta)
     formData.append('idEmpresa', idEmpresa)
+    formData.append('idLanzamiento', idLanzamiento)
     try {
         let response = await fetch(url, {
             method: 'POST',
@@ -215,6 +216,41 @@ export const eliminarRespuesta = async function (idEncuesta, idEmpresa) {
             //let listResp = data.result
             return data
         }
+    }
+    catch (error) {
+        console.log("error", error)
+    }
+}
+
+export const respuestaPorId = async function (idLanzamiento,idEmpresa) {
+    let url = urlWebServices.obtenerRespuesta;
+
+    const formData = new URLSearchParams();
+    formData.append('idLanzamiento',idLanzamiento)
+    formData.append('idEmpresa',idEmpresa)
+
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/x-www-form-urlencoded',
+                'Origin': 'http://localhost:8080',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+
+        console.log("response traido")
+        console.log(response)
+        if (response.status === 200) {
+            let data = await response.json()
+            //console.log("respuestasUser", data)
+            //let listResp = data.result
+            console.log(data)
+            return data
+        }
+        
     }
     catch (error) {
         console.log("error", error)

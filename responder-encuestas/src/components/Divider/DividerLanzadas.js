@@ -24,7 +24,7 @@ import { getEncuestaPorId } from "controller/encuestas.controller";
 import CustomMenu from "components/CustomGrowMenu/CustomMenu"
 import TrafficByDevice from "components/circleChart/TrafficByDevice";
 import { getEmpresaPorId } from "controller/empresa.controller";
-
+import {respuestaPorId} from "controller/appController"
 
 
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles(styles);
 export default function DividerLanzadas(props){
     const classes = useStyles();
     const  [mostrarResultados, setMostrarResultados] = React.useState(false);
-
+  
 
 
    //HACER UN COMPONENTE NUEVO CONTEXT REDUCE AVERIGUAR PARA MANDAR CONTEXTOS ENTRE COMPONENTES 
@@ -67,9 +67,18 @@ export default function DividerLanzadas(props){
           var objeto = {
           empresa: empresa,
             encuesta: encuesta
+           
           }
           return objeto;
       }
+
+      const funcionPropiedad = (empresa,lanzamiento) =>{
+            var data = {empresa:empresa,
+            lanzamiento:lanzamiento}
+
+            return data;
+      }
+
 
       const mostrarEmpresas = (listaEmpresas) => { 
         if(mostrarResultados){
@@ -77,17 +86,17 @@ export default function DividerLanzadas(props){
           return(
                    <div>
                         <GridContainer>
-                            {listaEmpresas.map( empresa =>(
+                            {listaEmpresas.map(  empresa =>(
                                 
                             <GridItem xs={12} sm={6} md={4}>
                             
                             <Card>
                                 <CardHeader color="warning" stats icon>
                                 <CardIcon>
-                                    <TrafficByDevice/>
+                                    <TrafficByDevice {...funcionPropiedad(empresa,props)}/>
                                 </CardIcon>
-                                    <p className={classes.cardCategory}>{empresa.nombreEmpresa}</p>
-                                    <h3 className={classes.cardTitle}>49/50</h3>
+                                    
+                                    <h3 className={classes.cardTitle}>{empresa.nombreEmpresa}</h3>
                                 </CardHeader>
                                 <CardFooter stats>
                                 <div className={classes.stats}>

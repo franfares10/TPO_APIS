@@ -31,7 +31,8 @@ const urlWebServices = {
     actualizarEncuesta: urlBD + "bd/updateEncuesta",
     uploadFile: urlBD + "bd/uploadFile",
     respondidas: urlBD + "bd/respondidas",
-    eliminarRespuesta: urlBD + "bd/eliminarRespuesta"
+    eliminarRespuesta: urlBD + "bd/eliminarRespuesta",
+    obtenerRespuesta: urlBD + "bd/obtenerRespuesta"
 }
 
 export default urlWebServices;

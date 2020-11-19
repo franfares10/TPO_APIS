@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
@@ -17,7 +17,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import CheckIcon from '@material-ui/icons/Check';
 import ErrorIcon from '@material-ui/icons/Error';
 import { AlignCenter } from 'react-feather';
-
+import {respuestaPorId} from "controller/appController"
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,14 +25,44 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TrafficByDevice = ({ className, ...rest }) => {
+
+
+
+const TrafficByDevice = (propp) => {
   const classes = useStyles();
   const theme = useTheme();
+  
+  console.log("PROPSSS")
+
+console.log(propp)
+
+var empresa = propp.empresa
+var lanzamiento = propp.lanzamiento
+
+const propiedades = async (empresa,lanzamiento) =>{
+  var respuesta = await respuestaPorId(lanzamiento._id,empresa._id)
+  console.log("RESPUESTAAA")
+  console.log(respuesta);
+  var opcionales = respuesta.data.questions.total - respuesta.data.mandatory 
+  var respondidas = respuesta.data.answered
+  var faltan = respuesta.data.questions.total - respondidas
+  
+  var data = {
+      opcional: opcionales,
+      respondidas: respondidas,
+      noRespondidas: faltan
+  }
+
+  return data
+}
+
+ propiedades(empresa,lanzamiento)
+console.log("infoo")
 
   const data = {
     datasets: [
       {
-        data: [61, 17, 22],
+        data:[1,2,3],
         backgroundColor: [
           colors.green[600],
           colors.red[600],
@@ -46,6 +76,11 @@ const TrafficByDevice = ({ className, ...rest }) => {
     labels: ['Respondidas', 'Sin responder', 'Opcionales']
   };
 
+
+
+  
+  
+  
   const options = {
     animation: false,
     cutoutPercentage: 75,
@@ -99,8 +134,7 @@ const TrafficByDevice = ({ className, ...rest }) => {
 
   return(
     <Card
-      className={clsx(classes.root, className)}
-      {...rest}
+      
     >
       <CardHeader title="% DE RESPUESTAS" allign={AlignCenter}/>
       <Divider />
@@ -153,8 +187,6 @@ const TrafficByDevice = ({ className, ...rest }) => {
   );
 };
 
-TrafficByDevice.propTypes = {
-  className: PropTypes.string
-};
+
 
 export default TrafficByDevice;

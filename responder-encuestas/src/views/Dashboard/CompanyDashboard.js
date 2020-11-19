@@ -25,7 +25,9 @@ export default function CompanyDashboard() {
         let rdo = await encuestasUser();
         setListaEncuestas(rdo); 
       }
+    
       componentDidMount();
+      console.log(listaEncuestas)
     },[]);
 
     const mostrarEncuestas = ()=>{

@@ -57,13 +57,15 @@ export default function CustomMenu(props) {
     var flag=2; //Defino el flag de borrado de la empresa.
     //Me faltan la lista de las emmpresas y el ide de la encuesta.
     //Ivan acordate que dentro del Lanzamiento tenemos idEmpresa, y nombre.
-    console.log("Los props son:",props.empresa)
-    console.log(props.encuesta)
+    //console.log("Los props son:",props.empresa)
+    //console.log(props.encuesta)
+    console.log("ESTOS SON LOS PROPS")
+    console.log(props)
     //Preguntarle a fran como hacer para linkear los props, o sea, que cuando clickee mostrarEmpresas desde el Dashboarde encuestas lanzadas,
     //Si podemos setear una variable en el localStorage que por cada onClick se actualice.
 
     await eliminarEmpresasDeEncuesta(props.empresa._id,props.encuesta._id);
-    await eliminarRespuesta(props.encuesta._id,props.empresa._id)
+    await eliminarRespuesta(props.encuesta.idEncuesta,props.empresa._id,props.encuesta._id)
    
     //await eliminarEmpresasDeEncuesta(flag,listaEmpresas,idEncuestaLanzada)
     //console.log(idEmpresa)
