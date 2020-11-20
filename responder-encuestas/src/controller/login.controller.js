@@ -381,7 +381,7 @@ export const getLanzadasPorUsuario = async function(setListEncuestas) {
 
 
 
-export const nuevoLanzamiento = async function(listaEmpresas,encuesta){
+export const nuevoLanzamiento = async function(listaEmpresas,encuesta,fechaVencimiento){
      
     //url webservices
      let url = urlWebServices.lanzarEncuesta;
@@ -390,7 +390,7 @@ export const nuevoLanzamiento = async function(listaEmpresas,encuesta){
      formData.append('idUsuario',localStorage.getItem("id").toString());
      formData.append('idEncuesta',encuesta);
      formData.append('responsable',{"nombre":"jose"});
-     formData.append('fechaVencimiento',"2021/5/21");
+     formData.append('fechaVencimiento',fechaVencimiento);
      formData.append('listaEmpresasLanzadas',JSON.stringify(listaEmpresas));
      console.log("form data: ",formData.get('listaEmpresasLanzadas'))
      

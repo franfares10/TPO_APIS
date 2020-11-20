@@ -7,19 +7,21 @@ const DividerActionsContext = React.createContext();
 function DividerProvider({ children }) {
     const [flag, setFlagValue] = useState(true);
     const [empresasLanzar,setEmpresasLanzar] = useState([]);
-
+    const [date,setDate] = useState(null)
     const actions = useMemo(() => {
         const setFlag = flagValue => setFlagValue(flagValue);
         const  setEmpresas = empresasValues => setEmpresasLanzar(empresasValues)
+        const setFecha = dateValue => setDate(dateValue)
 
         return {
             setFlag,
-            setEmpresas
+            setEmpresas,
+            setFecha
         }
-    }, [setFlagValue,setEmpresasLanzar]);
+    }, [setFlagValue,setEmpresasLanzar,setDate]);
 
     return (
-        <DividerContext.Provider value={{bandera:flag,empresas:empresasLanzar}}>
+        <DividerContext.Provider value={{bandera:flag,empresas:empresasLanzar,fechaVencimiento:date}}>
             <DividerActionsContext.Provider value={actions}>
                 {children}
             </DividerActionsContext.Provider>

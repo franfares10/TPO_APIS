@@ -72,7 +72,7 @@ const mostrarEmpresas = () => {
  const {setFlag} = useDividerActions();
 const flag = useDividerState().bandera;
 const empresas = useDividerState().empresas;
-
+const fechaVencimiento = useDividerState().fechaVencimiento
 
   const obtenerEmpresas = async function(){
     var empresas = await getEmpresas()
@@ -123,7 +123,7 @@ const empresas = useDividerState().empresas;
         lista.push(objeto)
         if(empresas.length-1===contador){
           var objReturn=new Objecto(lista);
-          nuevoLanzamiento(objReturn.listaEmpresas,encuesta);
+          nuevoLanzamiento(objReturn.listaEmpresas,encuesta,fechaVencimiento);
         } 
         contador++;
         console.log(contador)
@@ -179,6 +179,7 @@ const empresas = useDividerState().empresas;
             <GridItem xs={12} sm={6} md={12}>
                 {mostrarEmpresas()}
             </GridItem>
+           
             </GridContainer>
         </GridItem>
         </GridContainer>

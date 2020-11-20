@@ -5,6 +5,12 @@ import moment from 'moment';
 import { withStyles, lighten } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
 import{getEmpresaPorId} from "controller/empresa.controller"
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -24,6 +30,9 @@ import {
 import getInitials from 'assets/jss/getInitials.js';
 import { useDividerActions } from 'components/Divider/DividerProvider';
 import { useDividerState } from 'components/Divider/DividerProvider';
+import CardHeader from 'components/Card/CardHeader';
+import GridContainer from 'components/Grid/GridContainer';
+import GridItem from 'components/Grid/GridItem';
 
 const ObsCheckbox = withStyles({
   root: {
@@ -48,6 +57,7 @@ const Results = ({ className, customers, ...rest }) => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
   const [selected,setSelected] = useState([]) 
+  const [selectedDate, setSelectedDate] = React.useState(null);
   const [alpha,setAlpha] = useState([])
   const getSelected = () =>{
     return selectedCustomerIds;
@@ -112,23 +122,68 @@ const Results = ({ className, customers, ...rest }) => {
     setPage(newPage);
   };
 
-  
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    
+};
   const { setFlag } = useDividerActions();
 
   const { setEmpresas } = useDividerActions();
   
+  const {setFecha} = useDividerActions();
+
+  const cambiar = () =>{
+    if(selectedCustomerIds.length!==0 && selectedDate!==null){
+      console.log(selectedCustomerIds)
+      console.log(selectedDate)
+        return false
+    }else{
+      return true
+    }
+  }
+
   useEffect(() => {
-    setFlag(selectedCustomerIds.length<1);
+    setFlag(cambiar());
     setEmpresas(selectedCustomerIds);
+    setFecha(selectedDate)
     
-  }, [selectedCustomerIds, setFlag, setEmpresas])
+  }, [selectedCustomerIds, setFlag, setEmpresas,setFecha])
 
   
   return (
+
     <Card
       className={clsx(classes.root, className)}
       {...rest}
     >
+    <CardHeader>
+    <GridContainer direction = "row">
+          <GridItem>
+                <h4 >Ingrese fecha de Vencimiento</h4>
+        </GridItem>
+        <GridItem>
+    
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                disableToolbar
+                                
+                                autoOk={true}
+                                variant="inline"
+                                format="dd/MM/yyyy"
+                                margin="normal"
+                                id="fecha1"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                                invalidDateMessage={'Ingrese un formato de fecha valido (dd/mm/AA)'}
+                            />
+                          
+                        </MuiPickersUtilsProvider>
+                        </GridItem>
+                        </GridContainer>      
+    </CardHeader>
       <PerfectScrollbar>
         <Box minWidth={1050}>
           <Table>
