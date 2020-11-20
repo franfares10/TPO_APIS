@@ -390,7 +390,7 @@ export const nuevoLanzamiento = async function(listaEmpresas,encuesta){
      formData.append('idUsuario',localStorage.getItem("id").toString());
      formData.append('idEncuesta',encuesta);
      formData.append('responsable',{"nombre":"jose"});
-     formData.append('fechaVencimiento',"2021/05/21");
+     formData.append('fechaVencimiento',"2021/5/21");
      formData.append('listaEmpresasLanzadas',JSON.stringify(listaEmpresas));
      console.log("form data: ",formData.get('listaEmpresasLanzadas'))
      
@@ -584,5 +584,29 @@ export const eliminarLanzamiento = async function(idLanzamiento){
         console.log("Estado de la encuesta luego de haber sido actualizada: ",data)
     }catch(e){
         console.log("Error al actualizar el lanzamiento con el id: ",idLanzamiento," el error fue: ", e)
+    }
+}
+
+export const getLanzamientoById = async function (id)
+{
+    try{
+        let url=urlWebServices.getLanzamientoById;  //Defino la url que le pega a este servicio en especifico.
+        const formData = new URLSearchParams();
+        formData.append('id', id)
+        let response = await fetch(url,{
+            method: 'POST', 
+            mode: "cors", 
+            headers:{
+                'Accept':'application/x-www-form-urlencoded',
+                //'x-access-token': WebToken.webToken,
+                'Origin':'http://localhost:8080/',
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+        let data = await response.json();
+        return data
+    }catch(e){
+        console.log("Error al buscar lanzamiento", e)
     }
 }

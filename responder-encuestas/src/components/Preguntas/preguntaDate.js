@@ -21,43 +21,13 @@ const mandatory = (mand) => {
 }
 
 export default function MaterialUIPickers(props) {
-    let fi = props.value.includes("fechaIni")
-    let ff = props.value.includes("fechaFin")
-    console.log("fi "+fi)
-    console.log("ff "+ff)
-    let fiAux
-    let ffAux
-    {
-    if(fi === false){
-        fiAux = "1/1/1900"
-    }
-    else if(fi === true){
-        fiAux = props.value.substr(10,62)
-    }}
-    {
-    if(ff === false){
-        ffAux = "1/1/1900"
-    }
-    else if(fi === false && ff === true){
-        ffAux = props.value.substr(10,62)
-    }
-    else if(fi === true && ff === true){
-        ffAux = props.value.substr(75, 62)
-    }}
-    console.log("fi: "+fi+" ff: "+ff)
-    console.log("fiAux: "+fiAux+" ffAux: "+ffAux)
 
-    const [selectedDate1, setSelectedDate1] = React.useState(fiAux);
-    const [selectedDate2, setSelectedDate2] = React.useState(ffAux);
+    const [selectedDate, setSelectedDate] = React.useState(props.value);
     const [cancelarVisible, setCancelarVisible]=React.useState(()=>{if(props.value===""){return "hidden"}else{return "visible"}})
     const isInitialMount = useRef(true);
 
-    const handleDateChange1 = (date) => {
-        setSelectedDate1(date);
-        setCancelarVisible("visible")
-    };
-    const handleDateChange2 = (date) => {
-        setSelectedDate2(date);
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
         setCancelarVisible("visible")
     };
 
@@ -65,29 +35,17 @@ export default function MaterialUIPickers(props) {
         if (isInitialMount.current) {
             isInitialMount.current = false;
          } else {
-            let aux
-            if(selectedDate1 === "" && selectedDate2 === "")
-            {
-                aux = ""
-            }
-            else if(selectedDate1 != "" && selectedDate2 === ""){
-                aux = "fechaIni: "+selectedDate1
-            }
-            else if(selectedDate1 === "" && selectedDate2 != ""){
-                aux = "fechaFin: "+selectedDate2
-            }
-            else if(selectedDate1 != "" && selectedDate2 != ""){
-                aux = "fechaIni: "+selectedDate1+" | fechaFin: "+selectedDate2
-            }
-            updateRespuesta(props.questionIndex, aux)
-            respondidas()
+             if(selectedDate === null){
+                updateRespuesta(props.questionIndex, "").then(r=>{respondidas()})
+             }else{
+                updateRespuesta(props.questionIndex, selectedDate).then(r=>{respondidas()})
+             }
          }})
 
     const cancelar = () => {
-        setSelectedDate1("")
-        setSelectedDate2("")
+        handleDateChange(null)
         setCancelarVisible("hidden")
-    }
+    };
 
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
@@ -110,30 +68,11 @@ export default function MaterialUIPickers(props) {
                                 format="dd/MM/yyyy"
                                 margin="normal"
                                 id="fecha1"
-                                value={selectedDate1}
-                                onChange={handleDateChange1}
+                                value={selectedDate}
+                                onChange={handleDateChange}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
                                 }}
-                                invalidDateMessage={'Ingrese un formato de fecha valido (dd/mm/AA)'}
-                            />
-                        </MuiPickersUtilsProvider>
-                    </GridItem>
-                    <GridItem>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <KeyboardDatePicker
-                                disableToolbar
-                                autoOk={true}
-                                variant="inline"
-                                format="dd/MM/yyyy"
-                                margin="normal"
-                                id="fecha2"
-                                value={selectedDate2}
-                                onChange={handleDateChange2}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                                defaultValue={props.value}
                                 invalidDateMessage={'Ingrese un formato de fecha valido (dd/mm/AA)'}
                             />
                         </MuiPickersUtilsProvider>

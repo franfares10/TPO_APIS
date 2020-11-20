@@ -17,6 +17,7 @@ const urlWebServices = {
     enviarMail: urlApi + "api/users/sendMail",
     eliminarEmpresasDeEncuesta: urlApi+"api/lanzamientoEncuesta/encuestasLanzadas/update",
     eliminarLanzamiento: urlApi + "api/encuestasLanzadas/delete",
+    getLanzamientoById: urlApi + "api/lanzamientoEncuesta/getLanzamientoById",
     //guardarImgUser: urlApi + "api/users/guardarImgUser",
     //getImgUser: urlApi + "api/users/imgUserByMail",
     //uploadFileImg: urlApi + "api/users/uploadImg",

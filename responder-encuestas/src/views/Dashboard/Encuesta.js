@@ -15,6 +15,7 @@ import Pdate from 'components/Preguntas/preguntaDate'
 import Plong from 'components/Preguntas/PreguntaLong'
 
 import {encuestaPorId, updateEncuesta} from "controller/appController";
+import { respondidas } from "controller/appController";
 
 const styles = {
     pyrCard: {
@@ -60,6 +61,7 @@ export default function Encuesta() {
         setEncuesta(rdo);
       }
       componentDidMount();
+      respondidas();
     },[]);
 
     async function revisarResp() {
@@ -91,10 +93,17 @@ export default function Encuesta() {
         }
     }
 
-
-    return (
-        <div>
-            <Fab className={classes.fabEnv} color="inherit" variant="extended" onClick={revisarResp}>
+    const verifyId = () => {
+        let uId = localStorage.getItem('id')
+        let eId = encuesta.map(enc=>{return enc.userId})[0]
+        console.log(uId, eId)
+        if(uId !== eId){
+            return(<h4>No tiene permisos para ver esta encuesta</h4>)
+        }
+        else{
+            return(
+                <div>
+                    <Fab className={classes.fabEnv} color="inherit" variant="extended" onClick={revisarResp}>
                 <SendIcon className={classes.extendedIcon} />
                        Enviar Respuestas
             </Fab>
@@ -170,6 +179,13 @@ export default function Encuesta() {
             })}
             </GridItem>
             </GridContainer>
+                </div>
+            )
+        }
+    }
+    return (
+        <div>
+            {verifyId()}
         </div>
     );
 }

@@ -65,7 +65,7 @@ export default function CustomMenu(props) {
     //Si podemos setear una variable en el localStorage que por cada onClick se actualice.
 
     await eliminarEmpresasDeEncuesta(props.empresa._id,props.encuesta._id);
-    await eliminarRespuesta(props.encuesta.idEncuesta,props.empresa._id,props.encuesta._id)
+    await eliminarRespuesta(props.encuesta.idEncuesta,props.empresa.idEmpresa,props.encuesta._id)
    
     //await eliminarEmpresasDeEncuesta(flag,listaEmpresas,idEncuestaLanzada)
     //console.log(idEmpresa)

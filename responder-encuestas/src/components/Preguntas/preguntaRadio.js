@@ -44,8 +44,7 @@ export default function RadioButtonsGroup(props) {
         if (isInitialMount.current) {
             isInitialMount.current = false;
          } else {
-            updateRespuesta(props.questionIndex, value)
-            respondidas()
+            updateRespuesta(props.questionIndex, value).then(r=>{respondidas()})
          }})
 
     const cancelar = () => {

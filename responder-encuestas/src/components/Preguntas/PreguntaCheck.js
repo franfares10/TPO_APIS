@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, componentdid } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -84,14 +84,13 @@ export default function CheckboxLabels(props) {
                 }
             })
             if(arr.length === 0){
-                updateRespuesta(props.questionIndex, "")
+                updateRespuesta(props.questionIndex, "").then(r=>{respondidas()})
             }
             else{
-                updateRespuesta(props.questionIndex, arr)
+                updateRespuesta(props.questionIndex, arr).then(r=>{respondidas()})
             }
-            respondidas()
-            respondidas()
-         }})
+         }
+        })
 
     return (
         <GridContainer direction={"column"} justify={"center"} alignItems={"center"} >
