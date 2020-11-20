@@ -25,6 +25,8 @@ import {enviarMailDeEncuesta} from "controller/login.controller"
 import{nuevoLanzamiento} from "controller/login.controller"
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 import estilosBoton from "assets/jss/material-dashboard-react/components/buttonStyle.js";
+import Snackbar from "components/Snackbar/Snackbar.js";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {
   Box,
   Container
@@ -49,7 +51,17 @@ export default function Divider(props) {
  //console.log(encuesta)
 const  [mostrarTabla, setMostrarTabla] = React.useState(false);
 const [listEmpresas,setListEmpresas] = React.useState([]);
+const [br,setBR] = React.useState(false)
 
+const openNotification = () =>{
+  setBR(true)
+  setTimeout(()=>{setBR(false)},1500)
+ 
+}
+
+const closeNotification = () =>{
+  setBR(false)
+}
 const mostrarEmpresas = () => { 
       if(mostrarTabla){
         return(<div>
@@ -73,7 +85,7 @@ const mostrarEmpresas = () => {
 const flag = useDividerState().bandera;
 const empresas = useDividerState().empresas;
 const fechaVencimiento = useDividerState().fechaVencimiento
-
+const nombreLanzamiento = useDividerState().nombre
   const obtenerEmpresas = async function(){
     var empresas = await getEmpresas()
     setListEmpresas(empresas)
@@ -123,11 +135,11 @@ const fechaVencimiento = useDividerState().fechaVencimiento
         lista.push(objeto)
         if(empresas.length-1===contador){
           var objReturn=new Objecto(lista);
-          nuevoLanzamiento(objReturn.listaEmpresas,encuesta,fechaVencimiento);
+          nuevoLanzamiento(objReturn.listaEmpresas,encuesta,fechaVencimiento,nombreLanzamiento);
         } 
         contador++;
         console.log(contador)
-        //await enviarMailDeEncuesta(objeto.responsable.email)
+        await enviarMailDeEncuesta(objeto.responsable.email)
        //lista[lista.length] = objeto
        
      })
@@ -167,7 +179,8 @@ const fechaVencimiento = useDividerState().fechaVencimiento
                             {props.created}
                             </div>
                             <div stats >
-                            <Button round disabled={flag} color = "success" onClick={()=>lanzarEncuesta(props._id)}><SendIcon /> Lanzar</Button>
+                            <Button round disabled={flag} color = "success" onClick={()=>{lanzarEncuesta(props._id)
+                            openNotification()}}><SendIcon /> Lanzar</Button>
                               {botonAccion()}
 
                                 </div>   
@@ -182,6 +195,15 @@ const fechaVencimiento = useDividerState().fechaVencimiento
            
             </GridContainer>
         </GridItem>
+        <Snackbar
+                    place="br"
+                    color="primary"
+                    icon={CheckCircleIcon}
+                    message="Encuesta Lanzada"
+                    open={br}
+                    closeNotification={closeNotification}
+                    close
+                />
         </GridContainer>
   );
 }

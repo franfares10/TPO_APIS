@@ -123,7 +123,7 @@ export const login =  async function(login)
                            // console.log("ID")
                            // console.log(user._id)
                             localStorage.setItem("id",user._id);
-                            history.push("/admin/dashboard");
+                            history.push("/admin/newpoll");
                             return ({rdo:0,mensaje:"Ok"});//correcto
                         }
                         case 202:
@@ -381,7 +381,7 @@ export const getLanzadasPorUsuario = async function(setListEncuestas) {
 
 
 
-export const nuevoLanzamiento = async function(listaEmpresas,encuesta,fechaVencimiento){
+export const nuevoLanzamiento = async function(listaEmpresas,encuesta,fechaVencimiento,nombreLanzamiento){
      
     //url webservices
      let url = urlWebServices.lanzarEncuesta;
@@ -389,6 +389,7 @@ export const nuevoLanzamiento = async function(listaEmpresas,encuesta,fechaVenci
      const formData = new URLSearchParams();
      formData.append('idUsuario',localStorage.getItem("id").toString());
      formData.append('idEncuesta',encuesta);
+     formData.append('nombreLanzamiento',nombreLanzamiento)
      formData.append('responsable',{"nombre":"jose"});
      formData.append('fechaVencimiento',fechaVencimiento);
      formData.append('listaEmpresasLanzadas',JSON.stringify(listaEmpresas));
@@ -430,6 +431,39 @@ export const enviarMailDeEncuesta = async function(mailEmpresa){
      formData.append('destinatario',mailEmpresa);
     formData.append('asunto' , "Se le ha enviado una nueva encuesta a responder")
     formData.append('texto' , "esta es  una encuesta del observatorio pyme")
+     try
+     {
+         let response = await fetch(url,{
+             method: 'POST', 
+             mode: "cors",
+             headers:{
+                 'Accept':'application/x-www-form-urlencoded',
+                 //'x-access-token': WebToken.webToken,
+                 'Origin':'http://localhost:8080/',
+                 'Content-Type': 'application/x-www-form-urlencoded'},
+             body: formData
+             
+         });
+         let data = await response.json();
+         console.log("DATA")
+         console.log(data)
+
+        
+        
+}catch(error){
+    console.log("ERROR"+error)
+}
+}
+
+export const enviarMailDeCuenta = async function(mailEmpresa,usuario,contraseña){
+     
+    //url webservices
+     let url = urlWebServices.enviarMail;
+     //armo json con datos
+     const formData = new URLSearchParams();
+     formData.append('destinatario',mailEmpresa);
+    formData.append('asunto' , "Se le ha creado un nuevo usuario en nuestra web!")
+    formData.append('texto' , "Bienvenido a Observatorio Pyme !  nombre de usuario:       "+usuario+"        -      contraseña:  "+contraseña )
      try
      {
          let response = await fetch(url,{

@@ -18,6 +18,8 @@ import avatar from "assets/img/faces/marc.jpg";
 import TextField from '@material-ui/core/TextField';
 import {getPerfil,modificarPerfil} from "controller/login.controller";
 import EditIcon from '@material-ui/icons/Edit';
+import Snackbar from "components/Snackbar/Snackbar.js";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles(styles,estilos);
 
@@ -38,7 +40,17 @@ const[estadoNUsuario,setEstadoNU] = useState(true);
 const[estadoMail,setEstadoMail] = useState(true);
 const[estadoNombre,setEstadoNombre] = useState(true);
 const[estadoApellido,setEstadoApellido] = useState(true);
+const [br,setBR] = React.useState(false)
 
+const openNotification = () =>{
+  setBR(true)
+  setTimeout(()=>{setBR(false)},1500)
+ 
+}
+
+const closeNotification = () =>{
+  setBR(false)
+}
 useEffect(()=>{
   peticionGet();
 },[])
@@ -201,7 +213,10 @@ function setNotificacion(condition) {
               
             </CardBody>
             <CardFooter>
-              <Button disabled={permitirActualizar} color="primary" onClick={actualizarPerfil}>Actualizar perfil</Button>
+              <Button disabled={permitirActualizar} color="primary" onClick={()=>{
+                actualizarPerfil()
+                openNotification()
+                }}>Actualizar perfil</Button>
             </CardFooter>
           </Card>
         </GridItem>
@@ -218,6 +233,15 @@ function setNotificacion(condition) {
             </CardBody>
           </Card>
         </GridItem>
+        <Snackbar
+                    place="br"
+                    color="primary"
+                    icon={CheckCircleIcon}
+                    message="Perfil Actualizado"
+                    open={br}
+                    closeNotification={closeNotification}
+                    close
+                />
       </GridContainer>
     </div>
   );

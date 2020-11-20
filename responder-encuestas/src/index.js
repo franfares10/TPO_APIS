@@ -12,7 +12,7 @@ import CompanyAdmin from "layouts/CompanyAdmin";
 import history from "utils/History/history";
 
 
-/*REVISAR CON ERIK*/
+
 
 
 ReactDOM.render(

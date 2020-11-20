@@ -26,7 +26,7 @@ import TrafficByDevice from "components/circleChart/TrafficByDevice";
 import { getEmpresaPorId } from "controller/empresa.controller";
 import {respuestaPorId} from "controller/appController"
 import { eliminarLanzamiento } from "controller/login.controller";
-
+import { useDividerState } from "./DividerProvider";
 
 
 const useStyles = makeStyles(styles);
@@ -118,7 +118,6 @@ export default function DividerLanzadas(props){
     }
 
 
-
     
     return(
         
@@ -134,7 +133,7 @@ export default function DividerLanzadas(props){
                                             <Assessment/>
                                         </CardIcon>
                                     <p className={classes.cardCategory}>{props.encuesta.descripcion}</p>
-                                    <h3 className={classes.cardTitle}>{props.encuesta.tituloEncuesta}</h3>
+                                    <h3 className={classes.cardTitle}>{props.nombreLanzamiento}</h3>
                                 </CardHeader>
                                 <CardFooter>
                                 <div className={classes.stats} >

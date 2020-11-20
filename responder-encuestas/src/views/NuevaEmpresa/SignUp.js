@@ -18,6 +18,7 @@ import history from 'utils/History/history'
 import { withStyles } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import {newEmpresa} from "controller/empresa.controller"
+import {enviarMailDeCuenta} from "controller/login.controller"
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -99,6 +100,7 @@ const signUpPressed = async function(event){
 
   if(nombrEmpresa!=="" && cuit!=="" && razon!=="" && nYAResponsable!=="" && password!=="" && dni!==""){
       let register = await newEmpresa(nuevaEmpresa);
+      await enviarMailDeCuenta(nuevaEmpresa.email,nuevaEmpresa.nombrEmpresa,nuevaEmpresa.password)
       event.target.nomEmpr.value = ""
       event.target.cuit.value = ""
       event.target.razSoc.value = ""
@@ -106,7 +108,9 @@ const signUpPressed = async function(event){
       event.target.telResp.value = ""
       event.target.contra.value = ""
       event.target.dniResp.value = ""
-      
+
+     
+
   }else{
     alert("Debe completar todos los campos");
   }
@@ -219,12 +223,7 @@ export default function SignUp() {
                 id="dniResp"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel 
-                control={<ObsCheckbox value="allowExtraEmails"/>}
-                label="Quiero recibir mails del Observatorio PyMe regularmente"
-              />
-            </Grid>
+           
           </Grid>
           <Button
             type="submit"

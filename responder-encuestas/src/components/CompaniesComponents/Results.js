@@ -25,7 +25,8 @@ import {
   TablePagination,
   TableRow,
   Typography,
-  makeStyles
+  makeStyles,
+  TextField
 } from '@material-ui/core';
 import getInitials from 'assets/jss/getInitials.js';
 import { useDividerActions } from 'components/Divider/DividerProvider';
@@ -59,6 +60,7 @@ const Results = ({ className, customers, ...rest }) => {
   const [selected,setSelected] = useState([]) 
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [alpha,setAlpha] = useState([])
+  const[nombreLanz,setNombreLanz] = useState("")
   const getSelected = () =>{
     return selectedCustomerIds;
   }
@@ -132,8 +134,10 @@ const Results = ({ className, customers, ...rest }) => {
   
   const {setFecha} = useDividerActions();
 
+  const {setNombre} = useDividerActions()
+
   const cambiar = () =>{
-    if(selectedCustomerIds.length!==0 && selectedDate!==null){
+    if(selectedCustomerIds.length!==0 && selectedDate!==null && nombreLanz!==""){
       console.log(selectedCustomerIds)
       console.log(selectedDate)
         return false
@@ -146,10 +150,26 @@ const Results = ({ className, customers, ...rest }) => {
     setFlag(cambiar());
     setEmpresas(selectedCustomerIds);
     setFecha(selectedDate)
-    
-  }, [selectedCustomerIds, setFlag, setEmpresas,setFecha])
+    setNombre(nombreLanz)
+   
+  }, [selectedCustomerIds, setFlag, setEmpresas,setFecha,setNombre])
 
-  
+  const ObsInput = withStyles({
+    root: {
+      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: cyan[600]
+      },
+      "& .MuiInputLabel-outlined.Mui-focused": {
+        color: "grey"
+      }
+    },
+    after: {},
+  })((props) => <TextField {...props} />);
+
+  const handleChangeNombre = (event) =>{
+    event.preventDefault();
+    setNombreLanz(event.target.value)
+  }
   return (
 
     <Card
@@ -158,10 +178,27 @@ const Results = ({ className, customers, ...rest }) => {
     >
     <CardHeader>
     <GridContainer direction = "row">
-          <GridItem>
+      <GridItem item xs={12} sm={3.5}>
+          <h4 marginTop="15px">Ingrese titulo del Lanzamiento</h4>
+      </GridItem>
+      <GridItem item xs={12} sm={3}>
+      <ObsInput
+                name="nomEmpr"
+                variant="outlined"
+                required
+                fullWidth
+                value={nombreLanz}
+                id="nomLanz"
+                label="Nombre del Lanzamiento"
+                autoFocus
+                onChange={(event) =>{handleChangeNombre(event)}}
+              />
+      </GridItem>
+   <GridItem item xs={12} sm={2}></GridItem>
+          <GridItem item xs={12} sm={3.5}>
                 <h4 >Ingrese fecha de Vencimiento</h4>
         </GridItem>
-        <GridItem>
+        <GridItem item xs={12} sm={3.5}>
     
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker

@@ -8,20 +8,23 @@ function DividerProvider({ children }) {
     const [flag, setFlagValue] = useState(true);
     const [empresasLanzar,setEmpresasLanzar] = useState([]);
     const [date,setDate] = useState(null)
+    const[nombreLanzamiento,setNombreLanzamiento] = useState("")
     const actions = useMemo(() => {
         const setFlag = flagValue => setFlagValue(flagValue);
         const  setEmpresas = empresasValues => setEmpresasLanzar(empresasValues)
         const setFecha = dateValue => setDate(dateValue)
+        const setNombre = nombreValue => setNombreLanzamiento(nombreValue)
 
         return {
             setFlag,
             setEmpresas,
-            setFecha
+            setFecha,
+            setNombre
         }
-    }, [setFlagValue,setEmpresasLanzar,setDate]);
+    }, [setFlagValue,setEmpresasLanzar,setDate,setNombreLanzamiento]);
 
     return (
-        <DividerContext.Provider value={{bandera:flag,empresas:empresasLanzar,fechaVencimiento:date}}>
+        <DividerContext.Provider value={{bandera:flag,empresas:empresasLanzar,fechaVencimiento:date,nombre:nombreLanzamiento}}>
             <DividerActionsContext.Provider value={actions}>
                 {children}
             </DividerActionsContext.Provider>

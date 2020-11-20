@@ -26,6 +26,7 @@ import TrafficByDevice from "components/circleChart/TrafficByDevice";
 import DividerLanzadas from "components/Divider/DividerLanzadas"
 
 import { eliminarLanzamiento } from "controller/login.controller";
+import { DividerProvider } from "components/Divider/DividerProvider";
 
 const useStyles = makeStyles(styles);
 
@@ -50,8 +51,9 @@ export default function PollSelection(){
         <div>
        
         {listEncuestas.map(encuesta =>(
-          
+          <DividerProvider>
           <DividerLanzadas {...encuesta}/>
+          </DividerProvider>
       ))}
   
     </div>

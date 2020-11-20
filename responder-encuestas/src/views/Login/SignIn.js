@@ -23,7 +23,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
     
-        Your Website
+        Responder Encuestas
     {' '}
       {new Date().getFullYear()}
       {'.'}
@@ -172,10 +172,7 @@ const handlePassword=(event)=>{
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<ObsCheckbox value="remember" color="#187C7C" />}
-              label="Recordarme"
-            />
+           
 
             <Button
               type="submit"
@@ -187,11 +184,7 @@ const handlePassword=(event)=>{
               Iniciar Sesión
                   </Button>
             <Grid container >
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  ¿Olvidaste la contraseña?
-                    </Link>
-              </Grid>
+              
             </Grid>
           </form>
         </div>
