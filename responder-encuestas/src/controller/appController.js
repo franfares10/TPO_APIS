@@ -160,7 +160,6 @@ export const uploadFile = async function (files) {
         console.log('respuestaUpload', archivo);
         return archivo;
     } catch (err) {
-        alert('Error uploading the files')
         console.log('Error uploading the files', err)
     }
 

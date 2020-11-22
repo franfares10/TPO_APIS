@@ -8,7 +8,6 @@ import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card"
 
 import {encuestasUserCompany} from "../../controller/login.controller";
-import {getLanzamientoById} from "../../controller/login.controller"
 
 const useStyles = makeStyles(styles);
 
@@ -57,7 +56,7 @@ export default function CompanyDashboard() {
                     {listaEncuestas.map(encuesta => {
                         let nombre = encuesta.name
                         let idEncuesta = encuesta._id
-                        let fecha = encuesta.modified
+                        let fecha = new Date (encuesta.modified).toLocaleDateString()
                         return(
                             <div className={classes.encuestaCard}>
                                 <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png" alt=""></img>
@@ -72,10 +71,3 @@ export default function CompanyDashboard() {
         </div>
     );
 }
-
-/*<div className={classes.encuestaCard}>
-                        <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png" alt=""></img>
-                            <h4><b>Encuesta Financiera</b></h4>
-                            <p>Tiempo Restante: DD-HH:mm</p>
-                        <Button className={classes.Button} href="/companyAdmin/encuestas" color="primary">RESPONDER ENCUESTA</Button>
-                    </div>*/
