@@ -18,27 +18,27 @@ import GridItem from 'components/Grid/GridContainer'
 const tutorialSteps = [
     {
         label: '',
-        imgPath: 'https://i.ibb.co/Y251s6P/74d35ed6e0bb54ad754b6615fc894a9d.png',
+        imgPath: 'https://i.ibb.co/PwWpG5f/paso1obs.png',
     },
     {
         label: '',
         imgPath:
-        'https://i.ibb.co/CKp6Qpm/17b074073ec597ce831cf2ce5d20c481.png',
+        'https://i.ibb.co/J2kwVcK/paso2obs.png',
     },
     {
         label: '',
         imgPath:
-        'https://i.ibb.co/3f0sNFv/7432a231b7152f536127289bf1526c85.png',
+        'https://i.ibb.co/rHD1pbw/paso3obs.png',
     },
     {
         label: '',
         imgPath:
-        'https://i.ibb.co/B37qb2h/19d338e79d01d57806f12dddf7cb7bdd.png',
+        'https://i.ibb.co/Xy3QFs7/paso4obs.png',
     },
     {
         label: '',
         imgPath:
-        'https://i.ibb.co/rMG5nW3/79b3b45ea17f092e62cb63228b2bbfbb.png',
+        'https://i.ibb.co/98fg0zB/paso5obs.png',
     },
     {
         label: '',
@@ -87,15 +87,16 @@ function getSteps() {
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return `Para lanzar una nueva Encuesta dirijase al apartado de "New Poll" en el Menu.`;
+            return `Para lanzar una nueva Encuesta diríjase al apartado de "Lanzar Encuesta" en el Menú.`;
         case 1:
-            return 'Le apareceran todas las encuestas disponibles a realizar, seleccione una clickeando en el boton "Mostrar Empresas".';
+            return 'Le aparecerán todas las encuestas disponibles a realizar, seleccione una clickeando en el botón "Mostrar Empresas".';
         case 2:
-            return `Se le desplegara un listado de empresas, seleccione las empresas que desea enviarle la Encuesta.`;
+            return `Se le desplegará un listado de empresas, deberá indicar un título para el lanzamiento y una fecha de vencimiento para el mismo. Luego 
+            seleccione las empresas a las que desea enviarle la Encuesta.`;
         case 3:
-            return 'Una vez seleccionadas las empresas, presione en el boton "Send" para lanzar la encuesta.';
+            return 'Una vez seleccionadas las empresas, presione en el botón "Lanzar" para lanzar la encuesta.';
         case 4:
-            return 'Su encuesta ya se ha lanzado a las empresas correspondientes!.'
+            return 'Aparecerá una notificación en el margen inferior derecho de confirmación que le indicará que la encuesta ha sido lanzada exitosamente.'
         default:
             return 'Unknown step';
     }

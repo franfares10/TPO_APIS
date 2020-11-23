@@ -155,7 +155,7 @@ const nombreLanzamiento = useDividerState().nombre
   }
 
   const verEncuesta = () => {
-    window.open('/admin/previewencuestas?idEncuesta='+props._id,'_blank')
+    window.location.href= '/admin/previewencuestas?idEncuesta='+props._id
   } 
 
 
