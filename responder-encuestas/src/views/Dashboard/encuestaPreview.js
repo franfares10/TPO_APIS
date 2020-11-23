@@ -23,6 +23,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Fab from '@material-ui/core/Fab';
 import UploadIcon from '@material-ui/icons/Publish';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { getPreguntasById } from "controller/encuestas.controller";
 
@@ -354,7 +355,10 @@ export default function EncuestaPreview() {
 
     return (
         <div>
-
+            <Fab className={classes.fabEnv} color="inherit" variant="extended" href="/admin/newpoll">
+                <ArrowBackIcon/>
+                       Volver
+            </Fab>
             <GridContainer direction={"column"} justify={"center"} alignItems={"center"}>
                 <GridItem>
                     {encuesta.map(ques => {

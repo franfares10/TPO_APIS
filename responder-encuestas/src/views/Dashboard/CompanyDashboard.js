@@ -34,7 +34,7 @@ export default function CompanyDashboard() {
         if (listaEncuestas.length==0)
         {
           return (
-            <GridItem xs={12} sm={12} md={12}>
+            <GridItem xs={12} sm={12} md={3}>
             <div>
               <div>
                 <h3> No hay encuestas por responder</h3>
@@ -54,12 +54,12 @@ export default function CompanyDashboard() {
                 <GridContainer justify={"center"}>
                     {mostrarEncuestas()}
                     {listaEncuestas.map(encuesta => {
-                        let nombre = encuesta.name
+                        let nombre = encuesta.nombreLanzamiento
                         let idEncuesta = encuesta._id
                         let fecha = new Date (encuesta.modified).toLocaleDateString()
                         return(
                             <div className={classes.encuestaCard}>
-                                <img src="https://cdn.smassets.net/assets/cms/cc/uploads/satisfaction-question-survey-question-types.png" alt=""></img>
+                                <img src="https://cdn1.iconfinder.com/data/icons/data-science-flat-1/64/statistics-pie-chart-label-data-report-512.png" alt=""></img>
                                 <h4><b>{nombre}</b></h4>
                                 <p>Fecha Límite: {fecha}</p>
                                 <Button className={classes.Button} href={"/companyAdmin/encuestas?idEncuesta="+idEncuesta} color="primary">RESPONDER ENCUESTA</Button>
