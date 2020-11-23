@@ -23,6 +23,7 @@ import Contacto from "views/Contacto/Contacto";
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import AyudaCompany from "views/Ayuda/AyudaCompany"
 import Encuesta from "views/Dashboard/Encuesta";
+import encuestaPreview from "views/Dashboard/encuestaPreview"
 // core components/views for RTL layout
 
 
@@ -132,12 +133,18 @@ const dashboardRoutes = [
     layout: "/companyAdmin",
     state:"true"
   },
- 
   {
     path:"/encuestas",
     name:"Encuestas",
     component: Encuesta,
     layout:"/companyAdmin",
+    state:"false"
+  },
+  {
+    path:"/previewencuestas",
+    name:"Encuesta",
+    component: encuestaPreview,
+    layout:"/admin",
     state:"false"
   }
 ];

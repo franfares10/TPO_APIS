@@ -123,3 +123,31 @@ export const getEncuestaPorId =  async function(idEncuesta)
         console.log("error",error);
     };
 }
+
+export const getPreguntasById = async function(idEncuesta)
+{
+    const formData = new URLSearchParams();
+    formData.append('id',idEncuesta);
+    let url = urlWebServices.getPreguntasById;
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', 
+            mode: "cors",
+            headers:{
+                'Accept':'application/x-www-form-urlencoded',
+                //'x-access-token': WebToken.webToken,
+                'Origin':'http://localhost:8080/',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body:formData,
+        
+        });
+
+        //console.log(response)
+        let data = await response.json();
+        return data.data
+    }catch(e){
+        console.log(e)
+    }
+}

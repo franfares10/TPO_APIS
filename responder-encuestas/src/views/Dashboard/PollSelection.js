@@ -42,13 +42,10 @@ export default function PollSelection(){
 
       },[setListEncuestas]);
 
-
-
-     
-
-    return(
-        
-        <div>
+    const hayPolls = () =>{
+      if(listEncuestas.length !== 0){
+        return(
+          <div>
        
         {listEncuestas.map(encuesta =>(
           <DividerProvider>
@@ -57,6 +54,25 @@ export default function PollSelection(){
       ))}
   
     </div>
+        )
+      }
+      else{
+        return(
+          <div>
+            <h4>
+              No hay encuestas lanzadas actualmente
+            </h4>
+          </div> 
+        )
+      }
+    }
 
+
+     
+
+    return(
+      <div>
+        {hayPolls()}
+      </div>
     )
 }

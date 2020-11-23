@@ -18,6 +18,7 @@ const urlWebServices = {
     eliminarEmpresasDeEncuesta: urlApi+"api/lanzamientoEncuesta/encuestasLanzadas/update",
     eliminarLanzamiento: urlApi + "api/encuestasLanzadas/delete",
     getLanzamientoById: urlApi + "api/lanzamientoEncuesta/getLanzamientoById",
+    getPreguntasById: urlApi + "api/encuestas/preguntasPorId",
     //guardarImgUser: urlApi + "api/users/guardarImgUser",
     //getImgUser: urlApi + "api/users/imgUserByMail",
     //uploadFileImg: urlApi + "api/users/uploadImg",

@@ -27,6 +27,7 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
 import estilosBoton from "assets/jss/material-dashboard-react/components/buttonStyle.js";
 import Snackbar from "components/Snackbar/Snackbar.js";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import {
   Box,
   Container
@@ -153,7 +154,9 @@ const nombreLanzamiento = useDividerState().nombre
     setFlag(true)
   }
 
-
+  const verEncuesta = () => {
+    window.open('/admin/previewencuestas?idEncuesta='+props._id,'_blank')
+  } 
 
 
   useEffect(()=>{
@@ -182,7 +185,10 @@ const nombreLanzamiento = useDividerState().nombre
                             <Button round disabled={flag} color = "success" onClick={()=>{lanzarEncuesta(props._id)
                             openNotification()}}><SendIcon /> Lanzar</Button>
                               {botonAccion()}
-
+                              <Button round color="primary" onClick={verEncuesta}>
+                            <VisibilityIcon/>
+                            Previsualizar
+                        </Button>
                                 </div>   
                          
                         </CardFooter>
