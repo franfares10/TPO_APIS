@@ -87,16 +87,16 @@ function getSteps() {
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return `Para lanzar una nueva Encuesta dirijase al apartado de "Lanzar Encuesta" en el Menu.`;
+            return `Para lanzar una nueva Encuesta diríjase al apartado de "Lanzar Encuesta" en el Menú.`;
         case 1:
-            return 'Le apareceran todas las encuestas disponibles a realizar, seleccione una clickeando en el boton "Mostrar Empresas".';
+            return 'Le aparecerán todas las encuestas disponibles a realizar, seleccione una clickeando en el botón "Mostrar Empresas".';
         case 2:
-            return `Se le desplegara un listado de empresas, deberá indicar un titulo para el lanzamiento y una fecha de vencimiento para el mismo. Luego 
+            return `Se le desplegará un listado de empresas, deberá indicar un título para el lanzamiento y una fecha de vencimiento para el mismo. Luego 
             seleccione las empresas a las que desea enviarle la Encuesta.`;
         case 3:
-            return 'Una vez seleccionadas las empresas, presione en el boton "Lanzar" para lanzar la encuesta.';
+            return 'Una vez seleccionadas las empresas, presione en el botón "Lanzar" para lanzar la encuesta.';
         case 4:
-            return 'Aparecerá una notificación de confirmación que le indicará que la encuesta ha sido lanzada exitosamente.'
+            return 'Aparecerá una notificación en el margen inferior derecho de confirmación que le indicará que la encuesta ha sido lanzada exitosamente.'
         default:
             return 'Unknown step';
     }
