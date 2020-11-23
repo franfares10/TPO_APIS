@@ -131,8 +131,7 @@ const handlePassword=(event)=>{
         if(getLogin===undefined){
           setMensaje("Usuario o Contraseña incorrecto")
           openNotification()
-          setEmail('')
-          setPassword('')
+      
         }
           
        }else

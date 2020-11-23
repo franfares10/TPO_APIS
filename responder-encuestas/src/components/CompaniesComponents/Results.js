@@ -139,6 +139,7 @@ const Results = ({ className, customers, ...rest }) => {
   const cambiar = () =>{
     if(selectedCustomerIds.length!==0 && selectedDate!==null && nombreLanz!==""){
       console.log(selectedCustomerIds)
+      console.log("FECHAAA")
       console.log(selectedDate)
         return false
     }else{
@@ -206,9 +207,10 @@ const Results = ({ className, customers, ...rest }) => {
                                 
                                 autoOk={true}
                                 variant="inline"
-                                format="dd/MM/yyyy"
+                                //format="dd-MM-yyyy"
                                 margin="normal"
                                 id="fecha1"
+                                disablePast={true}
                                 value={selectedDate}
                                 onChange={handleDateChange}
                                 KeyboardButtonProps={{

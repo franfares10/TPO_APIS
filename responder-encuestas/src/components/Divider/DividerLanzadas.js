@@ -117,7 +117,11 @@ export default function DividerLanzadas(props){
     }
 
 
-    
+  const transformar = (fecha) =>{
+    var lista = fecha.split(" ")
+    var nueva = lista[0] + " " + lista[2]+ " " + lista[1] + " "+lista[3]
+    return nueva;
+  }  
     return(
         
         <div>
@@ -137,7 +141,7 @@ export default function DividerLanzadas(props){
                                 <CardFooter>
                                 <div className={classes.stats} ><h4>
                                     <DateRange />Fecha de Vencimiento: 
-                                    {props.fechaVencimiento}
+                                    {transformar(props.fechaVencimiento)}
                                     </h4>
                                     </div>
                                     <div stats >

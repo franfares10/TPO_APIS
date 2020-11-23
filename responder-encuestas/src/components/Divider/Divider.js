@@ -179,7 +179,7 @@ const nombreLanzamiento = useDividerState().nombre
                 <CardFooter>
                         <div className={classes.stats} >
                             <DateRange />
-                            {props.created}
+                            Fecha Creacion: {props.created}
                             </div>
                             <div stats >
                             <Button round disabled={flag} color = "success" onClick={()=>{lanzarEncuesta(props._id)

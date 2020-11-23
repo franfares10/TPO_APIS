@@ -398,7 +398,7 @@ export const nuevoLanzamiento = async function(listaEmpresas,encuesta,fechaVenci
      formData.append('idEncuesta',encuesta);
      formData.append('nombreLanzamiento',nombreLanzamiento)
      formData.append('responsable',{"nombre":"jose"});
-     formData.append('fechaVencimiento',fechaVencimiento.toLocaleDateString());
+     formData.append('fechaVencimiento',fechaVencimiento);
      formData.append('listaEmpresasLanzadas',JSON.stringify(listaEmpresas));
      console.log("form data: ",formData.get('listaEmpresasLanzadas'))
      
