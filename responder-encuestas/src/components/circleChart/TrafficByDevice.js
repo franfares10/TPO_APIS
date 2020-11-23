@@ -153,7 +153,7 @@ const options = {
     <Card>
       
 
-      <CardHeader title="% DE RESPUESTAS" allign={AlignCenter}/>
+      <CardHeader  title={propp.empresa.nombreEmpresa} align="center"/>
       <Divider />
       <CardContent>
         <Box

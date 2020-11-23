@@ -1,8 +1,9 @@
 import urlWebServices from './webServices.js';
 import history from "utils/History/history";
 import { getEncuestaPorId } from "controller/encuestas.controller";
-
-
+import Snackbar from "components/Snackbar/Snackbar.js";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import React, { useState, useEffect }  from "react";
 /*export const signup= async function(signup)
 {
     //url webservices
@@ -71,6 +72,7 @@ import { getEncuestaPorId } from "controller/encuestas.controller";
 
 export const login =  async function(login)
 {
+  
     //url webservices
     let url = urlWebServices.login;
     //armo json con datos
@@ -102,8 +104,6 @@ export const login =  async function(login)
         let flag = data.loginUser.user.flag;
         console.log("jsonresponse",data);
 
-           
-
             switch(flag)
             {
                 case 0:
@@ -124,23 +124,24 @@ export const login =  async function(login)
                            // console.log(user._id)
                             localStorage.setItem("id",user._id);
                             history.push("/admin/newpoll");
-                            return ({rdo:0,mensaje:"Ok"});//correcto
+                            return data;//correcto
                         }
                         case 202:
-                        {
-                            //error mail
-                            return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
-                        }
-                        case 203:
-                        {
-                            //error password
-                            return ({rdo:1,mensaje:"La contraseña no es correcta."});
-                        }
-                        default:
-                        {
-                            //otro error
-                            return ({rdo:1,mensaje:"Ha ocurrido un error"});                
-                        }
+                            {
+                                //error mail
+                                return ({rdo:1,mensaje:"El mail ingresado no existe en nuestra base."});
+                            }
+                            case 203:
+                            {
+                                //error password
+                                return ({rdo:1,mensaje:"La contraseña no es correcta."});
+                            }
+                          
+                            default:
+                            {
+                                //otro error
+                                return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+                            }
                     }
                 }
                 case 1:
@@ -170,6 +171,7 @@ export const login =  async function(login)
                             //error password
                             return ({rdo:1,mensaje:"La contraseña no es correcta."});
                         }
+                    
                         default:
                         {
                             //otro error
@@ -178,13 +180,18 @@ export const login =  async function(login)
                     }
                 }
                
-            }
+
+            
+        
            
- 
+        }
     }
     catch(error)
     {
         console.log("error",error);
+      
+    
+        
     };
 }
 
@@ -391,7 +398,7 @@ export const nuevoLanzamiento = async function(listaEmpresas,encuesta,fechaVenci
      formData.append('idEncuesta',encuesta);
      formData.append('nombreLanzamiento',nombreLanzamiento)
      formData.append('responsable',{"nombre":"jose"});
-     formData.append('fechaVencimiento',fechaVencimiento);
+     formData.append('fechaVencimiento',fechaVencimiento.toLocaleDateString());
      formData.append('listaEmpresasLanzadas',JSON.stringify(listaEmpresas));
      console.log("form data: ",formData.get('listaEmpresasLanzadas'))
      

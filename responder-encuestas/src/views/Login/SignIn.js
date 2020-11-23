@@ -16,8 +16,9 @@ import {login} from "controller/login.controller";
 import avatar from "assets/img/loguito.png";
 import { whiteColor } from 'assets/jss/material-dashboard-react';
 import { cyan } from '@material-ui/core/colors';
-
-
+import Snackbar from "components/Snackbar/Snackbar.js";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import estilos from "assets/jss/material-dashboard-react/views/dashboardStyle"
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -96,19 +97,19 @@ const styles = makeStyles((theme) => ({
 
 }));
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles,estilos);
  
  
  
 
 
 export default function SignIn(){
- 
+const[br,setBR] = useState(false)
 const[usuarioValido,setUsuarioValido]=React.useState(false);
 const [email,setEmail]=React.useState('');
 const[password,setPassword]=React.useState('');
-     
-const classes = useStyles();
+ const[mensaje,setMensaje] = React.useState('')    
+const classes = useStyles;
 
 const handleEmail=(event)=>{
     setEmail(event.target.value);
@@ -123,26 +124,42 @@ const handlePassword=(event)=>{
       usuario :  event.target.user.value,
       password : event.target.password.value
      }
+
+     try{
      if(datos.usuario!=="" && datos.password!==""){
           let getLogin = await login(datos);
-         
+        if(getLogin===undefined){
+          setMensaje("Usuario o Contraseña incorrecto")
+          openNotification()
+          setEmail('')
+          setPassword('')
+        }
+          
        }else
        {
-         alert("Debe completar usuario y password");
+         setMensaje("Debe completar usuario y password")
+         openNotification()
        }
-     
-}
   
- const redirect= ()=>{
-  if (usuarioValido) {
-    //falta redireccionar a empresa tambien
-    history.push('/admin/dashboard')
-  }
+      }catch(e){
+        console.log(e)
+      
+      }
 }
+const openNotification = () =>{
+  setBR(true)
+  setTimeout(()=>{setBR(false)},1500)
+ 
+}
+
+const closeNotification = () =>{
+  setBR(false)
+}
+
     return (
       <ThemeProvider theme={tema}>
       <div classname={classes.fondo}>
-      {redirect()}
+     
       <Container component="main" maxWidth="xs"  >
         <CssBaseline />
         <div className={classes.paper}>
@@ -191,9 +208,19 @@ const handlePassword=(event)=>{
         <Box mt={8}>
           <Copyright />
         </Box>
+        <Snackbar
+                    place="br"
+                    color="danger"
+                    icon={CheckCircleIcon}
+                    message={mensaje}
+                    open={br}
+                    closeNotification={closeNotification}
+                    close
+                />
       </Container>
       </div>
      </ThemeProvider>
+     
       
     );
   }

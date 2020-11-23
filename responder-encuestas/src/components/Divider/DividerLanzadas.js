@@ -97,12 +97,11 @@ export default function DividerLanzadas(props){
                                     <TrafficByDevice {...funcionPropiedad(empresa,props)}/>
                                 </CardIcon>
                                     
-                                    <h3 className={classes.cardTitle}>{empresa.nombreEmpresa}</h3>
+                                    
                                 </CardHeader>
                                 <CardFooter stats>
                                 <div className={classes.stats}>
-                                    <DateRange />
-                                    Ultimas 24 horas.
+                                   
                                 </div>
                                 <div stats icon>
                                     <CustomMenu {...pasarProps(empresa,props)}/>
@@ -136,9 +135,10 @@ export default function DividerLanzadas(props){
                                     <h3 className={classes.cardTitle}>{props.nombreLanzamiento}</h3>
                                 </CardHeader>
                                 <CardFooter>
-                                <div className={classes.stats} >
-                                    <DateRange />
+                                <div className={classes.stats} ><h4>
+                                    <DateRange />Fecha de Vencimiento: 
                                     {props.fechaVencimiento}
+                                    </h4>
                                     </div>
                                     <div stats >
                                     {botonAccion()}
