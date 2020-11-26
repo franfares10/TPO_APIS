@@ -54,52 +54,13 @@ export default function Problema() {
   });
   const showNotification = place => {
     switch (place) {
-      case "tl":
-        if (!tl) {
-          setTL(true);
-          setTimeout(function() {
-            setTL(false);
-          }, 6000);
-        }
-        break;
-      case "tc":
-        if (!tc) {
-          setTC(true);
-          setTimeout(function() {
-            setTC(false);
-          }, 6000);
-        }
-        break;
-      case "tr":
-        if (!tr) {
-          setTR(true);
-          setTimeout(function() {
-            setTR(false);
-          }, 6000);
-        }
-        break;
-      case "bl":
-        if (!bl) {
-          setBL(true);
-          setTimeout(function() {
-            setBL(false);
-          }, 6000);
-        }
-        break;
-      case "bc":
-        if (!bc) {
-          setBC(true);
-          setTimeout(function() {
-            setBC(false);
-          }, 6000);
-        }
-        break;
+      
       case "br":
         if (!br) {
           setBR(true);
           setTimeout(function() {
             setBR(false);
-          }, 6000);
+          }, 1500);
         }
         break;
       default:
@@ -116,9 +77,9 @@ export default function Problema() {
             </CardHeader>
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={2}>
+                <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="ID Encuesta"
+                    labelText="Nombre Encuesta"
                     id="idEncuesta"
                     formControlProps={{
                       fullWidth: true
@@ -136,7 +97,7 @@ export default function Problema() {
                     }}
                     inputProps={{
                       multiline: true,
-                      rows: 5
+                      rows: 2
                     }}
                   />
                 </GridItem>
@@ -144,7 +105,11 @@ export default function Problema() {
             </CardBody>
             <GridContainer justify={"center"}>
                 <GridItem>
-                    <Button color="primary" onClick={() => showNotification("br")}>Enviar</Button>
+                    <Button color="primary" onClick={() => 
+                    
+                    showNotification("br")
+                    
+                    }>Enviar</Button>
                     <Snackbar
                         place="br"
                         color="primary"

@@ -39,7 +39,7 @@ const dashboardRoutes = [
   },
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Encuestas Lanzadas",
     icon: Dashboard,
     component: DashboardPage,
     layout: "/admin",
